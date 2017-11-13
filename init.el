@@ -16,14 +16,14 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (flx-ido projectile discover yafolding markdown-mode magit elpy)))
+    (company-auctex company-jedi edit-indirect flx-ido projectile discover yafolding markdown-mode magit elpy)))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "#242424" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Monaco")))))
 
 ;; Add Melpa to the package repositories
 (package-initialize)
@@ -57,11 +57,15 @@
 ;; Use pdflatex by default
 (setq TeX-PDF-mode t)
 
+;; Enable company-auctex
+(require 'company-auctex)
+(company-auctex-init)
+
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Use company-mode globally
-(add-hook 'after-init-hook 'global-company-mode)
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Enable Elpy
 (package-initialize)
