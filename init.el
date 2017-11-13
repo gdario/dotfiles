@@ -5,26 +5,6 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(column-number-mode t)
- '(custom-enabled-themes nil)
- '(package-selected-packages
-   (quote
-    (ein flycheck company-auctex company-jedi edit-indirect flx-ido projectile discover yafolding markdown-mode magit elpy)))
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#242424" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Monaco")))))
-
 ;; Add Melpa to the package repositories
 (package-initialize)
 (require 'package)
