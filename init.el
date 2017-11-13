@@ -65,5 +65,13 @@
 ;; Enable projectile
 (projectile-global-mode)
 
-;; Make the default font larger (13pt)
-(set-face-attribute 'default (selected-frame) :height 130)
+;; Select the font-type based on the system you are working on
+(setq my-preferred-font
+      (cond ((eq system-type 'darwin) "Monaco-13")
+	    ((eq system-type 'gnu/linux) "mono-13")
+	    (t nil)))
+(when my-preferred-font
+  (set-frame-font my-preferred-font nil t))
+
+;; Use the wombat theme by default
+(load-theme 'wombat t)
