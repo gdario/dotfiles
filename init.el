@@ -16,7 +16,7 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (company-auctex company-jedi edit-indirect flx-ido projectile discover yafolding markdown-mode magit elpy)))
+    (ein flycheck company-auctex company-jedi edit-indirect flx-ido projectile discover yafolding markdown-mode magit elpy)))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -70,6 +70,14 @@
 ;; Enable Elpy
 (package-initialize)
 (elpy-enable)
+
+;; Enable flycheck real time syntax checking in Elpy
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+;; Use IPython as the interactive python shell
+(elpy-use-ipython)
 
 ;; Enable yafolding
 (setq yafolding-mode t)
