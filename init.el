@@ -64,3 +64,6 @@
 
 ;; Enable projectile
 (projectile-global-mode)
+
+;; Make the default font larger (13pt)
+(set-face-attribute 'default (selected-frame) :height 130)
