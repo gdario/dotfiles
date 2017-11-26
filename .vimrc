@@ -1,6 +1,6 @@
 syntax on
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 set ruler
 set ignorecase
 set smartcase
@@ -15,7 +15,6 @@ set foldlevel=99
 set encoding=utf-8
 set colorcolumn=+1
 set wildmenu
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -23,17 +22,9 @@ set textwidth=79
 set expandtab
 set autoindent
 set fileformat=unix
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['jedi']
-let g:ycm_autoclose_preview_window_after_completion=1
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -43,12 +34,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'nvie/vim-flake8'
+Plugin 'w0rp/ale'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'python-mode/python-mode'
+" Plugin 'vim-scripts/indentpython.vim'
+" Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jalvesaq/Nvim-R'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
