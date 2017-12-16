@@ -78,7 +78,8 @@
 	    (t nil)))
 
 ;; Use the wombat theme by default
-(load-theme 'wombat t)
+(if (display-graphic-p)
+    (load-theme 'wombat t))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
