@@ -23,7 +23,7 @@ set expandtab
 set autoindent
 set fileformat=unix
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " set the runtime path to include Vundle and initialize
@@ -31,17 +31,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'w0rp/ale'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'python-mode/python-mode'
-" Plugin 'vim-scripts/indentpython.vim'
-" Plugin 'nvie/vim-flake8'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jalvesaq/Nvim-R'
+Plugin 'Valloric/YouCompleteMe'
+" Plugin 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
