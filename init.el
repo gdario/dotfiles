@@ -21,10 +21,6 @@
 (ido-mode t)
 (define-key (cdr ido-minor-mode-map-entry) [remap write-file] nil)
 
-(require 'poly-R)
-(require 'poly-markdown)
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-
 ;;; MARKDOWN
 (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
 
@@ -32,6 +28,16 @@
 (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+
+;; ;; Use markdown-mode
+;; (autoload 'markdown-mode "markdown-mode"
+;;    "Major mode for editing Markdown files" t)
+;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; (autoload 'gfm-mode "markdown-mode"
+;;    "Major mode for editing GitHub Flavored Markdown files" t)
+;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
 ; Use visual line mode
 (global-visual-line-mode t)
@@ -64,6 +70,14 @@
 ;; Enable yafolding
 (setq yafolding-mode t)
 
+;; Enable yafolding default map
+(defvar yafolding-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "<C-S-return>") #'yafolding-hide-parent-element)
+    (define-key map (kbd "<C-M-return>") #'yafolding-toggle-all)
+    (define-key map (kbd "<C-return>") #'yafolding-toggle-element)
+    map))
+
 ;; Enable projectile
 (projectile-global-mode)
 
@@ -77,7 +91,6 @@
 
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
-	    ((eq system-type 'gnu/linux) "/usr/bin/aspell")
 	    (t nil)))
 
 ;; Use the wombat theme by default
@@ -88,9 +101,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (markdown-mode ess ssh yafolding projectile magit elpy company-auctex))))
+    (polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
