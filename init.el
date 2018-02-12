@@ -17,8 +17,15 @@
 (tool-bar-mode -1)
 
 ; Activate ido-mode, but ignore it when writing files
-(require 'ido)
-(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
 (define-key (cdr ido-minor-mode-map-entry) [remap write-file] nil)
 
 ;;; MARKDOWN
@@ -79,7 +86,7 @@
     map))
 
 ;; Enable projectile
-(projectile-global-mode)
+(projectile-mode)
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
@@ -105,7 +112,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
+    (flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
