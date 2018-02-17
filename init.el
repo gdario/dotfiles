@@ -74,17 +74,6 @@
 ;; Use IPython as the interactive python shell
 ;; (elpy-use-ipython)
 
-;; Enable yafolding
-(setq yafolding-mode t)
-
-;; Enable yafolding default map
-(defvar yafolding-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "<C-S-return>") #'yafolding-hide-parent-element)
-    (define-key map (kbd "<C-M-return>") #'yafolding-toggle-all)
-    (define-key map (kbd "<C-return>") #'yafolding-toggle-element)
-    map))
-
 ;; Enable projectile
 (projectile-mode)
 
@@ -112,7 +101,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
+    (flx-ido polymode markdown-mode ess ssh projectile magit elpy company-auctex)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
