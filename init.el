@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -36,16 +35,6 @@
 (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
-;; ;; Use markdown-mode
-;; (autoload 'markdown-mode "markdown-mode"
-;;    "Major mode for editing Markdown files" t)
-;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; (autoload 'gfm-mode "markdown-mode"
-;;    "Major mode for editing GitHub Flavored Markdown files" t)
-;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-
 ; Use visual line mode
 (global-visual-line-mode t)
 
@@ -74,6 +63,17 @@
 ;; Use IPython as the interactive python shell
 ;; (elpy-use-ipython)
 
+;; Enable yafolding
+;; (setq yafolding-mode t)
+
+;; ;; Enable yafolding default map
+;; (defvar yafolding-mode-map
+;;   (let ((map (make-sparse-keymap)))
+;;     (define-key map (kbd "<C-S-return>") #'yafolding-hide-parent-element)
+;;     (define-key map (kbd "<C-M-return>") #'yafolding-toggle-all)
+;;     (define-key map (kbd "<C-return>") #'yafolding-toggle-element)
+;;     map))
+
 ;; Enable projectile
 (projectile-mode)
 
@@ -101,7 +101,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (flx-ido polymode markdown-mode ess ssh projectile magit elpy company-auctex)))
+    (flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
