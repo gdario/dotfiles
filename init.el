@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -17,13 +16,16 @@
 (tool-bar-mode -1)
 
 ; Activate ido-mode, but ignore it when writing files
-(require 'ido)
-(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
 (define-key (cdr ido-minor-mode-map-entry) [remap write-file] nil)
-
-(require 'poly-R)
-(require 'poly-markdown)
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
 ;;; MARKDOWN
 (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
@@ -64,11 +66,8 @@
 ;; Use IPython as the interactive python shell
 ;; (elpy-use-ipython)
 
-;; Enable yafolding
-(setq yafolding-mode t)
-
 ;; Enable projectile
-(projectile-global-mode)
+(projectile-mode)
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
@@ -90,9 +89,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (markdown-mode ess ssh yafolding projectile magit elpy company-auctex))))
+    (flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
