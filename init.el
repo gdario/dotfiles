@@ -64,7 +64,8 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; Use IPython as the interactive python shell
-;; (elpy-use-ipython)
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
 
 ;; Enable projectile
 (projectile-mode)
