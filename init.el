@@ -80,6 +80,12 @@
 	    ((eq system-type 'gnu/linux) "/usr/bin/aspell")
 	    (t nil)))
 
+;; Don't create backup files
+(setq make-backup-files nil)
+
+;; Show line numbers by default
+(global-linum-mode t)
+
 ;; Use the wombat theme by default
 (if (display-graphic-p)
     (load-theme 'wombat t))
@@ -91,7 +97,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
+    (csv-mode ein flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
