@@ -24,8 +24,9 @@ set fileformat=unix
 call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
