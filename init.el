@@ -35,7 +35,10 @@
 (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
-; Use visual line mode
+;; Use an indentation style for ESS that mimics the one of RStudio
+(setq ess-default-style 'DEFAULT)
+
+;; Use visual line mode
 (global-visual-line-mode t)
 
 ;; Use pdflatex by default
@@ -77,7 +80,6 @@
 
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
-	    ((eq system-type 'gnu/linux) "/usr/bin/aspell")
 	    (t nil)))
 
 ;; Don't create backup files
