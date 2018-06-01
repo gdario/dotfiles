@@ -84,7 +84,7 @@
 (setq make-backup-files nil)
 
 ;; Show line numbers by default
-(global-linum-mode t)
+;; (global-linum-mode t)
 
 ;; Use the wombat theme by default
 (if (display-graphic-p)
