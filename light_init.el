@@ -5,7 +5,6 @@
 (package-initialize)
 
 ;; Add Melpa to the package repositories
-(package-initialize)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
@@ -27,11 +26,10 @@
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
 
-;; Use company-mode globally
-(add-hook 'after-init-hook 'global-company-mode)
+;; ;; Use company-mode globally
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Enable Elpy
-(package-initialize)
 (elpy-enable)
 
 ;; Enable flycheck real time syntax checking in Elpy
