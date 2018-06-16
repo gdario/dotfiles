@@ -22,9 +22,11 @@ set expandtab
 set autoindent
 set fileformat=unix
 call plug#begin('~/.vim/plugged')
+Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'jalvesaq/Nvim-R'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
-
+let g:deoplete#sources#jedi#server_timeout = 30
+let g:deoplete#sources#jedi#show_docstring = 0
