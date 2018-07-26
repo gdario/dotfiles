@@ -1,9 +1,3 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 ;; Add Melpa to the package repositories
 (package-initialize)
 (require 'package)
@@ -64,8 +58,8 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; Use IPython as the interactive python shell
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i --simple-prompt")
+;; (setq python-shell-interpreter "ipython"
+;;       python-shell-interpreter-args "-i --simple-prompt")
 
 ;; Enable projectile
 (projectile-mode)
