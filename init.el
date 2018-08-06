@@ -1,5 +1,4 @@
 ;; Add Melpa to the package repositories
-(package-initialize)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
@@ -8,26 +7,6 @@
 
 ;; Remove the toolbar
 (tool-bar-mode -1)
-
-; Activate ido-mode, but ignore it when writing files
-;; (require 'ido)
-;; (ido-mode t)
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-(define-key (cdr ido-minor-mode-map-entry) [remap write-file] nil)
-
-;;; MARKDOWN
-(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
-
-;;; R modes
-(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
 ;; Use an indentation style for ESS that mimics the one of RStudio
 (setq ess-default-style 'DEFAULT)
@@ -38,21 +17,17 @@
 ;; Use pdflatex by default
 (setq TeX-PDF-mode t)
 
-;; Enable company-auctex
-(require 'company-auctex)
-(company-auctex-init)
-
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
 
-;; Use company-mode globally
-(add-hook 'after-init-hook 'global-company-mode)
+;; ;; Use company-mode globally
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Enable Elpy
-(package-initialize)
 (elpy-enable)
 
 ;; Enable flycheck real time syntax checking in Elpy
+<<<<<<< HEAD
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
@@ -75,25 +50,25 @@
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
 	    (t nil)))
+=======
+;; (when (require 'flycheck nil t)
+;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
+>>>>>>> e2058735a77aa019e9d15d3767e336b3493a8fe6
 
 ;; Don't create backup files
 (setq make-backup-files nil)
 
-;; Show line numbers by default
-;; (global-linum-mode t)
-
-;; Use the wombat theme by default
-(if (display-graphic-p)
-    (load-theme 'wombat t))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(custom-enabled-themes (quote (wombat)))
  '(package-selected-packages
    (quote
-    (csv-mode ein flx-ido polymode markdown-mode ess ssh yafolding projectile magit elpy company-auctex)))
+    (auctex elpygen csv-mode markdown-mode ess ssh magit elpy)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
