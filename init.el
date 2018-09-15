@@ -46,6 +46,7 @@
 
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
+	    ((eq system-type 'gnu/linux) "/usr/bin/aspell")
 	    (t nil)))
 
 ;; Don't create backup files
