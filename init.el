@@ -33,8 +33,8 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; Use IPython as the interactive python shell
-;; (setq python-shell-interpreter "ipython"
-;;       python-shell-interpreter-args "-i --simple-prompt")
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
@@ -51,21 +51,6 @@
 ;; Don't create backup files
 (setq make-backup-files nil)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(custom-enabled-themes (quote (wombat)))
- '(package-selected-packages
-   (quote
-    (auctex elpygen csv-mode markdown-mode ess ssh magit elpy)))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
