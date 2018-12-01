@@ -2,8 +2,11 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
-;; Activate packages
+;; Initialize packages
 (package-initialize)
+
+;; Show column numbers by default
+(setq column-number-mode t)
 
 ;; Move around windows with SHIFT + arrow
 (windmove-default-keybindings)
@@ -26,15 +29,15 @@
 ;; Use company-mode globally
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Enable ido-mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
 ;; Enable projectile
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+;; Enable ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; Enable Elpy
 (elpy-enable)
@@ -62,12 +65,13 @@
 	    (t nil)))
 (when my-preferred-font
   (set-frame-font my-preferred-font nil t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (projectile monokai-theme magit ess elpy))))
+ '(package-selected-packages (quote (projectile elpy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
