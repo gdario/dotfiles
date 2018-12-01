@@ -2,6 +2,9 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
+;; Activate packages
+(package-initialize)
+
 ;; Move around windows with SHIFT + arrow
 (windmove-default-keybindings)
 
@@ -23,14 +26,10 @@
 ;; Use company-mode globally
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Enable helm (install with M-x package-install helm)
-(package-initialize)
-(require 'helm-config)
-(helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
-
-;; Access the buffer list via helm
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
+;; Enable ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; Enable projectile
 (projectile-mode +1)
@@ -68,9 +67,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (projectile monokai-theme magit helm ess elpy csv-mode auctex))))
+ '(package-selected-packages (quote (projectile monokai-theme magit ess elpy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
