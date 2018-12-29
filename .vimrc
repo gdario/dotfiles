@@ -9,23 +9,32 @@ set linebreak
 set nolist
 set wrapmargin=0
 set modeline
+set wildmenu
+
+" Allow code folding
 set foldmethod=indent
 set foldlevel=99
 set encoding=utf-8
+
+" Add visual column
 set colorcolumn=+1
-set wildmenu
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set textwidth=79
-set expandtab
-set autoindent
-set fileformat=unix
+
+" Set indentation for Python
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+" Make Python code look pretty
+let python_highlight_all=1
+
 call plug#begin('~/.vim/plugged')
-Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fugitive'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
+" For this to work you need to have pyflakes installed
+Plug 'nvie/vim-flake8'
 call plug#end()
