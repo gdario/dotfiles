@@ -37,4 +37,5 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 " For this to work you need to have pyflakes installed
 Plug 'nvie/vim-flake8'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
