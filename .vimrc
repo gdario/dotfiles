@@ -32,10 +32,14 @@ au BufNewFile,BufRead *.py
 " Make Python code look pretty
 let python_highlight_all=1
 
+" Automatically close the docstring window
+let g:jedi#auto_close_doc = 1
+
 call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/indentpython.vim'
+" syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
-" For this to work you need to have pyflakes installed
+" vim-flake8 requires pyflakes
 Plug 'nvie/vim-flake8'
 Plug 'davidhalter/jedi-vim'
 call plug#end()
