@@ -30,12 +30,18 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " Make Python code look pretty
-let python_highlight_all=1
-
+" let python_highlight_all=1
+" 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/indentpython.vim'
+" syntastic requires either flake8 or pylint
 Plug 'vim-syntastic/syntastic'
-" For this to work you need to have pyflakes installed
+" vim-flake8 requires pyflakes
 Plug 'nvie/vim-flake8'
 Plug 'davidhalter/jedi-vim'
+" To use vim-markdown you must install tabular
+" tabular must come before vim-markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 call plug#end()
