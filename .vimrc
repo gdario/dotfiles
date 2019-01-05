@@ -30,11 +30,14 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " Make Python code look pretty
-" let python_highlight_all=1
-" 
+let python_highlight_all=1
+
+" Automatically close the docstring window
+let g:jedi#auto_close_doc = 1
+
 call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/indentpython.vim'
-" syntastic requires either flake8 or pylint
+" syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 " vim-flake8 requires pyflakes
 Plug 'nvie/vim-flake8'
