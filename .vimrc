@@ -19,6 +19,11 @@ set encoding=utf-8
 " Add visual column
 set colorcolumn=+1
 
+" Set general indentation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2
 
