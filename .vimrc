@@ -19,6 +19,9 @@ set encoding=utf-8
 " Add visual column
 set colorcolumn=+1
 
+" Set R code indentation to 2 spaces
+autocmd FileType r setlocal sw=2
+
 " Set indentation for Python
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
@@ -46,5 +49,5 @@ Plug 'davidhalter/jedi-vim'
 " tabular must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-
+Plug 'jalvesaq/Nvim-R'
 call plug#end()
