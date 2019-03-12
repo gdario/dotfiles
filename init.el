@@ -48,8 +48,8 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; Use IPython as the interactive python shell
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i --simple-prompt")
+;; (setq python-shell-interpreter "ipython"
+;;       python-shell-interpreter-args "-i --simple-prompt")
 
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
@@ -61,18 +61,18 @@
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
-      (cond ((eq system-type 'darwin) "Monaco-13")
-	    ((eq system-type 'gnu/linux) "monospace-12")
+      (cond ((eq system-type 'darwin) "Monaco-14")
+	    ((eq system-type 'gnu/linux) "monospace-13")
 	    (t nil)))
 (when my-preferred-font
   (set-frame-font my-preferred-font nil t))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (ssh ess projectile elpy))))
+ '(custom-enabled-themes (quote (wombat)))
+ '(package-selected-packages (quote (projectile markdown-mode ess elpy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
