@@ -1,4 +1,3 @@
-syntax on
 set nocompatible
 set ruler
 set ignorecase
@@ -39,6 +38,7 @@ au BufNewFile,BufRead *.py
 
 " Make Python code look pretty
 let python_highlight_all=1
+syntax on
 
 " Automatically close the docstring window
 let g:jedi#auto_close_doc = 1
