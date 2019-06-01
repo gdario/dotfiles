@@ -39,6 +39,12 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+;; Shortcut for org-agenda
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-switchb)
+
 ;; Enable Elpy
 (elpy-enable)
 
@@ -66,3 +72,17 @@
 	    (t nil)))
 (when my-preferred-font
   (set-frame-font my-preferred-font nil t))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files nil)
+ '(package-selected-packages (quote (sicp projectile poly-R magit ess elpy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
