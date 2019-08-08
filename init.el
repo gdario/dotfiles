@@ -8,6 +8,9 @@
 ;; Show column numbers by default
 (setq column-number-mode t)
 
+;; Set the 80 column inidicator
+(setq fci-rule-column 80)
+
 ;; Move around windows with SHIFT + arrow
 (windmove-default-keybindings)
 
@@ -68,6 +71,9 @@
 
 ;; Don't create backup files
 (setq make-backup-files nil)
+
+;; Automatically close HTML tags
+(setq sgml-quick-keys 'close)
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
