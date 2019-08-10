@@ -8,7 +8,7 @@
 ;; Show column numbers by default
 (setq column-number-mode t)
 
-;; Set the 80 column inidicator
+;; Package: fill-column-index: set the 80 column inidicator
 (setq fci-rule-column 80)
 
 ;; Move around windows with SHIFT + arrow
