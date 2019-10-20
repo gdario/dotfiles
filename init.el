@@ -29,6 +29,9 @@
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
 
+;; Shortcut to join lines
+(global-set-key (kbd "C-x C-j") 'join-line)
+
 ;; Use company-mode globally
 (add-hook 'after-init-hook 'global-company-mode)
 
