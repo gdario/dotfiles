@@ -22,22 +22,18 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" Set R code indentation to 2 spaces
-autocmd FileType r setlocal sw=2
-
 " Set indentation for Python
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
+"au BufNewFile,BufRead *.py
+"    \ set tabstop=4 |
+"    \ set softtabstop=4 |
+"    \ set shiftwidth=4 |
+"    \ set textwidth=79 |
+"    \ set expandtab |
+"    \ set autoindent |
+"    \ set fileformat=unix
 
 call plug#begin('~/.vim/plugged')
-Plug 'jalvesaq/Nvim-R'
-Plug 'maverickg/stan.vim'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'dense-analysis/ALE'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
