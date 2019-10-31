@@ -22,16 +22,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" Set indentation for Python
-"au BufNewFile,BufRead *.py
-"    \ set tabstop=4 |
-"    \ set softtabstop=4 |
-"    \ set shiftwidth=4 |
-"    \ set textwidth=79 |
-"    \ set expandtab |
-"    \ set autoindent |
-"    \ set fileformat=unix
-
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'dense-analysis/ALE'
