@@ -29,9 +29,6 @@
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
 
-;; Shortcut to join lines
-(global-set-key (kbd "C-x C-j") 'join-line)
-
 ;; Use company-mode globally
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -44,6 +41,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; Shortcut to join lines
+(global-set-key (kbd "C-x C-j") 'join-line)
 
 ;; Shortcut for org-agenda
 (global-set-key "\C-ca" 'org-agenda)
@@ -81,7 +81,24 @@
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
       (cond ((eq system-type 'darwin) "Monaco-13")
-	    ((eq system-type 'gnu/linux) "monospace-13")
+	    ((eq system-type 'gnu/linux) "monospace-12")
 	    (t nil)))
+
 (when my-preferred-font
   (set-frame-font my-preferred-font nil t))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(package-selected-packages (quote (projectile poly-R magit fcitx ess elpy)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal)))))
