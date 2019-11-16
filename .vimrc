@@ -1,3 +1,4 @@
+syntax on
 set nocompatible
 set ruler
 set ignorecase
@@ -23,12 +24,15 @@ set expandtab
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2
 
-"" Make Python code look pretty
-"let python_highlight_all=1
-"syntax on
+" Make Python code look pretty
+let python_highlight_all=1
+
+"Jedi-vim options
+let g:jedi#popup_on_dot = 0
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'davidhalter/jedi-vim'
 " syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
