@@ -16,6 +16,9 @@ set encoding=utf-8
 set foldmethod=indent
 set foldlevel=99
 
+" Add visual column
+set colorcolumn=80
+
 " Set general indentation
 set tabstop=4
 set shiftwidth=4

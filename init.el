@@ -80,25 +80,9 @@
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
-      (cond ((eq system-type 'darwin) "Monaco-13")
+      (cond ((eq system-type 'darwin) "Monaco-12")
 	    ((eq system-type 'gnu/linux) "monospace-12")
 	    (t nil)))
 
 (when my-preferred-font
   (set-frame-font my-preferred-font nil t))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(package-selected-packages (quote (projectile poly-R magit fcitx ess elpy)))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal)))))
