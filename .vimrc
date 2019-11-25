@@ -12,6 +12,9 @@ set modeline
 set wildmenu
 set encoding=utf-8
 
+" Required by Netrw
+filetype plugin on
+
 " Allow code folding
 set foldmethod=indent
 set foldlevel=99
