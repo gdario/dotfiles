@@ -1,0 +1,10 @@
+brew uninstall neovim
+brew uninstall libtermkey
+brew uninstall libuv
+brew uninstall libvterm
+brew uninstall luajit
+brew uninstall msgpack
+brew uninstall unibilium
+rm -rf ~/.vim/
+rm -rf .config/nvim/
+rm -rf .local/share/nvim/
