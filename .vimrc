@@ -20,7 +20,7 @@ set foldmethod=indent
 set foldlevel=99
 
 " Add visual column
-set colorcolumn=80
+" set colorcolumn=80
 
 " Set general indentation
 set tabstop=4
