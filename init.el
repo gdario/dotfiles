@@ -24,6 +24,9 @@
 (global-visual-line-mode t)
 
 ;; Use pdflatex by default
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq TeX-save-query nil)
 (setq TeX-PDF-mode t)
 
 ;; Create shortcut for magit-status
