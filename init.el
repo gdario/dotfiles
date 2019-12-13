@@ -29,6 +29,13 @@
 (setq TeX-save-query nil)
 (setq TeX-PDF-mode t)
 
+;; Stan support
+;; M-x package-install [RET] stan-mode [RET]
+;; M-x package-install [RET] company-stan [RET]
+;; M-x package-install [RET] eldoc-mode [RET]
+;; M-x package-install [RET] flycheck-mode [RET]
+;; M-x package-install [RET] stan-snippets [RET]
+
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
 
