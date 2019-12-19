@@ -91,7 +91,7 @@
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
       (cond ((eq system-type 'darwin) "Monaco-13")
-	    ((eq system-type 'gnu/linux) "monospace-12")
+	    ((eq system-type 'gnu/linux) "monospace-11")
 	    (t nil)))
 
 (when my-preferred-font
