@@ -52,9 +52,6 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-;; Shortcut to join lines
-(global-set-key (kbd "C-x C-j") 'join-line)
-
 ;; Shortcut for org-agenda
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cl" 'org-store-link)
