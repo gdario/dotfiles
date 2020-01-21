@@ -16,6 +16,9 @@ set foldmethod=indent
 set foldlevel=99
 set encoding=utf-8
 
+" Ignore whitespace in vimdiff
+set diffopt+=iwhite
+
 " Add visual column
 set colorcolumn=+1
 

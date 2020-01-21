@@ -15,7 +15,7 @@ set foldlevel=99
 set encoding=utf-8
 
 " Add visual column
-set colorcolumn=+1
+" set colorcolumn=+1
 
 " Set general indentation
 set tabstop=4
@@ -24,6 +24,8 @@ set expandtab
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'dense-analysis/ALE'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
