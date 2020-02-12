@@ -15,6 +15,9 @@ set encoding=utf-8
 " Required by Netrw
 filetype plugin on
 
+" Ignore whitespace in vimdiff
+set diffopt+=iwhite
+
 " Allow code folding
 set foldmethod=indent
 set foldlevel=99
