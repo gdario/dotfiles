@@ -8,6 +8,9 @@
 ;; Show column numbers by default
 (setq column-number-mode t)
 
+;; Show matching parentheses by default
+(setq show-paren-mode 1)
+
 ;; Package: fill-column-index: set the 80 column inidicator
 (setq fci-rule-column 80)
 
