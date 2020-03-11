@@ -5,6 +5,12 @@
 ;; Initialize packages
 (package-initialize)
 
+;; Initializa sphinx-doc-mode
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (require 'sphinx-doc)
+	    (sphinx-doc-mode t)))
+
 ;; Show column numbers by default
 (setq column-number-mode t)
 
