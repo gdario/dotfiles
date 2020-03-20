@@ -22,6 +22,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Don't replace tabs with spaces in Makefiles
+autocmd FileType make set noexpandtab
+
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'godlygeek/tabular'

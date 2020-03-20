@@ -33,6 +33,9 @@ set expandtab
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2
 
+" Don't replace tabs with spaces in Makefiles
+autocmd FileType make set noexpandtab
+
 " Make Python code look pretty
 let python_highlight_all=1
 
