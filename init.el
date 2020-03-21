@@ -5,12 +5,6 @@
 ;; Initialize packages
 (package-initialize)
 
-;; Initializa sphinx-doc-mode
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (require 'sphinx-doc)
-	    (sphinx-doc-mode t)))
-
 ;; Show column numbers by default
 (setq column-number-mode t)
 
@@ -74,14 +68,6 @@
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-;; Use python -m json.tool to prettify JSON files
-(defun format-json ()
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
-    )
-  )
 
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
