@@ -1,16 +1,13 @@
-;; Add Melpa to the package repositories
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+
+(eval-when-compile
+  (require 'use-package))
 
 ;; ----------------------------------------------------------------------------
 ;;  		         General configuration
 ;; ----------------------------------------------------------------------------
-;; Initialize packages
-(package-initialize)
-
-;; Initialize use-package
-(eval-when-compile
-  (require 'use-package))
 
 ;; Show column numbers by default
 (setq column-number-mode t)
@@ -105,9 +102,9 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (projectile-mode +1))
+  ;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  ;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
   
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
