@@ -30,6 +30,12 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" in makefiles, don't expand tabs to spaces, since actual tab characters are
+" needed, and have indentation at 8 chars to be sure that all indents are tabs
+" (despite the mappings later):
+" autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+autocmd FileType make set noexpandtab
+
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2
 
@@ -52,4 +58,5 @@ Plug 'nvie/vim-flake8'
 " tabular must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'vim-airline/vim-airline'
 call plug#end()
