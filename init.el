@@ -64,6 +64,9 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; set the default font
+(set-frame-font "Monaco 13" nil t)
+
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
