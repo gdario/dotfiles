@@ -1,104 +1,170 @@
-;; Add Melpa to the package repositories
+;;; init.el --- shamelessly stolen from Bozhidar's Emacs configuration
+
+;;; Commentary:
+;; This configuration is based (copied, actually) from the one below.
+;; https://github.com/bbatsov/emacs.d/blob/master/init.el
+
+;;; Code:
+
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
-;; Initialize packages
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+;; keep the installed packages in .emacs.d
+(setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
+;; update the package metadata is the local cache is missing
+(unless package-archive-contents
+  (package-refresh-contents))
 
-;; Initialize sphinx-doc-mode
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (require 'sphinx-doc)
-	    (sphinx-doc-mode t)))
+(setq user-full-name "Giovanni d'Ario"
+      user-mail-address "giovanni.dario@gmail.com")
 
-;; Show column numbers by default
-(setq column-number-mode t)
+;; Always load newest byte code
+(setq load-prefer-newer t)
 
-;; Show matching parentheses by default
-(setq show-paren-mode 1)
+;; reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
 
-;; Package: fill-column-index: set the 80 column inidicator
-(setq fci-rule-column 80)
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
 
-;; Move around windows with SHIFT + arrow
-(windmove-default-keybindings)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
 
-;; Remove the toolbar
-(tool-bar-mode -1)
+;; disable the annoying bell ring
+(setq ring-bell-function 'ignore)
 
-;; Use an indentation style for ESS that mimics the one of RStudio
-(setq ess-default-style 'DEFAULT)
+;; disable startup screen
+;; (setq inhibit-startup-screen t)
 
-;; Use visual line mode
-(global-visual-line-mode t)
+;; mode line settings
+(line-number-mode t)
+(column-number-mode t)
+(size-indication-mode t)
 
-;; Use pdflatex by default
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-(setq TeX-PDF-mode t)
+;; Newline at end of file
+(setq require-final-newline t)
 
-;; Stan support
-;; M-x package-install [RET] stan-mode [RET]
-;; M-x package-install [RET] company-stan [RET]
-;; M-x package-install [RET] eldoc-mode [RET]
-;; M-x package-install [RET] flycheck-mode [RET]
-;; M-x package-install [RET] stan-snippets [RET]
+;; Wrap lines at 80 characters
+(setq-default fill-column 80)
 
-;; Create shortcut for magit-status
-(global-set-key (kbd "C-x g") 'magit-status)
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
-;; Use company-mode globally
-(add-hook 'after-init-hook 'global-company-mode)
+;; revert buffers automatically when underlying files are changed externally
+(global-auto-revert-mode t)
 
-;; Enable projectile
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
 
-;; Enable ido-mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 
-;; Shortcut for org-agenda
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-switchb)
+(require 'use-package)
+(setq use-package-verbose t)
 
-;; Enable Elpy
-(elpy-enable)
+;;; built-in packages
 
-;; Enable flycheck real time syntax checking in Elpy
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
+(use-package paren
+  :config
+  (show-paren-mode +1))
 
-;; Use python -m json.tool to prettify JSON files
-(defun format-json ()
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
-    )
-  )
+(use-package elec-pair
+  :config
+  (electric-pair-mode +1))
 
-(setq ispell-program-name
-      (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
-	    ((eq system-type 'gnu/linux) "/usr/bin/aspell")
-	    (t nil)))
+(use-package abbrev
+  :config
+  (setq save-abbrevs 'silently)
+  (setq-default abbrev-mode t))
 
-;; Don't create backup files
-(setq make-backup-files nil)
+(use-package org
+  :bind
+  (("\C-ca" . org-agenda)
+  ("\C-cl" . org-store-link)
+  ("\C-cc" . org-capture)
+  ("\C-cb" . org-switchb)))
 
-;; Automatically close HTML tags
-(setq sgml-quick-keys 'close)
+;;; third-party packages
 
-;; Select the font-type based on the system you are working on
-(setq my-preferred-font
-      (cond ((eq system-type 'darwin) "Monaco-13")
-	    ((eq system-type 'gnu/linux) "monospace-11")
-	    (t nil)))
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 
-(when my-preferred-font
-  (set-frame-font my-preferred-font nil t))
+(use-package projectile
+  :ensure t
+  :init
+  (setq projectile-completion-system 'ivy)
+  :config
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (projectile-mode +1))
+
+(use-package exec-path-from-shell
+  :ensure t)
+
+(use-package markdown-mode
+  :ensure t
+  :mode (("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode)))
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.5)
+  (setq company-show-numbers t)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-align-annotations t)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode))
+
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable)
+  :config
+  (setq elpy-rpc-virtualenv-path 'current))
+
+(use-package ess
+  :ensure t
+  :config
+  (setq ess-style 'DEFAULT))
+
+(use-package poly-markdown
+  :ensure t)
+
+(use-package poly-R
+  :ensure t)
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(elpy-rpc-virtualenv-path (quote current))
+ '(package-selected-packages
+   (quote
+    (elpy flycheck company use-package projectile markdown-mode magit exec-path-from-shell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;; init.el ends here
