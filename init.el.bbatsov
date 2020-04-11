@@ -37,7 +37,7 @@
 (setq ring-bell-function 'ignore)
 
 ;; disable startup screen
-(setq inhibit-startup-screen t)
+;; (setq inhibit-startup-screen t)
 
 ;; mode line settings
 (line-number-mode t)
@@ -71,6 +71,7 @@
 (setq use-package-verbose t)
 
 ;;; built-in packages
+
 (use-package paren
   :config
   (show-paren-mode +1))
@@ -84,7 +85,15 @@
   (setq save-abbrevs 'silently)
   (setq-default abbrev-mode t))
 
+(use-package org
+  :bind
+  (("\C-ca" . org-agenda)
+  ("\C-cl" . org-store-link)
+  ("\C-cc" . org-capture)
+  ("\C-cb" . org-switchb)))
+
 ;;; third-party packages
+
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
@@ -125,9 +134,21 @@
 
 (use-package elpy
   :ensure t
-  :defer t
   :init
-  (advice-add 'python-mode :before 'elpy-enable))
+  (elpy-enable))
+
+(use-package ess
+  :ensure t
+  :config
+  (setq ess-style 'DEFAULT))
+
+(use-package poly-markdown
+  :ensure t)
+
+(use-package poly-R
+  :ensure t)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
