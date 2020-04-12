@@ -88,6 +88,13 @@
   (setq save-abbrevs 'silently)
   (setq-default abbrev-mode t))
 
+(use-package windmove-default-keybindings
+  :bind
+  (("C-c <left>" . windmove-left)
+  ("C-c <right>" . windmove-right)
+  ("C-c <up>" . windmove-up)
+  ("C-c <down>" . windmove-down)))
+
 (use-package org
   :bind
   (("\C-ca" . org-agenda)
