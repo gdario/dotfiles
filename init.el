@@ -97,10 +97,10 @@
 
 (use-package org
   :bind
-  (("\C-ca" . org-agenda)
-  ("\C-cl" . org-store-link)
-  ("\C-cc" . org-capture)
-  ("\C-cb" . org-switchb)))
+  (("C-c a" . org-agenda)
+  ("C-c l" . org-store-link)
+  ("C-c c" . org-capture)
+  ("C-c b" . org-switchb)))
 
 ;;; third-party packages
 
