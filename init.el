@@ -67,6 +67,9 @@
 ;; set the default font
 (set-frame-font "Monaco 13" nil t)
 
+;; set visual line by default
+(setq global-visual-line-mode t)
+
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
