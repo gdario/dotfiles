@@ -163,9 +163,12 @@
 (use-package poly-R
   :ensure t)
 
+;; Important: on the Mac add these environment variables in .Renviron
+;; LANGUAGE="en"
+;; LC_ALL="en_US.UTF-8"
 (use-package exec-path-from-shell
   :ensure t
-  :if (memq window-system '(mac ns x))
+  :if (eq system-type 'darwin)
   :config
   (exec-path-from-shell-initialize))
 
