@@ -5,6 +5,10 @@ export VISUAL="emacsclient -c -a emacs"
 export ALTERNATE_EDITOR=""
 alias em="emacsclient -t"
 
+# Set the language and locale for R
+export LANGUAGE="en"
+export LC_ALL="en_US.UTF-8"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/dariog/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
