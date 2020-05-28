@@ -85,9 +85,9 @@
   :config
   (show-paren-mode +1))
 
-(use-package elec-pair
-  :config
-  (electric-pair-mode +1))
+;; (use-package elec-pair
+;;   :config
+;;   (electric-pair-mode +1))
 
 (use-package abbrev
   :config
@@ -114,16 +114,16 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
-(use-package projectile
-  :ensure t
-  :init
-  (setq projectile-completion-system 'ivy)
-  :config
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (projectile-mode +1))
+;; (use-package projectile
+;;   :ensure t
+;;   :init
+;;   (setq projectile-completion-system 'ivy)
+;;   :config
+;;   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+;;   (projectile-mode +1))
 
-(use-package exec-path-from-shell
-  :ensure t)
+;; (use-package exec-path-from-shell
+;;   :ensure t)
 
 (use-package markdown-mode
   :ensure t
@@ -155,24 +155,30 @@
   :config
   (setq elpy-rpc-virtualenv-path 'current))
 
-(use-package ess
-  :ensure t
-  :config
-  (setq ess-style 'DEFAULT))
+;; (use-package ess
+;;   :ensure t
+;;   :config
+;;   (setq ess-style 'DEFAULT))
 
-(use-package poly-markdown
-  :ensure t)
+;; (use-package poly-markdown
+;;   :ensure t)
 
-(use-package poly-R
-  :ensure t)
-
-;; Important: on the Mac add these environment variables in .Renviron
-;; LANGUAGE="en"
-;; LC_ALL="en_US.UTF-8"
-(use-package exec-path-from-shell
-  :ensure t
-  :if (eq system-type 'darwin)
-  :config
-  (exec-path-from-shell-initialize))
+;; (use-package poly-R
+;;   :ensure t)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-export-backends (quote (ascii html icalendar latex md)))
+ '(package-selected-packages
+   (quote
+    (elpy flycheck company markdown-mode magit use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
