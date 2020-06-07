@@ -25,16 +25,11 @@ set expandtab
 " Don't replace tabs with spaces in Makefiles
 autocmd FileType make set noexpandtab
 
-call plug#begin('~/.vim/plugged')
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'dense-analysis/ALE'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
-call plug#end()
-let g:deoplete#enable_at_startup = 1
+" Set R code indentation to 2 spaces
+autocmd FileType r setlocal sw=2
+
+" Make Python code look pretty
+let python_highlight_all=1
 
 " From https://github.com/deoplete-plugins/deoplete-jedi/issues/35#issuecomment-281791696
 let g:jedi#auto_vim_configuration = 0
@@ -49,3 +44,16 @@ let g:jedi#smart_auto_mappings = 1
 " Unite/ref and pydoc are more useful.
 let g:jedi#documentation_command = '<Leader>_K'
 let g:jedi#auto_close_doc = 1
+let g:jedi#popup_on_dot = 0
+
+call plug#begin('~/.vim/plugged')
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'dense-analysis/ALE'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'davidhalter/jedi-vim'
+Plug 'jalvesaq/Nvim-R'
+call plug#end()
+let g:deoplete#enable_at_startup = 1
