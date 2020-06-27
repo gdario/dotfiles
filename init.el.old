@@ -5,20 +5,11 @@
 ;; Initialize packages
 (package-initialize)
 
-;; Initialize sphinx-doc-mode
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (require 'sphinx-doc)
-	    (sphinx-doc-mode t)))
-
 ;; Show column numbers by default
 (setq column-number-mode t)
 
 ;; Show matching parentheses by default
 (setq show-paren-mode 1)
-
-;; Package: fill-column-index: set the 80 column inidicator
-(setq fci-rule-column 80)
 
 ;; Move around windows with SHIFT + arrow
 (windmove-default-keybindings)
@@ -27,23 +18,17 @@
 (tool-bar-mode -1)
 
 ;; Use an indentation style for ESS that mimics the one of RStudio
-(setq ess-default-style 'DEFAULT)
+;; (setq ess-default-style 'DEFAULT)
 
 ;; Use visual line mode
 (global-visual-line-mode t)
 
-;; Use pdflatex by default
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-(setq TeX-PDF-mode t)
-
 ;; Stan support
-;; M-x package-install [RET] stan-mode [RET]
-;; M-x package-install [RET] company-stan [RET]
-;; M-x package-install [RET] eldoc-mode [RET]
-;; M-x package-install [RET] flycheck-mode [RET]
-;; M-x package-install [RET] stan-snippets [RET]
+;;M-x package-install [RET] stan-mode [RET]
+;;M-x package-install [RET] company-stan [RET]
+;;M-x package-install [RET] eldoc-mode [RET]
+;;M-x package-install [RET] flycheck-mode [RET]
+;;M-x package-install [RET] stan-snippets [RET]
 
 ;; Create shortcut for magit-status
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -75,14 +60,6 @@
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
-;; Use python -m json.tool to prettify JSON files
-(defun format-json ()
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
-    )
-  )
-
 (setq ispell-program-name
       (cond ((eq system-type 'darwin) "/usr/local/bin/ispell")
 	    ((eq system-type 'gnu/linux) "/usr/bin/aspell")
@@ -90,9 +67,6 @@
 
 ;; Don't create backup files
 (setq make-backup-files nil)
-
-;; Automatically close HTML tags
-(setq sgml-quick-keys 'close)
 
 ;; Select the font-type based on the system you are working on
 (setq my-preferred-font
