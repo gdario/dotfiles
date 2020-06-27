@@ -10,14 +10,14 @@ set nolist
 set wrapmargin=0
 set modeline
 set wildmenu
+set encoding=utf-8
+
+" Required by Netrw
+filetype plugin on
 
 " Allow code folding
 set foldmethod=indent
 set foldlevel=99
-set encoding=utf-8
-
-" Ignore whitespace in vimdiff
-set diffopt+=iwhite
 
 " Add visual column
 set colorcolumn=+1
@@ -26,6 +26,9 @@ set colorcolumn=+1
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" Don't replace tabs with spaces in Makefiles
+autocmd FileType make set noexpandtab
 
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2

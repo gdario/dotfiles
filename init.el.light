@@ -85,9 +85,9 @@
   :config
   (show-paren-mode +1))
 
-;; (use-package elec-pair
-;;   :config
-;;   (electric-pair-mode +1))
+(use-package elec-pair
+  :config
+  (electric-pair-mode +1))
 
 (use-package abbrev
   :config
@@ -114,16 +114,16 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
-;; (use-package projectile
-;;   :ensure t
-;;   :init
-;;   (setq projectile-completion-system 'ivy)
-;;   :config
-;;   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-;;   (projectile-mode +1))
+(use-package projectile
+  :ensure t
+  :init
+  (setq projectile-completion-system 'ivy)
+  :config
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (projectile-mode +1))
 
-;; (use-package exec-path-from-shell
-;;   :ensure t)
+(use-package exec-path-from-shell
+  :ensure t)
 
 (use-package markdown-mode
   :ensure t
