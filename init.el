@@ -122,9 +122,6 @@
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (projectile-mode +1))
 
-(use-package exec-path-from-shell
-  :ensure t)
-
 (use-package markdown-mode
   :ensure t
   :mode (("\\.md\\'" . gfm-mode)
