@@ -64,9 +64,6 @@
 ;; set the default font
 (set-frame-font "Monaco 13" nil t)
 
-;; set visual line by default
-(setq global-visual-line-mode t)
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
@@ -83,10 +80,10 @@
 ;;   :config
 ;;   (electric-pair-mode +1))
 
-;; (use-package abbrev
-;;   :config
-;;   (setq save-abbrevs 'silently)
-;;   (setq-default abbrev-mode t))
+(use-package abbrev
+  :config
+  (setq save-abbrevs 'silently)
+  (setq-default abbrev-mode t))
 
 (use-package windmove-default-keybindings
   :bind
@@ -131,6 +128,12 @@
   :config
   (setq ess-style 'DEFAULT))
 
+(use-package poly-markdown
+  :ensure t)
+
+(use-package poly-R
+  :ensure t)
+
 (use-package lsp-mode
   :ensure t
   :hook ((python-mode . lsp)
@@ -144,6 +147,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(global-visual-line-mode t)
  '(package-selected-packages
    (quote
     (lsp-mode markdown-mode exec-path-from-shell magit use-package))))
