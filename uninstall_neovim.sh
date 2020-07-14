@@ -3,6 +3,8 @@ brew uninstall libtermkey
 brew uninstall libuv
 brew uninstall libvterm
 brew uninstall luajit
+brew uninstall luarocks
+brew uninstall lua
 brew uninstall msgpack
 brew uninstall unibilium
 rm -rf ~/.vim/

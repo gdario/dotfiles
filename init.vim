@@ -55,5 +55,8 @@ Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'jalvesaq/Nvim-R'
+Plug 'vim-airline/vim-airline'
+Plug 'BurntSushi/ripgrep'
+Plug 'SirVer/ultisnips'
 call plug#end()
 let g:deoplete#enable_at_startup = 1

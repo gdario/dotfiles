@@ -20,9 +20,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq user-full-name "Giovanni d'Ario"
-      user-mail-address "giovanni.dario@gmail.com")
-
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
@@ -51,7 +48,7 @@
 (setq require-final-newline t)
 
 ;; Wrap lines at 80 characters
-(setq-default fill-column 80)
+;;(setq-default fill-column 80)
 
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
@@ -68,7 +65,14 @@
 (set-keyboard-coding-system 'utf-8)
 
 ;; set the default font
-(set-frame-font "Monaco 13" nil t)
+;; Select the font-type based on the system you are working on
+(setq my-preferred-font
+      (cond ((eq system-type 'darwin) "Monaco-13")
+	    ((eq system-type 'gnu/linux) "monospace-11")
+	    (t nil)))
+
+(when my-preferred-font
+  (set-frame-font my-preferred-font nil t))
 
 ;; set visual line by default
 (setq global-visual-line-mode t)
@@ -147,10 +151,9 @@
 
 (use-package elpy
   :ensure t
+  :defer t
   :init
-  (elpy-enable)
-  :config
-  (setq elpy-rpc-virtualenv-path 'current))
+  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package ess
   :ensure t
