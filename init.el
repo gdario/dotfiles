@@ -154,13 +154,24 @@
 
 (use-package ess
   :ensure t
+  :defer t
   :config
   (setq ess-style 'DEFAULT))
 
 (use-package poly-markdown
+  :defer t
   :ensure t)
 
 (use-package poly-R
+  :defer t
+  :ensure t)
+
+(use-package auctex
+  :defer t
+  :ensure t)
+
+(use-package gnuplot
+  :defer t
   :ensure t)
 
 ;; Important: on the Mac add these environment variables in .Renviron
@@ -173,3 +184,17 @@
   (exec-path-from-shell-initialize))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell poly-R poly-markdown ess elpy flycheck company markdown-mode projectile magit use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
