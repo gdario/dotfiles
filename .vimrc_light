@@ -19,7 +19,8 @@ set foldmethod=indent
 set foldlevel=99
 
 " Add visual column
-set colorcolumn=+1
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
 
 " Set general indentation
 set tabstop=4
@@ -38,3 +39,9 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
+
+" Activate markdown folding
+let g:markdown_folding = 1
+
+" Search down into subfolders - tab complete file-related tasks
+set path+=**
