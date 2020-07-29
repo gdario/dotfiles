@@ -71,9 +71,6 @@
 (when my-preferred-font
   (set-frame-font my-preferred-font nil t))
 
-;; set visual line by default
-(setq global-visual-line-mode t)
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
@@ -110,6 +107,10 @@
   ("C-c b" . org-switchb)))
 
 ;;; third-party packages
+(use-package fill-column-indicator
+  :ensure t
+  :config
+  (setq fci-rule-column 80))
 
 (use-package magit
   :ensure t
@@ -156,7 +157,7 @@
   :ensure t
   :defer t
   :config
-  (setq ess-style 'DEFAULT))
+(setq ess-style 'DEFAULT))
 
 (use-package poly-markdown
   :defer t
@@ -184,17 +185,3 @@
   (exec-path-from-shell-initialize))
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (exec-path-from-shell poly-R poly-markdown ess elpy flycheck company markdown-mode projectile magit use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
