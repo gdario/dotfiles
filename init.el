@@ -167,14 +167,6 @@
   :defer t
   :ensure t)
 
-(use-package auctex
-  :defer t
-  :ensure t)
-
-(use-package gnuplot
-  :defer t
-  :ensure t)
-
 ;; Important: on the Mac add these environment variables in .Renviron
 ;; LANGUAGE="en"
 ;; LC_ALL="en_US.UTF-8"
