@@ -20,16 +20,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; Always load newest byte code
-(setq load-prefer-newer t)
-
-;; reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
-
-;; warn when opening files bigger than 100MB
-(setq large-file-warning-threshold 100000000)
-
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 
@@ -37,7 +27,7 @@
 (setq ring-bell-function 'ignore)
 
 ;; disable startup screen
-;; (setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t)
 
 ;; mode line settings
 (line-number-mode t)
@@ -47,29 +37,13 @@
 ;; Newline at end of file
 (setq require-final-newline t)
 
-;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; revert buffers automatically when underlying files are changed externally
-(global-auto-revert-mode t)
+;; store all backup and autosave files in the .saves dir
+(setq backup-directory-alist `(("." . "~/.saves")))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-
-;; set the default font
-;; Select the font-type based on the system you are working on
-(setq my-preferred-font
-      (cond ((eq system-type 'darwin) "Monaco-13")
-	    ((eq system-type 'gnu/linux) "monospace-11")
-	    (t nil)))
-
-(when my-preferred-font
-  (set-frame-font my-preferred-font nil t))
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
@@ -107,6 +81,7 @@
   ("C-c b" . org-switchb)))
 
 ;;; third-party packages
+
 (use-package fill-column-indicator
   :ensure t
   :config
@@ -115,6 +90,11 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
+
+(use-package flx-ido
+  :ensure t
+  :config
+  (flx-ido-mode))
 
 (use-package projectile
   :ensure t
@@ -167,9 +147,6 @@
   :defer t
   :ensure t)
 
-;; Important: on the Mac add these environment variables in .Renviron
-;; LANGUAGE="en"
-;; LC_ALL="en_US.UTF-8"
 (use-package exec-path-from-shell
   :ensure t
   :if (eq system-type 'darwin)
@@ -177,3 +154,16 @@
   (exec-path-from-shell-initialize))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(exec-path-from-shell poly-R poly-markdown ess elpy flycheck company markdown-mode projectile flx-ido magit fill-column-indicator use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "White" :foreground "Black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Monaco")))))
