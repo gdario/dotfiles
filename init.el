@@ -61,6 +61,10 @@
   :config
   (show-paren-mode +1))
 
+;;(use-package elec-pair
+;;  :config
+;;  (electric-pair-mode +1))
+
 (use-package abbrev
   :config
   (setq save-abbrevs 'silently)
@@ -137,7 +141,7 @@
   :ensure t
   :defer t
   :config
-  (setq ess-style 'DEFAULT))
+(setq ess-style 'DEFAULT))
 
 (use-package poly-markdown
   :defer t
@@ -154,3 +158,21 @@
   (exec-path-from-shell-initialize))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(package-selected-packages
+   '(exec-path-from-shell poly-R poly-markdown ess elpy flycheck company markdown-mode projectile flx-ido magit fill-column-indicator use-package))
+ '(show-paren-mode t)
+ '(size-indication-mode t)
+ '(tool-bar-mode nil))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
