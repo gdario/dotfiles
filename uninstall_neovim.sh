@@ -7,6 +7,7 @@ brew uninstall luarocks
 brew uninstall lua
 brew uninstall msgpack
 brew uninstall unibilium
+brew uninstall pkg-config
 rm -rf ~/.vim/
 rm -rf ~/.config/nvim/
 rm -rf ~/.local/share/nvim/
