@@ -1,11 +1,10 @@
-export PATH="$HOME/.local/bin:/usr/local/bin:${PATH}"
+export PATH="$HOME:$HOME/.local/bin:/usr/local/bin:${PATH}"
 alias ls='ls -G'
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -c -a emacs"
+# Emacs client
 export ALTERNATE_EDITOR=""
 alias em="emacsclient -t"
-
-# Set the language and locale for R
+# Console emacs with no initialization
+alias emq="emacs -nw -q"
 export LANGUAGE="en"
 export LC_ALL="en_US.UTF-8"
 
@@ -24,3 +23,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
