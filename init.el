@@ -86,6 +86,10 @@
   :defer t
   :ensure t)
 
+(use-package evil
+  :ensure t
+  :config (evil-mode t))
+
 (use-package fill-column-indicator
   :ensure t
   :config
