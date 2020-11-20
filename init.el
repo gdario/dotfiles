@@ -82,9 +82,9 @@
 
 ;;; third-party packages
 
-(use-package auctex
-  :defer t
-  :ensure t)
+;; (use-package auctex
+;;   :defer t
+;;   :ensure t)
 
 (use-package evil
   :ensure t
