@@ -82,12 +82,14 @@
 
 ;;; third-party packages
 
-(use-package auctex
-  :defer t
-  :ensure t)
+;; (use-package auctex
+;;   :defer t
+;;   :ensure t)
 
 (use-package evil
-  :ensure t)
+  :ensure t
+  :config
+  (evil-mode t))
 
 (use-package fill-column-indicator
   :ensure t
@@ -148,7 +150,7 @@
   :ensure t
   :defer t
   :config
-  (setq ess-style 'DEFAULT))
+  (setq ess-style 'RStudio))
 
 (use-package poly-markdown
   :defer t
@@ -165,3 +167,21 @@
   (exec-path-from-shell-initialize))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(wombat))
+ '(elpy-rpc-python-command "python3")
+ '(elpy-shell-starting-directory 'current-directory)
+ '(global-visual-line-mode t)
+ '(org-export-backends '(ascii beamer html icalendar latex md odt))
+ '(package-selected-packages
+   '(julia-mode use-package projectile poly-R magit flycheck flx-ido fill-column-indicator exec-path-from-shell ess elpy)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
