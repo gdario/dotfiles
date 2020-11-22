@@ -88,8 +88,7 @@
 
 (use-package evil
   :ensure t
-  :config
-  (evil-mode t))
+  :config)
 
 (use-package fill-column-indicator
   :ensure t
