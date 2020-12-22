@@ -61,6 +61,10 @@
   :config
   (show-paren-mode +1))
 
+(use-package elec-pair
+  :config
+  (electric-pair-mode +1))
+
 (use-package abbrev
   :config
   (setq save-abbrevs 'silently)
@@ -83,13 +87,6 @@
   (setq org-log-done t))
 
 ;;; third-party packages
-
-;; (use-package auctex
-;;   :defer t
-;;   :ensure t)
-
-(use-package evil
-  :ensure t)
 
 (use-package fill-column-indicator
   :ensure t
