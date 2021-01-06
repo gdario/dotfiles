@@ -84,7 +84,11 @@
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
   :config
-  (setq org-log-done t))
+  (setq org-log-done t)
+    (setq org-agenda-files '("~/org"
+			   "~/org/learning"
+			   "~/org/phc"
+			   "~/org/projects")))
 
 ;;; third-party packages
 
