@@ -165,6 +165,10 @@
   :defer t
   :ensure t)
 
+(use-package stan-mode
+  :defer t
+  :ensure t)
+
 (use-package exec-path-from-shell
   :ensure t
   :if (eq system-type 'darwin)
