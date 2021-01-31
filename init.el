@@ -165,9 +165,37 @@
   :defer t
   :ensure t)
 
+;; stan-mode.el
 (use-package stan-mode
-  :defer t
-  :ensure t)
+  :mode ("\\.stan\\'" . stan-mode)
+  :hook (stan-mode . stan-mode-setup)
+  :config
+  (setq stan-indentation-offset 2))
+
+;; company-stan.el
+(use-package company-stan
+  :hook (stan-mode . company-stan-setup)
+  :config
+  (setq company-stan-fuzzy nil))
+
+;; eldoc-stan.el
+(use-package eldoc-stan
+  :hook (stan-mode . eldoc-stan-setup)
+  :config)
+
+;; flycheck-stan.el
+(use-package flycheck-stan
+  ;; Add a hook to setup `flycheck-stan' upon `stan-mode' entry
+  :hook ((stan-mode . flycheck-stan-stanc2-setup)
+         (stan-mode . flycheck-stan-stanc3-setup))
+  :config
+  (setq flycheck-stanc-executable nil)
+  (setq flycheck-stanc3-executable nil))
+
+;; stan-snippets.el
+(use-package stan-snippets
+  :hook (stan-mode . stan-snippets-initialize)
+  :config)
 
 (use-package exec-path-from-shell
   :ensure t
