@@ -49,6 +49,9 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; If Emacs is running in graphical mode, use wombat
+(if (display-graphic-p) (load-theme 'wombat t))
+
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
