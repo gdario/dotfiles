@@ -95,9 +95,9 @@
 
 ;;; third-party packages
 
-(use-package auctex
-  :defer t
-  :ensure t)
+;; (use-package auctex
+;;   :defer t
+;;   :ensure t)
 
 (use-package fill-column-indicator
   :ensure t
