@@ -41,7 +41,9 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 ;; Set default font
-;; (set-frame-font "Monaco-13" nil t)
+(if (eq system-type 'darwin)
+    (set-frame-font "Monaco-13" nil t)
+  (set-frame-font "Ubuntu Mono-12" nil t))
 
 ;; Set default encoding
 (prefer-coding-system 'utf-8)
@@ -64,9 +66,9 @@
   :config
   (show-paren-mode +1))
 
-(use-package elec-pair
-  :config
-  (electric-pair-mode +1))
+;; (use-package elec-pair
+;;   :config
+;;   (electric-pair-mode +1))
 
 (use-package abbrev
   :config
