@@ -222,6 +222,7 @@
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
  '(global-visual-line-mode t)
+ '(inferior-ess-r-program "/Users/admin/miniconda3/envs/R/bin/R")
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(package-selected-packages
    '(julia-mode use-package projectile poly-R magit flycheck flx-ido fill-column-indicator exec-path-from-shell ess elpy)))
