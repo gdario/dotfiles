@@ -147,6 +147,10 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+
 (use-package elpy
   :ensure t
   :defer t
