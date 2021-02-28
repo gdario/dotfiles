@@ -43,7 +43,7 @@
 ;; Set default font
 (if (eq system-type 'darwin)
     (set-frame-font "Monaco-13" nil t)
-  (set-frame-font "Ubuntu Mono-12" nil t))
+  (set-frame-font "Monospace-12" nil t))
 
 ;; Set default encoding
 (prefer-coding-system 'utf-8)
