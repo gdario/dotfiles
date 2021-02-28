@@ -33,6 +33,8 @@ autocmd FileType make set noexpandtab
 
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2
+let r_indent_align_args = 0
+let r_syntax_folding = 1
 
 " Set Yaml indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
