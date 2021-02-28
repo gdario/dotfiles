@@ -34,6 +34,9 @@ autocmd FileType make set noexpandtab
 " Set R code indentation to 2 spaces
 autocmd FileType r setlocal sw=2
 
+" Set Yaml indentation
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " Set up Netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
