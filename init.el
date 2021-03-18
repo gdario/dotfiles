@@ -52,13 +52,25 @@
 (set-keyboard-coding-system 'utf-8)
 
 ;; If Emacs is running in graphical mode, use wombat
-(if (display-graphic-p) (load-theme 'wombat t))
+;; (if (display-graphic-p) (load-theme 'wombat t))
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-verbose t)
+
+(global-set-key (kbd "C-M-z") 'zap-up-to-char)
+
+;; Show ISO week numbers in the calendar
+(setq calendar-week-start-day 1
+      calendar-intermonth-text
+      '(propertize
+        (format "%2d"
+                (car
+                 (calendar-iso-from-absolute
+                  (calendar-absolute-from-gregorian (list month day year)))))
+        'font-lock-face 'font-lock-function-name-face))
 
 ;;; built-in packages
 
@@ -155,7 +167,13 @@
   :ensure t
   :defer t
   :init
-  (advice-add 'python-mode :before 'elpy-enable))
+  (advice-add 'python-mode :before 'elpy-enable)
+  :config
+  (setq python-shell-interpreter "jupyter"
+	python-shell-interpreter-args "console --simple-prompt"
+	python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
+
 
 (use-package julia-mode
   :ensure t
