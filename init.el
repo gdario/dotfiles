@@ -101,9 +101,12 @@
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
   :config
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
   (setq org-log-done t)
     (setq org-agenda-files '("~/org"
 			   "~/org/learning"
+			   "~/org/misc"
 			   "~/org/phc"
 			   "~/org/projects")))
 
@@ -173,7 +176,6 @@
 	python-shell-interpreter-args "console --simple-prompt"
 	python-shell-prompt-detect-failure-warning nil)
   (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
-
 
 (use-package julia-mode
   :ensure t
