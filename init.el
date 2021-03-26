@@ -78,9 +78,9 @@
   :config
   (show-paren-mode +1))
 
-;; (use-package elec-pair
-;;   :config
-;;   (electric-pair-mode +1))
+(use-package elec-pair
+  :config
+  (electric-pair-mode +1))
 
 (use-package abbrev
   :config
@@ -104,6 +104,12 @@
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
   (setq org-log-done t)
+  (setq org-babel-python-command "python3")
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (shell . t)
+     (r . t)
     (setq org-agenda-files '("~/org"
 			   "~/org/learning"
 			   "~/org/misc"
