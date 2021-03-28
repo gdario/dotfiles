@@ -203,6 +203,7 @@
 
 ;;; stan-mode.el
 (use-package stan-mode
+  :ensure t
   :mode ("\\.stan\\'" . stan-mode)
   :hook (stan-mode . stan-mode-setup)
   ;;
@@ -212,6 +213,7 @@
 
 ;;; company-stan.el
 (use-package company-stan
+  :ensure t
   :hook (stan-mode . company-stan-setup)
   ;;
   :config
@@ -228,6 +230,7 @@
 
 ;;; flycheck-stan.el
 (use-package flycheck-stan
+  :ensure t
   ;; Add a hook to setup `flycheck-stan' upon `stan-mode' entry
   :hook ((stan-mode . flycheck-stan-stanc2-setup)
          (stan-mode . flycheck-stan-stanc3-setup))
