@@ -109,7 +109,7 @@
    'org-babel-load-languages
    '((python . t)
      (shell . t)
-     (r . t)
+     (r . t)))
     (setq org-agenda-files '("~/org"
 			   "~/org/learning"
 			   "~/org/misc"
