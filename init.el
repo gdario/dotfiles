@@ -222,6 +222,7 @@
 
 ;;; eldoc-stan.el
 (use-package eldoc-stan
+  :ensure
   :hook (stan-mode . eldoc-stan-setup)
   ;;
   :config
