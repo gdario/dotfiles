@@ -244,6 +244,7 @@
 
 ;;; stan-snippets.el
 (use-package stan-snippets
+  :ensure
   :hook (stan-mode . stan-snippets-initialize)
   ;;
   :config
