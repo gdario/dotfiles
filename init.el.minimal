@@ -1,0 +1,47 @@
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+
+;; Remove the tool-bar (don't confuse it with 
+(tool-bar-mode -1)
+
+;; Set the default font
+(add-to-list 'default-frame-alist
+             '(font . "Menlo-13"))
+
+(global-visual-line-mode t)
+(show-paren-mode t)
+(electric-pair-mode t)
+
+(use-package magit
+  :ensure t)
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(elpy-rpc-python-command "python3")
+ '(global-visual-line-mode t)
+ '(package-selected-packages '(elpy use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
