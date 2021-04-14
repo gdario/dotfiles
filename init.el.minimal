@@ -7,10 +7,12 @@
 ;; Remove the tool-bar (don't confuse it with 
 (tool-bar-mode -1)
 
-;; store all backup and autosave files in the .saves dir
+;;; store all backup and autosave files in the .saves dir
+
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;; Set the default font
+;;; Set the default font
+
 (if (eq system-type 'darwin)
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
@@ -19,73 +21,13 @@
 (show-paren-mode t)
 (electric-pair-mode t)
 
-(use-package company
-  :ensure t
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
+;;; Make TRAMP faster
 
-(use-package magit
-  :ensure t)
+(setq remote-file-name-inhibit-cache nil)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+                    vc-ignore-dir-regexp
+                    tramp-file-name-regexp))
+(setq tramp-verbose 1)
 
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable)
-  (setq python-shell-interpreter "jupyter"
-	python-shell-interpreter-args "console --simple-prompt"
-	python-shell-prompt-detect-failure-warning nil)
-  (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
-
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
-(use-package ess
-  :ensure t
-  :defer t
-  :config
-  (setq ess-style 'RStudio))
-
-(use-package poly-markdown
-  :defer t
-  :ensure t)
-
-(use-package poly-R
-  :defer t
-  :ensure t)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(elpy-rpc-python-command "python3")
- '(elpy-rpc-virtualenv-path 'current)
- '(ess-R-font-lock-keywords
-   '((ess-R-fl-keyword:keywords . t)
-     (ess-R-fl-keyword:constants . t)
-     (ess-R-fl-keyword:modifiers . t)
-     (ess-R-fl-keyword:fun-defs . t)
-     (ess-R-fl-keyword:assign-ops . t)
-     (ess-R-fl-keyword:%op% . t)
-     (ess-fl-keyword:fun-calls . t)
-     (ess-fl-keyword:numbers)
-     (ess-fl-keyword:operators . t)
-     (ess-fl-keyword:delimiters)
-     (ess-fl-keyword:=)
-     (ess-R-fl-keyword:F&T)))
- '(global-visual-line-mode t)
- '(package-selected-packages '(elpy use-package))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq projectile-mode-line "Projectile")
