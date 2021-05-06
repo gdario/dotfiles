@@ -22,8 +22,8 @@
 (electric-pair-mode t)
 
 ;; If Emacs is running in graphical mode, use wombat
-(if (display-graphic-p)
-    (load-theme 'wombat t))
+;; (if (display-graphic-p)
+;;     (load-theme 'wombat t))
 
 ;;; Make TRAMP faster
 
