@@ -51,6 +51,10 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; On the Mac dired does not play nice with ls
+(if (eq system-type 'darwin)
+  (setq dired-use-ls-dired nil))
+
 ;; If Emacs is running in graphical mode, use wombat
 ;; (if (display-graphic-p) (load-theme 'wombat t))
 

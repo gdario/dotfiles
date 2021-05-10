@@ -11,8 +11,11 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;;; Set the default font
+;;; On the Mac dired does not play nice with ls
+(if (eq system-type 'darwin)
+  (setq dired-use-ls-dired nil))
 
+;;; Set the default font
 (if (eq system-type 'darwin)
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
