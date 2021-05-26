@@ -11,10 +11,6 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;;; On the Mac dired does not play nice with ls
-(if (eq system-type 'darwin)
-  (setq dired-use-ls-dired nil))
-
 ;;; Set the default font
 (if (eq system-type 'darwin)
     (set-frame-font "Monaco-13" nil t)
@@ -40,6 +36,12 @@
 (setq projectile-mode-line "Projectile")
 
 ;;; Use package
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-verbose t)
 
 (use-package ssh
   :ensure t)
