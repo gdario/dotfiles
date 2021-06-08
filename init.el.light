@@ -43,6 +43,27 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
+(use-package org
+  :bind
+  (("C-c a" . org-agenda)
+  ("C-c l" . org-store-link)
+  ("C-c c" . org-capture)
+  ("C-c b" . org-switchb))
+  :config
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+  (setq org-log-done t)
+  (setq org-babel-python-command "python3")
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (shell . t)
+     (r . t)))
+    (setq org-agenda-files '("~/org"
+			   "~/org/learning"
+			   "~/org/misc"
+			   "~/org/projects")))
+  
 (use-package ssh
   :ensure t)
 
@@ -63,7 +84,6 @@
 	python-shell-prompt-detect-failure-warning nil)
   (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
 
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -83,6 +103,10 @@
   :ensure t)
 
 (use-package poly-R
+  :defer t
+  :ensure t)
+
+(use-package julia-mode
   :defer t
   :ensure t)
 
