@@ -49,6 +49,8 @@
   ("C-c l" . org-store-link)
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
+  :init
+  (electric-indent-mode -1)
   :config
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
@@ -57,12 +59,12 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)
-     (shell . t)
-     (r . t)))
-    (setq org-agenda-files '("~/org"
-			   "~/org/learning"
-			   "~/org/misc"
-			   "~/org/projects")))
+     (shell . t)))
+  (setq org-agenda-files '("~/Documents/org"
+			   "~/Documents/org/learning"
+			   "~/Documents/org/meetings"
+			   "~/Documents/org/misc"
+			   "~/Documents/org/projects")))
   
 (use-package ssh
   :ensure t)
