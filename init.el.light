@@ -11,6 +11,10 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+;;; Make ispell accessible
+(if (eq system-type 'darwin)
+    (setq ispell-program-name "/usr/local/bin/ispell"))
+
 ;;; Set the default font
 (if (eq system-type 'darwin)
     (set-frame-font "Monaco-13" nil t)
@@ -21,8 +25,8 @@
 (electric-pair-mode t)
 
 ;; If Emacs is running in graphical mode, use wombat
-;; (if (display-graphic-p)
-;;     (load-theme 'wombat t))
+(if (display-graphic-p)
+    (load-theme 'wombat t))
 
 ;;; Make TRAMP faster
 
