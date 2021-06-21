@@ -16,10 +16,11 @@
 
 (package-initialize)
 
-;; update the package metadata is the local cache is missing
+;; update the package metadata if the local cache is missing
 (unless package-archive-contents
   (package-refresh-contents))
 
+;; Remove the toolbar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 
