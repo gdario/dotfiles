@@ -244,7 +244,7 @@
      (ess-fl-keyword:=)
      (ess-R-fl-keyword:F&T)))
  '(global-visual-line-mode t)
- '(package-selected-packages '(elpy use-package))
+ ;;'(package-selected-packages '(elpy use-package))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
