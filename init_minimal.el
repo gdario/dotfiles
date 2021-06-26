@@ -30,4 +30,4 @@
                     tramp-file-name-regexp))
 (setq tramp-verbose 1)
 
-(setq projectile-mode-line "Projectile")
+;; (setq projectile-mode-line "Projectile")
