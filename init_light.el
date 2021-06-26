@@ -10,6 +10,7 @@
 ;;; store all backup and autosave files in the .saves dir
 
 (setq backup-directory-alist `(("." . "~/.saves")))
+(setq ispell-program-name "/usr/local/bin/ispell")
 
 ;;; Set the default font
 
@@ -29,6 +30,23 @@
                     vc-ignore-dir-regexp
                     tramp-file-name-regexp))
 (setq tramp-verbose 1)
+
+;;; Configure Org
+
+(use-package org
+  :bind
+  (("C-c a" . org-agenda)
+  ("C-c l" . org-store-link)
+  ("C-c c" . org-capture)
+  ("C-c b" . org-switchb))
+  :config
+  (electric-indent-mode -1)
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+  (setq org-log-done t)
+  (setq org-agenda-files '("~/Documents/org/misc"
+			   "~/Documents/org/projects"
+			   "~/Documents/org/meetings")))
 
 ;;; Third party packages
 
@@ -58,6 +76,13 @@
   :defer t
   :ensure t)
 
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)))
 
 ;; (setq projectile-mode-line "Projectile")
 (custom-set-variables
