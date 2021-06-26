@@ -47,7 +47,6 @@
   (setq org-agenda-files '("~/Documents/org/misc"
 			   "~/Documents/org/projects"
 			   "~/Documents/org/meetings")))
-
 ;;; Third party packages
 
 (use-package ssh
@@ -75,6 +74,14 @@
 (use-package poly-R
   :defer t
   :ensure t)
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 (use-package projectile
   :ensure t
