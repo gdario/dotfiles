@@ -12,6 +12,11 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq ispell-program-name "/usr/local/bin/ispell")
 
+;;; Set the default theme
+
+;; (if (display-graphic-p)
+;;     (load-theme 'wombat t))
+
 ;;; Set the default font
 
 (if (eq system-type 'darwin)
@@ -20,7 +25,8 @@
 
 (global-visual-line-mode t)
 (show-paren-mode t)
-(electric-pair-mode t)
+(linum-mode t)
+;; (electric-pair-mode t)
 
 ;;; Make TRAMP faster
 
@@ -52,9 +58,9 @@
 (use-package ssh
   :ensure t)
 
-(use-package auctex
-  :ensure t
-  :defer t)
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t)
 
 (use-package magit
   :ensure t
@@ -63,6 +69,10 @@
 (use-package elpy
   :ensure t
   :defer t
+  :config
+  (setq elpy-shell-starting-directory 'project-root)
+  (setq python-shell-interpreter "python"
+      python-shell-interpreter-args "-i")
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
