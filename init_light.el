@@ -14,8 +14,8 @@
 
 ;;; Set the default theme
 
-;; (if (display-graphic-p)
-;;     (load-theme 'wombat t))
+(if (display-graphic-p)
+    (load-theme 'wombat t))
 
 ;;; Set the default font
 
@@ -54,6 +54,10 @@
 			   "~/Documents/org/projects"
 			   "~/Documents/org/meetings")))
 ;;; Third party packages
+
+(use-package company
+  :ensure t
+  :init (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package ssh
   :ensure t)
