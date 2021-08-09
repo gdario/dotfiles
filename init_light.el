@@ -25,7 +25,7 @@
 
 (global-visual-line-mode t)
 (show-paren-mode t)
-(linum-mode t)
+;; (linum-mode t)
 (electric-pair-mode t)
 
 ;;; Make TRAMP faster
@@ -62,9 +62,9 @@
 (use-package ssh
   :ensure t)
 
-(use-package auctex
-  :ensure t
-  :defer t)
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t)
 
 (use-package magit
   :ensure t
