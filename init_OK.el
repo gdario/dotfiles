@@ -12,11 +12,6 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq ispell-program-name "/usr/local/bin/ispell")
 
-;;; Set the default theme
-
-(if (display-graphic-p)
-    (load-theme 'wombat t))
-
 ;;; Set the default font
 
 (if (eq system-type 'darwin)
@@ -32,8 +27,8 @@
 (setq remote-file-name-inhibit-cache nil)
 (setq vc-ignore-dir-regexp
       (format "%s\\|%s"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
+                    vc-ignore-dir-regexp
+                    tramp-file-name-regexp))
 (setq tramp-verbose 1)
 
 ;;; Configure Org
@@ -54,32 +49,20 @@
 			   "~/org/misc"
 			   "~/org/phc"
 			   "~/org/projects")))
-;;; Third party packages
 
-(use-package company
-  :ensure t
-  :init (add-hook 'after-init-hook 'global-company-mode))
+;;; Third-party packages
 
 (use-package ssh
   :ensure t)
 
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t)
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
 
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
-
-(use-package elpy
-  :ensure t
-  :defer t
-  :config
-  (setq elpy-shell-starting-directory 'project-root)
-  (setq python-shell-interpreter "python"
-      python-shell-interpreter-args "-i")
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package ess
   :ensure t
@@ -116,8 +99,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elpy-rpc-virtualenv-path 'current)
- '(package-selected-packages '(ess use-package)))
+ '(package-selected-packages '(use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
