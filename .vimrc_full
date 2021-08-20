@@ -45,7 +45,7 @@ let g:netrw_winsize = 25
 set path+=**
 
 " Make Python code look pretty
-let python_highlight_all=1
+let g:python_highlight_all = 1
 
 "Jedi-vim options
 let g:jedi#popup_on_dot = 0
