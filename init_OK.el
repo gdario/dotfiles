@@ -18,6 +18,9 @@
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
+(if (eq system-type 'darwin)
+    (setq ispell-program-name "/usr/local/bin/ispell"))
+
 (global-visual-line-mode t)
 (show-paren-mode t)
 (electric-pair-mode t)
@@ -27,8 +30,8 @@
 (setq remote-file-name-inhibit-cache nil)
 (setq vc-ignore-dir-regexp
       (format "%s\\|%s"
-                    vc-ignore-dir-regexp
-                    tramp-file-name-regexp))
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
 (setq tramp-verbose 1)
 
 ;;; Configure Org
