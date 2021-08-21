@@ -55,10 +55,10 @@
 
 ;;; Third-party packages
 
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode 1))
+;; (use-package evil
+;;   :ensure t
+;;   :config
+;;   (evil-mode 1))
 
 (use-package ssh
   :ensure t)
