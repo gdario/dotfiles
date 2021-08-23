@@ -1,12 +1,8 @@
 (require 'package)
 
-;;; Uncomment for the bleeding-edge version of Melpa
-;; (add-to-list 'package-archives
-;; 	     '("melpa" . "https://melpa.org/packages/") t)
-
-;; For the stable version of Melpa
+;; Uncomment for the bleeding-edge version of Melpa
 (add-to-list 'package-archives
-	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+	     '("melpa" . "https://melpa.org/packages/") t)
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
