@@ -1,8 +1,27 @@
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
 
+;;; Uncomment for the bleeding-edge version of Melpa
+;; (add-to-list 'package-archives
+;; 	     '("melpa" . "https://melpa.org/packages/") t)
+
+;; For the stable version of Melpa
+(add-to-list 'package-archives
+	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+; activate all the packages (in particular autoloads)
 (package-initialize)
+
+; list the packages you want
+(setq package-list '(use-package))
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;; Remove the tool-bar (don't confuse it with 
 (tool-bar-mode -1)
@@ -10,12 +29,6 @@
 ;;; store all backup and autosave files in the .saves dir
 
 (setq backup-directory-alist `(("." . "~/.saves")))
-(setq ispell-program-name "/usr/local/bin/ispell")
-
-;;; Set the default theme
-
-(if (display-graphic-p)
-    (load-theme 'wombat t))
 
 ;;; Set the default font
 
@@ -23,9 +36,15 @@
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
+(if (eq system-type 'darwin)
+    (setq ispell-program-name "/usr/local/bin/ispell"))
+
 (global-visual-line-mode t)
 (show-paren-mode t)
 (electric-pair-mode t)
+
+;; Newline at end of file
+(setq require-final-newline t)
 
 ;;; Make TRAMP faster
 
@@ -54,32 +73,21 @@
 			   "~/org/misc"
 			   "~/org/phc"
 			   "~/org/projects")))
-;;; Third party packages
 
-(use-package company
-  :ensure t
-  :init (add-hook 'after-init-hook 'global-company-mode))
+;;; Third-party packages
 
 (use-package ssh
   :ensure t)
 
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t)
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (elpy-enable))
 
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
-
-(use-package elpy
-  :ensure t
-  :defer t
-  :config
-  (setq elpy-shell-starting-directory 'project-root)
-  (setq python-shell-interpreter "python"
-      python-shell-interpreter-args "-i")
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package ess
   :ensure t
@@ -116,8 +124,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elpy-rpc-virtualenv-path 'current)
- '(package-selected-packages '(ess use-package)))
+ '(package-selected-packages '(use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
