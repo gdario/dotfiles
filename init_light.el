@@ -72,6 +72,11 @@
 
 ;;; Third-party packages
 
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode t))
+
 (use-package ssh
   :ensure t)
 
