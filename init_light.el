@@ -32,6 +32,10 @@
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
+;;; Set Wombat as the theme when in graphical mode
+(if (display-graphic-p)
+    (load-theme 'wombat t))
+
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
 
@@ -39,7 +43,7 @@
 (show-paren-mode t)
 (electric-pair-mode t)
 
-;; Newline at end of file
+;;; Newline at end of file
 (setq require-final-newline t)
 
 ;;; Make TRAMP faster
