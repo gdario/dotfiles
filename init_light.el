@@ -76,6 +76,10 @@
 
 ;;; Third-party packages
 
+(use-package org-roam
+  :ensure t
+  :defer t)
+
 (use-package company
   :ensure t
   :config
