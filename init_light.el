@@ -78,6 +78,8 @@
 
 (use-package org-roam
  :ensure t
+ :init
+ (setq org-roam-v2-ack t)
  :custom
  (org-roam-directory "~/RoamNotes")
  :bind (("C-c n l" . org-roam-buffer-toggle)
