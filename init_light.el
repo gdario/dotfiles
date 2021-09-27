@@ -68,11 +68,7 @@
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
   (setq org-log-done t)
-  (setq org-agenda-files '("~/org/learning"
-			   "~/org/meetings"
-			   "~/org/misc"
-			   "~/org/phc"
-			   "~/org/projects")))
+  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$")))
 
 ;;; Third-party packages
 
