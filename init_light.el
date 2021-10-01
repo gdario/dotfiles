@@ -101,7 +101,7 @@
   :ensure t
   :defer t
   :init
-  (elpy-enable))
+  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package magit
   :ensure t
