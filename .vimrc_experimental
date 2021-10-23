@@ -1,0 +1,47 @@
+set nocompatible
+set ruler
+set ignorecase
+set smartcase
+set incsearch
+set linebreak
+set nolist
+set nowrap
+set wrapmargin=0
+set modeline
+set wildmenu
+set encoding=utf-8
+set number
+set laststatus=2
+
+syntax on
+filetype on
+filetype indent on
+
+" Set general indentation
+" set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+" Allow code folding
+set foldmethod=indent
+set foldlevel=99
+
+" Add visual column
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
+
+" Set R code indentation to 2 spaces
+autocmd FileType r setlocal sw=2
+let r_indent_align_args = 0
+let r_syntax_folding = 1
+
+" Enable text wrapping in Markdown
+autocmd BufNewFile,BufRead *.md set wrap
+autocmd BufNewFile,BufRead *.Rmd set wrap
+
+" Activate markdown folding
+let g:markdown_folding = 1
+
+" Make Python code look pretty
+let g:python_highlight_all = 1

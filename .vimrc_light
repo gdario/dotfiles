@@ -10,6 +10,7 @@ set wrapmargin=0
 set modeline
 set wildmenu
 set encoding=utf-8
+set number
 
 syntax on
 filetype indent plugin on
@@ -19,14 +20,23 @@ set foldmethod=indent
 set foldlevel=99
 
 " Add visual column
-"set colorcolumn=80
-"highlight ColorColumn ctermbg=darkgray
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
 
 " Set general indentation
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
+set autoindent
+set smartindent
+set smarttab
+
+" Ignore whitespaces when diffing
+if &diff
+    set diffopt-=internal
+    set diffopt+=iwhite
+endif
 
 " Don't replace tabs with spaces in Makefiles
 autocmd FileType make set noexpandtab
