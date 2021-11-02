@@ -67,7 +67,7 @@ let g:jedi#popup_on_dot = 0
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 " syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
@@ -75,6 +75,6 @@ Plug 'nvie/vim-flake8'
 " tabular must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'vim-airline/vim-airline'
-Plug 'jalvesaq/Nvim-R'
+"Plug 'vim-airline/vim-airline'
+"Plug 'jalvesaq/Nvim-R'
 call plug#end()
