@@ -50,8 +50,11 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " Set up Netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
+"let g:netrw_browse_split = 2
+"let g:netrw_winsize = 25
+
+" Activate markdown folding
+let g:markdown_folding = 1
 
 " Activate markdown folding
 let g:markdown_folding = 1
@@ -71,7 +74,7 @@ let g:syntastic_r_checkers = ['lintr']
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 " syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
@@ -79,6 +82,6 @@ Plug 'nvie/vim-flake8'
 " tabular must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-" Plug 'vim-airline/vim-airline'
-" Plug 'jalvesaq/Nvim-R'
+"Plug 'vim-airline/vim-airline'
+"Plug 'jalvesaq/Nvim-R'
 call plug#end()
