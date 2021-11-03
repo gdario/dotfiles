@@ -11,6 +11,7 @@ set wrapmargin=0
 set modeline
 set wildmenu
 set encoding=utf-8
+set number
 
 syntax on
 filetype indent plugin on
@@ -29,17 +30,31 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+" Ignore whitespaces when diffing
+if &diff
+    set diffopt-=internal
+    set diffopt+=iwhite
+endif
+
 " Don't replace tabs with spaces in Makefiles
 autocmd FileType make set noexpandtab
 
 " Set R code indentation to 2 spaces
-autocmd FileType r setlocal sw=2
+autocmd FileType r setlocal sw=2 ts=2 sts=2 expandtab
+let r_indent_align_args = 0
+let r_syntax_folding = 1
+
+" Set Yaml indentation
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Set up Netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
+
+" Activate markdown folding
+let g:markdown_folding = 1
 
 " Search down into subfolders - tab complete file-related tasks
 set path+=**
@@ -49,6 +64,10 @@ let g:python_highlight_all = 1
 
 "Jedi-vim options
 let g:jedi#popup_on_dot = 0
+
+" lintr options
+let g:syntastic_enable_r_linter_checker = 1
+let g:syntastic_r_checkers = ['lintr']
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -60,6 +79,6 @@ Plug 'nvie/vim-flake8'
 " tabular must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'vim-airline/vim-airline'
-Plug 'jalvesaq/Nvim-R'
+" Plug 'vim-airline/vim-airline'
+" Plug 'jalvesaq/Nvim-R'
 call plug#end()
