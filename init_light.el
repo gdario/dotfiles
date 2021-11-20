@@ -41,7 +41,8 @@
 
 (global-visual-line-mode t)
 (show-paren-mode t)
-(electric-pair-mode t)
+(column-number-mode t)
+;; (electric-pair-mode t)
 
 ;;; Newline at end of file
 (setq require-final-newline t)
