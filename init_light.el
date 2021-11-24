@@ -101,6 +101,9 @@
 (use-package elpy
   :ensure t
   :defer t
+  :config
+  (setq python-shell-interpreter "ipython"
+	python-shell-interpreter-args "-i --simple-prompt")
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
