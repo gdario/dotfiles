@@ -42,7 +42,7 @@
 (global-visual-line-mode t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
+(electric-pair-mode t)
 
 ;;; Newline at end of file
 (setq require-final-newline t)
@@ -84,6 +84,10 @@
 ;;	("C-c n i" . org-roam-node-insert))
 ;; :config
 ;; (org-roam-setup))
+
+(use-package auctex
+  :defer t
+  :ensure t)
 
 (use-package exec-path-from-shell
   :ensure t
