@@ -73,18 +73,6 @@
 
 ;;; Third-party packages
 
-;;(use-package org-roam
-;; :ensure t
-;; :init
-;; (setq org-roam-v2-ack t)
-;; :custom
-;; (org-roam-directory "~/RoamNotes")
-;; :bind (("C-c n l" . org-roam-buffer-toggle)
-;;	("C-c n f" . org-roam-node-find)
-;;	("C-c n i" . org-roam-node-insert))
-;; :config
-;; (org-roam-setup))
-
 (use-package auctex
   :defer t
   :ensure t)
@@ -106,8 +94,10 @@
   :ensure t
   :defer t
   :config
-  (setq python-shell-interpreter "ipython"
-	python-shell-interpreter-args "-i --simple-prompt")
+  (setq python-shell-interpreter "python"
+	python-shell-interpreter-args "-i")
+  ;; (setq python-shell-interpreter "ipython"
+  ;; 	python-shell-interpreter-args "-i --simple-prompt")
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
