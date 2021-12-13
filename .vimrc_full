@@ -22,7 +22,7 @@ set foldlevel=99
 
 " Add visual column
 set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
+highlight ColorColumn ctermbg=gray
 
 " Set general indentation
 set tabstop=4
