@@ -42,7 +42,7 @@
 (global-visual-line-mode t)
 (show-paren-mode t)
 (column-number-mode t)
-(electric-pair-mode t)
+;; (electric-pair-mode t)
 
 ;;; Newline at end of file
 (setq require-final-newline t)
@@ -73,9 +73,9 @@
 
 ;;; Third-party packages
 
-(use-package auctex
-  :defer t
-  :ensure t)
+;; (use-package auctex
+;;   :defer t
+;;   :ensure t)
 
 (use-package exec-path-from-shell
   :ensure t
