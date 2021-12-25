@@ -39,7 +39,7 @@
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
 
-(global-visual-line-mode t)
+;; (global-visual-line-mode t)
 (show-paren-mode t)
 (column-number-mode t)
 ;; (electric-pair-mode t)
