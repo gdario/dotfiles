@@ -140,6 +140,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-fill-column-indicator-column 80)
  '(ess-R-font-lock-keywords
    '((ess-R-fl-keyword:keywords . t)
      (ess-R-fl-keyword:constants . t)
