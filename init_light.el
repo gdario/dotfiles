@@ -77,6 +77,11 @@
 ;;   :defer t
 ;;   :ensure t)
 
+;; (use-package evil
+;;   :ensure t
+;;   :config
+;;   (evil-mode 1))
+
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns x))
@@ -140,7 +145,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(display-fill-column-indicator-column 80)
+ '(elpy-shell-starting-directory 'current-directory)
  '(ess-R-font-lock-keywords
    '((ess-R-fl-keyword:keywords . t)
      (ess-R-fl-keyword:constants . t)
@@ -154,11 +161,14 @@
      (ess-fl-keyword:delimiters)
      (ess-fl-keyword:=)
      (ess-R-fl-keyword:F&T)))
+ '(global-display-line-numbers-mode t)
  '(org-export-backends '(ascii html icalendar latex md odt))
- '(package-selected-packages '(use-package)))
+ '(package-selected-packages '(use-package))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 108 :width normal)))))
