@@ -35,10 +35,13 @@ call plug#begin()
 " Make sure you use single quotes
 Plug 'neovim/nvim-lspconfig'
 Plug 'Vimjas/vim-python-pep8-indent'
+" Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
 lua << EOF
 require'lspconfig'.pyright.setup{}
+require'lspconfig'.julials.setup{}
+require'lspconfig'.r_language_server.setup{}
 local nvim_lsp = require('lspconfig')
 vim.lsp.set_log_level("debug")
 
@@ -87,3 +90,4 @@ for _, lsp in ipairs(servers) do
   }
 end
 EOF
+
