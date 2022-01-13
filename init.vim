@@ -41,7 +41,6 @@ call plug#end()
 lua << EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.julials.setup{}
-require'lspconfig'.r_language_server.setup{}
 local nvim_lsp = require('lspconfig')
 vim.lsp.set_log_level("debug")
 
