@@ -47,6 +47,9 @@
 ;;; Newline at end of file
 (setq require-final-newline t)
 
+;;; Enable hs-minor mode on all programming modes
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
 ;;; Make TRAMP faster
 
 (setq remote-file-name-inhibit-cache nil)
@@ -81,6 +84,10 @@
 ;;   :ensure t
 ;;   :config
 ;;   (evil-mode 1))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -163,7 +170,7 @@
      (ess-R-fl-keyword:F&T)))
  '(global-display-line-numbers-mode t)
  '(org-export-backends '(ascii html icalendar latex md odt))
- '(package-selected-packages '(use-package))
+ '(package-selected-packages '(flycheck use-package))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -171,4 +178,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 108 :width normal)))))
+ )
