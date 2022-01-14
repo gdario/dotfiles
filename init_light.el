@@ -1,3 +1,15 @@
+;;; init.el --- Giovanni's Emacs configuration
+;;
+;; Author: Giovanni d'Ario <giovanni.dario@gmail.com>
+;; URL: https://github.com/dariog/dotfiles/emacs.d
+;; Keywords: convenience
+
+;;; Commentary:
+
+;; This is my personal Emacs configuration.  Nothing more, nothing less.
+
+;;; Code:
+
 (require 'package)
 
 ;; Uncomment for the bleeding-edge version of Melpa
@@ -10,7 +22,7 @@
 ; list the packages you want
 (setq package-list '(use-package))
 
-; fetch the list of packages available 
+; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -19,7 +31,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; Remove the tool-bar (don't confuse it with 
+;; Remove the tool-bar (don't confuse it with
 (tool-bar-mode -1)
 
 ;;; store all backup and autosave files in the .saves dir
@@ -129,6 +141,10 @@
 (use-package poly-R
   :defer t
   :ensure t)
+
+(use-package julia-mode
+  :ensure t
+  :defer t)
 
 (use-package markdown-mode
   :ensure t
