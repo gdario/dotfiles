@@ -118,6 +118,9 @@
   :ensure t
   :defer t
   :config
+  (when (load "flycheck" t t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
   (setq python-shell-interpreter "python"
 	python-shell-interpreter-args "-i")
   ;; (setq python-shell-interpreter "ipython"
