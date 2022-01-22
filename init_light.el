@@ -51,10 +51,18 @@
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
 
-;; (global-visual-line-mode t)
+(global-visual-line-mode t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
+(electric-pair-mode t)
+
+;; make electric-pair-mode work on more brackets
+(setq electric-pair-pairs
+      '(
+        (?\" . ?\")
+	(?\' . ?\')
+	(?\< . ?\>)
+        (?\{ . ?\})))
 
 ;;; Newline at end of file
 (setq require-final-newline t)
