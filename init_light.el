@@ -51,7 +51,8 @@
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
 
-(global-visual-line-mode t)
+;; (global-visual-line-mode t)
+(set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
 (electric-pair-mode t)
@@ -60,7 +61,7 @@
 (setq electric-pair-pairs
       '(
         (?\" . ?\")
-	(?\' . ?\')
+	;; (?\' . ?\')
 	(?\< . ?\>)
         (?\{ . ?\})))
 
@@ -69,6 +70,7 @@
 
 ;;; Enable hs-minor mode on all programming modes
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'text-mode-hook #'visual-line-mode)
 
 ;;; Make TRAMP faster
 
@@ -96,9 +98,9 @@
 
 ;;; Third-party packages
 
-;; (use-package auctex
-;;   :defer t
-;;   :ensure t)
+(use-package auctex
+  :defer t
+  :ensure t)
 
 ;; (use-package evil
 ;;   :ensure t
