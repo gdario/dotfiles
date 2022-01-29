@@ -98,9 +98,9 @@
 
 ;;; Third-party packages
 
-(use-package auctex
-  :defer t
-  :ensure t)
+;; (use-package auctex
+;;   :defer t
+;;   :ensure t)
 
 ;; (use-package evil
 ;;   :ensure t
@@ -167,6 +167,56 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;; Uncomment the line below if not required elsewhere.
+;; (require 'use-package)
+
+;;; stan-mode.el
+(use-package stan-mode
+  :ensure t
+  :defer t
+  :mode ("\\.stan\\'" . stan-mode)
+  :hook (stan-mode . stan-mode-setup)
+  ;;
+  :config
+  ;; The officially recommended offset is 2.
+  (setq stan-indentation-offset 2))
+
+;;; company-stan.el
+(use-package company-stan
+  :ensure t
+  :defer t
+  :hook (stan-mode . company-stan-setup)
+  :config
+  ;; Whether to use fuzzy matching in `company-stan'
+  (setq company-stan-fuzzy nil))
+
+;;; eldoc-stan.el
+(use-package eldoc-stan
+  :ensure t
+  :defer t
+  :hook (stan-mode . eldoc-stan-setup))
+
+;;; flycheck-stan.el
+(use-package flycheck-stan
+  :ensure t
+  :defer t
+  ;; Add a hook to setup `flycheck-stan' upon `stan-mode' entry
+  :hook ((stan-mode . flycheck-stan-stanc2-setup)
+         (stan-mode . flycheck-stan-stanc3-setup))
+  :config
+  ;; A string containing the name or the path of the stanc2 executable
+  ;; If nil, defaults to `stanc2'
+  (setq flycheck-stanc-executable nil)
+  ;; A string containing the name or the path of the stanc2 executable
+  ;; If nil, defaults to `stanc3'
+  (setq flycheck-stanc3-executable nil))
+
+;;; stan-snippets.el
+(use-package stan-snippets
+  :ensure t
+  :defer t
+  :hook (stan-mode . stan-snippets-initialize))
+
 (use-package projectile
   :ensure t
   :init
@@ -197,7 +247,6 @@
      (ess-fl-keyword:delimiters)
      (ess-fl-keyword:=)
      (ess-R-fl-keyword:F&T)))
- '(global-display-line-numbers-mode t)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages '(flycheck use-package))
  '(show-paren-mode t)
