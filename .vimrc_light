@@ -13,7 +13,17 @@ set encoding=utf-8
 set number
 
 syntax on
-filetype indent plugin on
+filetype plugin on
+filetype indent on
+
+" Set general indentation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+
+set autoindent
+set smartindent
 
 " Allow code folding
 set foldmethod=indent
@@ -22,12 +32,6 @@ set foldlevel=99
 " Add visual column
 set colorcolumn=80
 highlight ColorColumn ctermbg=gray
-
-" Set general indentation
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
 
 " Ignore whitespaces when diffing
 if &diff

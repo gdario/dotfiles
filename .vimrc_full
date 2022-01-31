@@ -1,6 +1,5 @@
 syntax on
 set nocompatible
-set ruler
 set ignorecase
 set smartcase
 set incsearch
@@ -12,9 +11,25 @@ set modeline
 set wildmenu
 set encoding=utf-8
 set number
+set ffs=unix,mac,dos
 
-syntax on
-filetype indent plugin on
+set ruler
+set laststatus=2
+" set cursorline
+set noshowmode
+
+"----- Indentation settings ----- 
+
+filetype plugin on
+filetype indent on
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+
+set autoindent
+set smartindent
 
 " Allow code folding
 set foldmethod=indent
@@ -23,12 +38,6 @@ set foldlevel=99
 " Add visual column
 set colorcolumn=80
 highlight ColorColumn ctermbg=gray
-
-" Set general indentation
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
 
 " Ignore whitespaces when diffing
 if &diff
@@ -56,9 +65,6 @@ let g:netrw_banner = 0
 " Activate markdown folding
 let g:markdown_folding = 1
 
-" Activate markdown folding
-let g:markdown_folding = 1
-
 " Search down into subfolders - tab complete file-related tasks
 set path+=**
 
@@ -66,10 +72,10 @@ set path+=**
 let g:python_highlight_all = 1
 
 "Jedi-vim options
-let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_on_dot = 0
 
 " lintr options
-let g:syntastic_enable_r_linter_checker = 1
+let g:syntastic_enable_r_lintr_checker = 1
 let g:syntastic_r_checkers = ['lintr']
 
 call plug#begin('~/.vim/plugged')
@@ -84,4 +90,6 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 "Plug 'vim-airline/vim-airline'
 "Plug 'jalvesaq/Nvim-R'
+" stan-vim
+Plug 'eigenfoo/stan-vim'
 call plug#end()
