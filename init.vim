@@ -6,6 +6,9 @@ set foldmethod=indent
 set foldlevel=99
 
 " Set general indentation
+filetype plugin on
+filetype indent on
+
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -13,7 +16,7 @@ set softtabstop=4
 
 " Add visual column
 set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
+highlight ColorColumn ctermbg=gray
 
 " Don't replace tabs with spaces in Makefiles
 autocmd FileType make set noexpandtab
@@ -35,6 +38,7 @@ call plug#begin()
 " Make sure you use single quotes
 Plug 'neovim/nvim-lspconfig'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'eigenfoo/stan-vim'
 " Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
@@ -74,7 +78,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
