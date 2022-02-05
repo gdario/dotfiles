@@ -78,9 +78,12 @@ let g:python_highlight_all = 1
 let g:syntastic_enable_r_lintr_checker = 1
 let g:syntastic_r_checkers = ['lintr']
 
+" vim-table-mode options
+" let g:table_mode_separator = '|'
+
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 " syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
@@ -88,8 +91,8 @@ Plug 'nvie/vim-flake8'
 " tabular must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-"Plug 'vim-airline/vim-airline'
-"Plug 'jalvesaq/Nvim-R'
-" stan-vim
+" Plugin to make nicer markdown tables
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'jalvesaq/Nvim-R'
 Plug 'eigenfoo/stan-vim'
 call plug#end()
