@@ -1,10 +1,10 @@
 #!/bin/bash
 
-conda update conda
+conda update conda -y
 
 for env in $(conda env list | tail -n +3 | cut -f1 -d ' ')
 do
     echo "Updating conda environment: ${env}"
-    conda update -n ${env} --all -y
+    mamba update -n ${env} --all -y
 done
 
