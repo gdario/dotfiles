@@ -55,15 +55,15 @@
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-(electric-pair-mode t)
+;; (electric-pair-mode t)
 
 ;; make electric-pair-mode work on more brackets
-(setq electric-pair-pairs
-      '(
-        (?\" . ?\")
-	;; (?\' . ?\')
-	(?\< . ?\>)
-        (?\{ . ?\})))
+;; (setq electric-pair-pairs
+;;       '(
+;;         (?\" . ?\")
+;; 	;; (?\' . ?\')
+;; 	(?\< . ?\>)
+;;         (?\{ . ?\})))
 
 ;;; Newline at end of file
 (setq require-final-newline t)
@@ -136,8 +136,16 @@
   (when (load "flycheck" t t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-  (setq python-shell-interpreter "python"
-	python-shell-interpreter-args "-i")
+  ;;; If you want to use the Python REPL uncomment these lines
+  ;; (setq python-shell-interpreter "python"
+  ;; 	python-shell-interpreter-args "-i")
+  ;;; If you want to use Jupyter Console uncomment these lines
+  (setq python-shell-interpreter "jupyter"
+ 	python-shell-interpreter-args "console --simple-prompt"
+ 	python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+               "jupyter")
+  ;;; If you want to use IPython uncomment these lines
   ;; (setq python-shell-interpreter "ipython"
   ;; 	python-shell-interpreter-args "-i --simple-prompt")
   :init
@@ -162,9 +170,9 @@
   :defer t
   :ensure t)
 
-(use-package julia-mode
-  :ensure t
-  :defer t)
+;; (use-package julia-mode
+;;   :ensure t
+;;   :defer t)
 
 (use-package markdown-mode
   :defer t
@@ -177,7 +185,6 @@
 
 ;; Uncomment the line below if not required elsewhere.
 ;; (require 'use-package)
-
 
 (use-package projectile
   :defer t
