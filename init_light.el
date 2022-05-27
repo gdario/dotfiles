@@ -99,28 +99,28 @@
 ;;   :ensure t)
 
 (use-package flycheck
-  ;; :defer t
+  :defer t
   :ensure t
   :init (global-flycheck-mode))
 
 (use-package exec-path-from-shell
-  ;; :defer t
+  :defer t
   :ensure t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
 (use-package company
-  ;; :defer t
+  :defer t
   :ensure t
   :config
   (global-company-mode t))
 
 (use-package ssh
-  ;; :defer t
+  :defer t
   :ensure t)
 
 (use-package elpy
-  ;; :defer t
+  :defer t
   :ensure t
   :config
   (when (load "flycheck" t t)
@@ -142,22 +142,22 @@
   (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package magit
-  ;; :defer t
+  :defer t
   :ensure t
   :bind (("C-x g" . magit-status)))
 
 (use-package ess
-  ;; :defer t
+  :defer t
   :ensure t
   :init
   (setq ess-style 'DEFAULT))
 
 (use-package poly-markdown
-  ;; :defer t
+  :defer t
   :ensure t)
 
 (use-package poly-R
-  ;; :defer t
+  :defer t
   :ensure t)
 
 ;; (use-package julia-mode
@@ -165,7 +165,7 @@
 ;;   :defer t)
 
 (use-package markdown-mode
-  ;; :defer t
+  :defer t
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
@@ -174,7 +174,7 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package projectile
-  ;; :defer t
+  :defer t
   :ensure t
   :init
   (projectile-mode +1)
