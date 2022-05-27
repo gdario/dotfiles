@@ -104,7 +104,6 @@
   :init (global-flycheck-mode))
 
 (use-package exec-path-from-shell
-  :defer t
   :ensure t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
