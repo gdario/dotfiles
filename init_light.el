@@ -16,17 +16,17 @@
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
 
-; activate all the packages (in particular autoloads)
+;; activate all the packages (in particular autoloads)
 (package-initialize)
 
-; list the packages you want
+;; list the packages you want
 (setq package-list '(use-package))
 
-; fetch the list of packages available
+;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+;; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
@@ -34,19 +34,17 @@
 ;; Remove the tool-bar (don't confuse it with
 (tool-bar-mode -1)
 
-;;; store all backup and autosave files in the .saves dir
-
+;; store all backup and autosave files in the .saves dir
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;;; Set the default font
-
+;; Set the default font
 (if (eq system-type 'darwin)
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
-;;; Set Wombat as the theme when in graphical mode
-;;(if (display-graphic-p)
-;;    (load-theme 'wombat t))
+;; Set Wombat as the theme when in graphical mode
+(if (display-graphic-p)
+   (load-theme 'wombat t))
 
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
@@ -65,15 +63,14 @@
 ;; 	(?\< . ?\>)
 ;;         (?\{ . ?\})))
 
-;;; Newline at end of file
+;; Require a newline at end of the file
 (setq require-final-newline t)
 
 ;;; Enable hs-minor mode on all programming modes
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (add-hook 'text-mode-hook #'visual-line-mode)
 
-;;; Make TRAMP faster
-
+;; Try to make TRAMP a bit faster
 (setq remote-file-name-inhibit-cache nil)
 (setq vc-ignore-dir-regexp
       (format "%s\\|%s"
@@ -81,8 +78,7 @@
               tramp-file-name-regexp))
 (setq tramp-verbose 1)
 
-;;; Configure Org
-
+;; Configure Org
 (use-package org
   :bind
   (("C-c a" . org-agenda)
@@ -93,8 +89,8 @@
   (electric-indent-mode -1)
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
-  (setq org-log-done t)
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$")))
+  ;; (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+  (setq org-log-done t))
 
 ;;; Third-party packages
 
@@ -102,72 +98,66 @@
 ;;   :defer t
 ;;   :ensure t)
 
-;; (use-package evil
-;;   :defer t
-;;   :ensure t
-;;   :config
-;;   (evil-mode 1))
-
 (use-package flycheck
-  :defer t
+  ;; :defer t
   :ensure t
   :init (global-flycheck-mode))
 
 (use-package exec-path-from-shell
-  :defer t
+  ;; :defer t
   :ensure t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
 (use-package company
-  :defer t
+  ;; :defer t
   :ensure t
   :config
   (global-company-mode t))
 
 (use-package ssh
-  :defer t
+  ;; :defer t
   :ensure t)
 
 (use-package elpy
-  :defer t
+  ;; :defer t
   :ensure t
   :config
   (when (load "flycheck" t t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-  ;;; If you want to use the Python REPL uncomment these lines
-  ;; (setq python-shell-interpreter "python"
-  ;; 	python-shell-interpreter-args "-i")
-  ;;; If you want to use Jupyter Console uncomment these lines
-  (setq python-shell-interpreter "jupyter"
- 	python-shell-interpreter-args "console --simple-prompt"
- 	python-shell-prompt-detect-failure-warning nil)
-  (add-to-list 'python-shell-completion-native-disabled-interpreters
-               "jupyter")
-  ;;; If you want to use IPython uncomment these lines
+  ;; If you want to use the Python REPL uncomment these lines
+  (setq python-shell-interpreter "python"
+	python-shell-interpreter-args "-i")
+  ;; ;; If you want to use Jupyter Console uncomment these lines
+  ;; (setq python-shell-interpreter "jupyter"
+  ;; 	python-shell-interpreter-args "console --simple-prompt"
+  ;; 	python-shell-prompt-detect-failure-warning nil)
+  ;; (add-to-list 'python-shell-completion-native-disabled-interpreters
+  ;;              "jupyter")
+  ;; ;; If you want to use IPython uncomment these lines
   ;; (setq python-shell-interpreter "ipython"
   ;; 	python-shell-interpreter-args "-i --simple-prompt")
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package magit
-  :defer t
+  ;; :defer t
   :ensure t
   :bind (("C-x g" . magit-status)))
 
 (use-package ess
+  ;; :defer t
   :ensure t
-  :defer t
   :init
   (setq ess-style 'DEFAULT))
 
 (use-package poly-markdown
-  :defer t
+  ;; :defer t
   :ensure t)
 
 (use-package poly-R
-  :defer t
+  ;; :defer t
   :ensure t)
 
 ;; (use-package julia-mode
@@ -175,7 +165,7 @@
 ;;   :defer t)
 
 (use-package markdown-mode
-  :defer t
+  ;; :defer t
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
@@ -183,11 +173,8 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-;; Uncomment the line below if not required elsewhere.
-;; (require 'use-package)
-
 (use-package projectile
-  :defer t
+  ;; :defer t
   :ensure t
   :init
   (projectile-mode +1)
