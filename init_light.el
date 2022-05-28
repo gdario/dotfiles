@@ -111,7 +111,7 @@
 (use-package company
   :defer t
   :ensure t
-  :config
+  :init
   (global-company-mode t))
 
 (use-package ssh
