@@ -42,9 +42,9 @@
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
-;; Set Wombat as the theme when in graphical mode
-(if (display-graphic-p)
-   (load-theme 'wombat t))
+;; ;; Set Wombat as the theme when in graphical mode
+;; (if (display-graphic-p)
+;;    (load-theme 'wombat t))
 
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
@@ -98,8 +98,14 @@
 ;;   :defer t
 ;;   :ensure t)
 
+(use-package yasnippet
+  :ensure t
+  :config (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :ensure t)
+
 (use-package flycheck
-  :defer t
   :ensure t
   :init (global-flycheck-mode))
 
@@ -109,7 +115,6 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package company
-  :defer t
   :ensure t
   :init
   (global-company-mode t))
@@ -205,7 +210,7 @@
      (ess-fl-keyword:=)
      (ess-R-fl-keyword:F&T)))
  '(org-export-backends '(ascii html icalendar latex md odt))
- '(package-selected-packages '(flycheck use-package))
+ '(package-selected-packages '(yasnippet-classic-snippets flycheck use-package))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
