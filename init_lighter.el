@@ -42,9 +42,9 @@
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
-;; ;; Set Wombat as the theme when in graphical mode
-;; (if (display-graphic-p)
-;;    (load-theme 'wombat t))
+;; Set Wombat as the theme when in graphical mode
+(if (display-graphic-p)
+   (load-theme 'wombat t))
 
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
@@ -92,7 +92,11 @@
   ;; (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
   (setq org-log-done t))
 
-;;; Third-party packages
+;;; ---------- Third-party packages ----------
+
+;; (use-package julia-mode
+;;   :ensure t
+;;   :defer t)
 
 ;; (use-package auctex
 ;;   :defer t
@@ -112,16 +116,25 @@
 ;;   :ensure t
 ;;   :init (global-flycheck-mode))
 
-(use-package exec-path-from-shell
-  :ensure t
-  :if (memq window-system '(mac ns x))
-  :config (exec-path-from-shell-initialize))
-
 ;; (use-package company
 ;;   :defer t
 ;;   :ensure t
 ;;   :config
 ;;   (global-company-mode t))
+
+;; (use-package projectile
+;;   :defer t
+;;   :ensure t
+;;   :config
+;;   (projectile-mode +1)
+;;   :bind (:map projectile-mode-map
+;;               ("s-p" . projectile-command-map)
+;;               ("C-c p" . projectile-command-map)))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns x))
+  :config (exec-path-from-shell-initialize))
 
 (use-package ssh
   :defer t
@@ -143,9 +156,6 @@
   ;; 	python-shell-prompt-detect-failure-warning nil)
   ;; (add-to-list 'python-shell-completion-native-disabled-interpreters
   ;;              "jupyter")
-  ;; ;; If you want to use IPython uncomment these lines
-  ;; (setq python-shell-interpreter "ipython"
-  ;; 	python-shell-interpreter-args "-i --simple-prompt")
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
@@ -158,7 +168,8 @@
   :defer t
   :ensure t
   :config
-  (setq ess-style 'DEFAULT))
+  (global-company-mode t)
+  (setq ess-style 'RStudio))
 
 (use-package poly-markdown
   :defer t
@@ -168,10 +179,6 @@
   :defer t
   :ensure t)
 
-;; (use-package julia-mode
-;;   :ensure t
-;;   :defer t)
-
 (use-package markdown-mode
   :defer t
   :ensure t
@@ -180,15 +187,6 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
-
-;; (use-package projectile
-;;   :defer t
-;;   :ensure t
-;;   :config
-;;   (projectile-mode +1)
-;;   :bind (:map projectile-mode-map
-;;               ("s-p" . projectile-command-map)
-;;               ("C-c p" . projectile-command-map)))
 
 ;; (setq projectile-mode-line "Projectile")
 (custom-set-variables
