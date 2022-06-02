@@ -86,9 +86,9 @@
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
   :config
-  (electric-indent-mode -1)
-  (setq org-clock-persist 'history)
-  (org-clock-persistence-insinuate)
+  ;; (electric-indent-mode -1)
+  ;; (setq org-clock-persist 'history)
+  ;; (org-clock-persistence-insinuate)
   ;; (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
   (setq org-log-done t))
 
@@ -98,31 +98,30 @@
 ;;   :defer t
 ;;   :ensure t)
 
-(use-package yasnippet
-  :defer t
-  :ensure t
-  :config (yas-global-mode 1))
+;; (use-package yasnippet
+;;   :defer t
+;;   :ensure t
+;;   :config (yas-global-mode 1))
 
-(use-package yasnippet-snippets
-  :defer t
-  :ensure t)
+;; (use-package yasnippet-snippets
+;;   :defer t
+;;   :ensure t)
 
-(use-package flycheck
-  :defer t
-  :ensure t
-  :init (global-flycheck-mode))
+;; (use-package flycheck
+;;   :defer t
+;;   :ensure t
+;;   :init (global-flycheck-mode))
 
 (use-package exec-path-from-shell
-  :defer t
   :ensure t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
-(use-package company
-  :defer t
-  :ensure t
-  :config
-  (global-company-mode t))
+;; (use-package company
+;;   :defer t
+;;   :ensure t
+;;   :config
+;;   (global-company-mode t))
 
 (use-package ssh
   :defer t
@@ -182,14 +181,14 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-(use-package projectile
-  :defer t
-  :ensure t
-  :config
-  (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
+;; (use-package projectile
+;;   :defer t
+;;   :ensure t
+;;   :config
+;;   (projectile-mode +1)
+;;   :bind (:map projectile-mode-map
+;;               ("s-p" . projectile-command-map)
+;;               ("C-c p" . projectile-command-map)))
 
 ;; (setq projectile-mode-line "Projectile")
 (custom-set-variables
