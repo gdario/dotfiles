@@ -42,9 +42,9 @@
     (set-frame-font "Monaco-13" nil t)
   (set-frame-font "Monospace-11" nil t))
 
-;; Set Wombat as the theme when in graphical mode
+;; Set wheatgrass as the theme when in graphical mode
 (if (display-graphic-p)
-   (load-theme 'wombat t))
+   (load-theme 'wheatgrass t))
 
 (if (eq system-type 'darwin)
     (setq ispell-program-name "/usr/local/bin/ispell"))
