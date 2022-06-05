@@ -70,6 +70,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
+  :defer t
   :config (exec-path-from-shell-initialize))
 
 (use-package company
