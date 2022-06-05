@@ -47,7 +47,7 @@
 ;; (electric-pair-mode t)
 
 ;; Set the location of the spell-checker
-(setq ispell-program-name "/usr/local/bin/ispell"))
+(setq ispell-program-name "/usr/local/bin/ispell")
 
 ;; Require a newline at end of the file
 ;; (setq require-final-newline t)
