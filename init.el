@@ -37,9 +37,6 @@
 ;; store all backup and autosave files in the .saves dir
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;; Set the default font
-(set-frame-font "Monaco-13" nil t)
-
 ;; (global-visual-line-mode t)
 (set-default 'truncate-lines t)
 (show-paren-mode t)
@@ -47,7 +44,10 @@
 ;; (electric-pair-mode t)
 
 ;; Set the location of the spell-checker
-(setq ispell-program-name "/usr/local/bin/ispell"))
+(if (eq system-type 'darwin)
+    ((set-frame-font "Monaco-13" nil t)
+     (setq ispell-program-name "/usr/local/bin/ispell"))
+  (set-frame-font "Monospace-11" nil t))
 
 ;; Require a newline at end of the file
 ;; (setq require-final-newline t)
@@ -70,6 +70,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
+  :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
 (use-package company
