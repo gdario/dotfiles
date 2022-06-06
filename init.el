@@ -41,11 +41,11 @@
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
+(electric-pair-mode t)
 
 ;; Set the location of the spell-checker
 (if (eq system-type 'darwin)
-    ((set-frame-font "Monaco-13" nil t)
+    (progn (set-frame-font "Monaco-13" nil t)
      (setq ispell-program-name "/usr/local/bin/ispell"))
   (set-frame-font "Monospace-11" nil t))
 
