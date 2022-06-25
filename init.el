@@ -49,8 +49,12 @@
      (setq ispell-program-name "/usr/local/bin/ispell"))
   (set-frame-font "Monospace-11" nil t))
 
+;; Set Wombat as the theme when in graphical mode
+(if (display-graphic-p)
+   (load-theme 'wombat t))
+
 ;; Require a newline at end of the file
-;; (setq require-final-newline t)
+(setq require-final-newline t)
 
 ;;; Enable hs-minor mode on all programming modes
 (add-hook 'prog-mode-hook #'hs-minor-mode)
@@ -98,8 +102,8 @@
   :ensure t)
 
 (use-package elpy
-  :ensure t
   :defer t
+  :ensure t
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
@@ -112,7 +116,7 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package ess
-  :defer t
+  ;; :defer t
   :ensure t
   :config
   (setq ess-style 'RStudio))
@@ -186,12 +190,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-default-style (quote ((c-mode . "") (c++-mode . ""))))
+ '(c-default-style '((c-mode . "") (c++-mode . "")))
  '(column-number-mode t)
  '(display-fill-column-indicator-column 80)
  '(ess-R-font-lock-keywords
-   (quote
-    ((ess-R-fl-keyword:keywords . t)
+   '((ess-R-fl-keyword:keywords . t)
      (ess-R-fl-keyword:constants . t)
      (ess-R-fl-keyword:modifiers . t)
      (ess-R-fl-keyword:fun-defs . t)
@@ -202,9 +205,9 @@
      (ess-fl-keyword:operators . t)
      (ess-fl-keyword:delimiters)
      (ess-fl-keyword:=)
-     (ess-R-fl-keyword:F&T))))
- '(org-export-backends (quote (ascii html icalendar latex md odt)))
- '(package-selected-packages (quote (poly-R poly-markdown ess magit ssh use-package)))
+     (ess-R-fl-keyword:F&T)))
+ '(org-export-backends '(ascii html icalendar latex md odt))
+ '(package-selected-packages '(poly-R poly-markdown ess magit ssh use-package))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
