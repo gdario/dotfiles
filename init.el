@@ -109,6 +109,9 @@
 (use-package poly-R
   :defer t)
 
+(use-package fill-column-indicator
+  :config
+  (setq display-fill-column-indicator-column 79))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
