@@ -21,7 +21,6 @@
 (tool-bar-mode -1)
 (setq visible-bell t)
 (set-default 'truncate-lines t)                                                 
-;; (global-visual-line-mode t)
 (show-paren-mode t)                                                             
 (column-number-mode t)                                                          
 (electric-pair-mode t)                                                          
@@ -33,16 +32,23 @@
      (setq ispell-program-name "/usr/local/bin/ispell"))
   (set-frame-font "Monospace-11" nil t))
 
-;;; Enable hs-minor mode on all programming modes                               
-(add-hook 'prog-mode-hook #'hs-minor-mode)                                      
+;; Enable visual-line mode in all text modes
 (add-hook 'text-mode-hook #'visual-line-mode)                                   
+;; Enable hs-minor mode on all programming modes                               
+(add-hook 'prog-mode-hook #'hs-minor-mode)                                      
 
 ;; Require a newline at end of the file                                         
 ;; (setq require-final-newline t)                                               
 
-;;; Set Wombat as the theme when in graphical mode                              
-(if (display-graphic-p)                                                       
-   (load-theme 'wombat t))                                                   
+;; Set Wombat as the theme when in graphical mode. This works only on the mac.
+(defun set-system-dark-mode ()
+  (interactive)
+  (if (string= (shell-command-to-string "printf %s \"$( osascript -e \'tell application \"System Events\" to tell appearance preferences to return dark mode\' )\"") "true")
+      (if (display-graphic-p)                                                       
+	  (load-theme 'wombat t))))
+
+(when (eq system-type 'darwin)
+    (set-system-dark-mode))
 
 ;; Setup org-mode
 (use-package org
@@ -68,12 +74,22 @@
   :config
   (global-company-mode t))
 
+(use-package counsel
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (ivy-mode t))
+
+(use-package magit
+  :bind (("C-x g" . magit-status)))
+
 (use-package elpy
   :defer t
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package markdown-mode
+  :defer
   :commands (markdown-mode gfm-mode)
   :mode
   (("README\\.md\\'" . gfm-mode)
@@ -81,6 +97,17 @@
    ("\\.markdown\\'" . markdown-mode))
   :init
   (setq markdown-command "multimarkdown"))
+
+(use-package ess
+  :defer t
+  :config
+  (setq ess-style 'RStudio))
+
+(use-package poly-markdown
+  :defer t)
+
+(use-package poly-R
+  :defer t)
 
 
 (custom-set-variables
