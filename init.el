@@ -16,6 +16,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Automatically update installed packages
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -34,6 +41,7 @@
 
 ;; Enable visual-line mode in all text modes
 (add-hook 'text-mode-hook #'visual-line-mode)                                   
+
 ;; Enable hs-minor mode on all programming modes                               
 (add-hook 'prog-mode-hook #'hs-minor-mode)                                      
 
@@ -118,7 +126,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(use-package)))
+ '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
