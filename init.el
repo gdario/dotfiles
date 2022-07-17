@@ -23,6 +23,9 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+;; Store all backup and autosave files in the .saves dir
+(setq backup-directory-alist `(("." . "~/.saves")))
+
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
