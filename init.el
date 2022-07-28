@@ -33,7 +33,7 @@
 (set-default 'truncate-lines t)                                                 
 (show-paren-mode t)                                                             
 (column-number-mode t)                                                          
-(electric-pair-mode t)                                                          
+;; (electric-pair-mode t)                                                          
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -103,11 +103,12 @@
 (use-package elpy
   :init (elpy-enable)
   :config
-  (setq python-shell-interpreter "jupyter"
-	python-shell-interpreter-args "console --simple-prompt"
-	python-shell-prompt-detect-failure-warning nil)
-  (add-to-list 'python-shell-completion-native-disabled-interpreters
-               "jupyter"))
+  ;; (setq python-shell-interpreter "jupyter"
+  ;; 	python-shell-interpreter-args "console --simple-prompt"
+  ;; 	python-shell-prompt-detect-failure-warning nil)
+  ;; (add-to-list 'python-shell-completion-native-disabled-interpreters
+  ;;              "jupyter")
+  )
   
 
 (use-package markdown-mode
