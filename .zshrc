@@ -8,6 +8,9 @@ alias emq="emacs -nw -q"
 export LANGUAGE="en"
 export LC_ALL="en_US.UTF-8"
 
+# Activate git autocomplete
+autoload -Uz compinit && compinit
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/dariog/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
