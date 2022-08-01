@@ -51,16 +51,6 @@
 ;; Require a newline at end of the file                                         
 ;; (setq require-final-newline t)                                               
 
-;; Set Wombat as the theme when in graphical mode. This works only on the mac.
-;; (defun set-system-dark-mode ()
-;;   (interactive)
-;;   (if (string= (shell-command-to-string "printf %s \"$( osascript -e \'tell application \"System Events\" to tell appearance preferences to return dark mode\' )\"") "true")
-;;       (if (display-graphic-p)                                                       
-;; 	  (load-theme 'wombat t))))
-
-;; (when (eq system-type 'darwin)
-;;     (set-system-dark-mode))
-
 ;; Setup org-mode
 (use-package org
   :bind
@@ -81,9 +71,11 @@
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a"))))
 
-(use-package ssh)
+(use-package ssh
+  :defer t)
 
 (use-package exec-path-from-shell
+  :defer t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
@@ -92,12 +84,14 @@
 ;;   (global-company-mode t))
 
 (use-package ido
+  :defer t
   :config
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
   (ido-mode 1))
 
 (use-package magit
+  :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package elpy
@@ -134,8 +128,13 @@
   :defer t)
 
 (use-package fill-column-indicator
+  :defer t
   :config
   (setq display-fill-column-indicator-column 79))
+
+;; (use-package benchmark-init
+;;   :config
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
