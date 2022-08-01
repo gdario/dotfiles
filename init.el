@@ -125,7 +125,8 @@
   :defer t)
 
 (use-package quarto-mode
-  :defer t)
+  :defer t
+  :mode (("\\.Rmd" . poly-quarto-mode)))
 
 (use-package fill-column-indicator
   :defer t
