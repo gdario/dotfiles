@@ -52,14 +52,14 @@
 ;; (setq require-final-newline t)                                               
 
 ;; Set Wombat as the theme when in graphical mode. This works only on the mac.
-(defun set-system-dark-mode ()
-  (interactive)
-  (if (string= (shell-command-to-string "printf %s \"$( osascript -e \'tell application \"System Events\" to tell appearance preferences to return dark mode\' )\"") "true")
-      (if (display-graphic-p)                                                       
-	  (load-theme 'wombat t))))
+;; (defun set-system-dark-mode ()
+;;   (interactive)
+;;   (if (string= (shell-command-to-string "printf %s \"$( osascript -e \'tell application \"System Events\" to tell appearance preferences to return dark mode\' )\"") "true")
+;;       (if (display-graphic-p)                                                       
+;; 	  (load-theme 'wombat t))))
 
-(when (eq system-type 'darwin)
-    (set-system-dark-mode))
+;; (when (eq system-type 'darwin)
+;;     (set-system-dark-mode))
 
 ;; Setup org-mode
 (use-package org
@@ -87,15 +87,15 @@
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
-(use-package company
-  :config
-  (global-company-mode t))
+;; (use-package company
+;;   :config
+;;   (global-company-mode t))
 
-(use-package counsel
+(use-package ido
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (ivy-mode t))
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (ido-mode 1))
 
 (use-package magit
   :bind (("C-x g" . magit-status)))
@@ -103,16 +103,14 @@
 (use-package elpy
   :init (elpy-enable)
   :config
-  ;; (setq python-shell-interpreter "jupyter"
-  ;; 	python-shell-interpreter-args "console --simple-prompt"
-  ;; 	python-shell-prompt-detect-failure-warning nil)
-  ;; (add-to-list 'python-shell-completion-native-disabled-interpreters
-  ;;              "jupyter")
-  )
-  
+  (setq python-shell-interpreter "jupyter"
+	python-shell-interpreter-args "console --simple-prompt"
+	python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+               "jupyter"))
 
 (use-package markdown-mode
-  :defer
+  :defer t
   :commands (markdown-mode gfm-mode)
   :mode
   (("README\\.md\\'" . gfm-mode)
@@ -130,6 +128,9 @@
   :defer t)
 
 (use-package poly-R
+  :defer t)
+
+(use-package quarto-mode
   :defer t)
 
 (use-package fill-column-indicator
