@@ -95,13 +95,10 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package elpy
-  :init (elpy-enable)
-  :config
-  (setq python-shell-interpreter "jupyter"
-	python-shell-interpreter-args "console --simple-prompt"
-	python-shell-prompt-detect-failure-warning nil)
-  (add-to-list 'python-shell-completion-native-disabled-interpreters
-               "jupyter"))
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package markdown-mode
   :defer t
