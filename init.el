@@ -97,6 +97,12 @@
 (use-package elpy
   :ensure t
   :defer t
+  :config
+  (setq python-shell-interpreter "jupyter"
+	python-shell-interpreter-args "console --simple-prompt"
+	python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+               "jupyter")
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
@@ -130,16 +136,13 @@
   :config
   (setq display-fill-column-indicator-column 79))
 
-;; (use-package benchmark-init
-;;   :config
-;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(elpy-rpc-python-command "python3")
+ '(elpy-shell-starting-directory 'current-directory)
  '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
