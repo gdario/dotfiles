@@ -34,7 +34,6 @@
 (show-paren-mode t)                                                             
 (column-number-mode t)                                                          
 ;; (electric-pair-mode t)                                                          
-
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
 (if (eq system-type 'darwin)
@@ -71,17 +70,18 @@
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a"))))
 
-(use-package ssh
-  :defer t)
-
 (use-package exec-path-from-shell
   :defer t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
-;; (use-package company
-;;   :config
-;;   (global-company-mode t))
+(use-package elpy
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+
+(use-package ssh
+  :defer t)
 
 (use-package ido
   :defer t
@@ -93,18 +93,6 @@
 (use-package magit
   :defer t
   :bind (("C-x g" . magit-status)))
-
-(use-package elpy
-  :ensure t
-  :defer t
-  :config
-  (setq python-shell-interpreter "jupyter"
-	python-shell-interpreter-args "console --simple-prompt"
-	python-shell-prompt-detect-failure-warning nil)
-  (add-to-list 'python-shell-completion-native-disabled-interpreters
-               "jupyter")
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package markdown-mode
   :defer t

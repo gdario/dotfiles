@@ -11,6 +11,7 @@ set modeline
 set wildmenu
 set encoding=utf-8
 set number
+set relativenumber
 set ffs=unix,mac,dos
 
 set ruler
@@ -83,7 +84,7 @@ let g:syntastic_r_checkers = ['lintr']
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
@@ -94,5 +95,4 @@ Plug 'plasticboy/vim-markdown'
 " Plugin to make nicer markdown tables
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'jalvesaq/Nvim-R'
-Plug 'eigenfoo/stan-vim'
 call plug#end()
