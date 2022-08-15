@@ -84,7 +84,7 @@ let g:syntastic_r_checkers = ['lintr']
 
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
-" Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 " syntastic requires autopep8 or pylint
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
