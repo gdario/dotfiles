@@ -1,35 +1,6 @@
 require('plugins')
 require'lspconfig'.pyright.setup{}
 
-vim.o.termguicolors = true
-vim.o.syntax = 'on'
-vim.o.errorbells = false
-vim.o.smartcase = true
-vim.o.showmode = false
-vim.bo.swapfile = false
-vim.o.backup = false
-vim.o.undodir = vim.fn.stdpath('config') .. '/undodir'
-vim.o.undofile = true
-vim.o.incsearch = true
-vim.o.hidden = true
-vim.o.completeopt='menuone,noinsert,noselect'
-vim.bo.autoindent = true
-vim.bo.smartindent = true
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.wo.number = true
-vim.wo.relativenumber = false
-vim.wo.signcolumn = 'yes'
-vim.wo.wrap = true
-vim.opt.linebreak = true
-vim.opt.wrapmargin = 0
-
--- Set the leader character
-vim.g.mapleader = ","
-vim.g.localleader = "\\"
-
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -64,7 +35,13 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+require('nvim_cmp')
