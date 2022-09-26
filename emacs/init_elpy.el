@@ -43,7 +43,8 @@
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
+(electric-pair-mode t)
+
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
 (if (eq system-type 'darwin)
@@ -100,51 +101,4 @@
   (setq ido-everywhere t)
   (ido-mode 1))
 
-(use-package magit
-  :defer t
-  :bind (("C-x g" . magit-status)))
-
-(use-package markdown-mode
-  :defer t
-  :commands (markdown-mode gfm-mode)
-  :mode
-  (("README\\.md\\'" . gfm-mode)
-   ("\\.md\\'" . markdown-mode)
-   ("\\.markdown\\'" . markdown-mode))
-  :init
-  (setq markdown-command "multimarkdown"))
-
-(use-package ess
-  :defer t
-  :config
-  (setq ess-style 'RStudio))
-
-(use-package poly-markdown
-  :defer t)
-
-(use-package poly-R
-  :defer t)
-
-(use-package quarto-mode
-  :defer t
-  :mode (("\\.Rmd" . poly-quarto-mode)))
-
-(use-package fill-column-indicator
-  :defer t
-  :config
-  (setq display-fill-column-indicator-column 79))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(elpy-rpc-python-command "python3")
- '(elpy-shell-starting-directory 'current-directory)
- '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;;; init_elpy.el ends here

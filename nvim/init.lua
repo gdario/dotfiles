@@ -44,4 +44,6 @@ require('lspconfig')['pyright'].setup{
     flags = lsp_flags,
 }
 
+require'lspconfig'.r_language_server.setup{}
+
 require('nvim_cmp')
