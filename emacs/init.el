@@ -91,6 +91,9 @@
 
 (use-package elpy
   :defer t
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq python-shell-completion-native-enable nil)
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
