@@ -85,6 +85,10 @@
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
 (use-package elpy
   :defer t
   :init
