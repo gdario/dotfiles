@@ -44,6 +44,8 @@
 (show-paren-mode t)
 (column-number-mode t)
 ;; (electric-pair-mode t)
+(setq display-fill-column-indicator-column 80)
+
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
 (if (eq system-type 'darwin)
@@ -135,11 +137,6 @@
 (use-package quarto-mode
   :defer t
   :mode (("\\.Rmd" . poly-quarto-mode)))
-
-(use-package fill-column-indicator
-  :defer t
-  :config
-  (setq display-fill-column-indicator-column 79))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
