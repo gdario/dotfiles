@@ -44,7 +44,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 ;; (electric-pair-mode t)
-(setq display-fill-column-indicator-column 80)
+
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -145,6 +145,7 @@
  ;; If there is more than one, they won't work right.
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
+ '(fill-column 80)
  '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
