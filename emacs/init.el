@@ -138,6 +138,7 @@
   :mode (("\\.Rmd" . poly-quarto-mode)))
 
 (use-package rust-mode
+  :defer t
   :config
   (add-hook 'rust-mode-hook
 	    (lambda () (setq indent-tabs-mode nil)))
