@@ -43,8 +43,7 @@
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
-
+(electric-pair-mode t)
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -138,6 +137,13 @@
   :defer t
   :mode (("\\.Rmd" . poly-quarto-mode)))
 
+(use-package rust-mode
+  :config
+  (add-hook 'rust-mode-hook
+	    (lambda () (setq indent-tabs-mode nil)))
+  (setq rust-format-on-save t))
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -146,7 +152,7 @@
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
  '(fill-column 80)
- '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
+ '(package-selected-packages '(rust-mode auto-package-update hs-minor-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
