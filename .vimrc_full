@@ -73,7 +73,7 @@ set path+=**
 let g:python_highlight_all = 1
 
 "Jedi-vim options
-" let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 0
 
 " lintr options
 let g:syntastic_enable_r_lintr_checker = 1
