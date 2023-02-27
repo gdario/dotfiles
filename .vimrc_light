@@ -60,5 +60,8 @@ let g:netrw_banner = 0
 " Activate markdown folding
 let g:markdown_folding = 1
 
+" Use autopep8 as the default formatter for python
+au FileType python setlocal formatprg=autopep8\ -
+
 " Search down into subfolders - tab complete file-related tasks
 set path+=**
