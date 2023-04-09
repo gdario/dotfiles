@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for md_file in $(ls *.md)
+for md_file in $(ls **/*.md)
 do
     pandoc -s \
 	   --wrap=preserve \
