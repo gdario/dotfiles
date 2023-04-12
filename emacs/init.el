@@ -53,10 +53,10 @@
   (set-frame-font "Monospace-11" nil t))
 
 ;; Enable visual-line mode in all text modes
-(add-hook 'text-mode-hook #'visual-line-mode)
+;; (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+;; (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
 ;; (setq require-final-newline t)
@@ -70,8 +70,8 @@
   ("C-c b" . org-switchb))
   :config
   ;; (electric-indent-mode -1)
-  (setq org-clock-persist 'history)
-  (org-clock-persistence-insinuate)
+  ;; (setq org-clock-persist 'history)
+  ;; (org-clock-persistence-insinuate)
   (setq org-log-done t)
   (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -100,6 +100,8 @@
 
 (use-package ssh
   :defer t)
+
+(use-package fill-column-indicator)
 
 (use-package ido
   :defer t
@@ -133,18 +135,6 @@
 (use-package poly-R
   :defer t)
 
-(use-package quarto-mode
-  :defer t
-  :mode (("\\.Rmd" . poly-quarto-mode)))
-
-(use-package rust-mode
-  :defer t
-  :config
-  (add-hook 'rust-mode-hook
-	    (lambda () (setq indent-tabs-mode nil)))
-  (setq rust-format-on-save t))
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -153,7 +143,7 @@
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
  '(fill-column 80)
- '(package-selected-packages '(rust-mode auto-package-update hs-minor-mode use-package)))
+ '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
