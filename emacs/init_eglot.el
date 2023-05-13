@@ -1,3 +1,16 @@
+;;; init.el --- Giovanni's Emacs configuration
+;;
+;; Author: Giovanni d'Ario <giovanni.dario@gmail.com>
+;; URL: https://github.com/dariog/dotfiles/emacs.d
+;; Keywords: convenience
+
+;;; Commentary:
+
+;; This is my personal Emacs configuration.  Nothing more, nothing less.
+
+;;; Code:
+(require 'package)
+
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
@@ -23,13 +36,9 @@
 ;; Store all backup and autosave files in the .saves dir
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;; Remove the tool-bar (don't confuse it with 
-(tool-bar-mode -1)
-
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-;; (setq visible-bell t)
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
@@ -46,10 +55,10 @@
 (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-;; (add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
-;; (setq require-final-newline t)
+(setq require-final-newline t)
 
 ;; Setup org-mode
 (use-package org
@@ -59,9 +68,9 @@
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
   :config
-  ;; (electric-indent-mode -1)
+  (electric-indent-mode -1)
   ;; (setq org-clock-persist 'history)
-  ;; (org-clock-persistence-insinuate)
+  (org-clock-persistence-insinuate)
   (setq org-log-done t)
   (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -76,6 +85,18 @@
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+(use-package eglot)
+
+(use-package company
+   :config
+   (global-company-mode t))
+
+(use-package ssh
+  :defer t)
+
 (use-package fill-column-indicator)
 
 (use-package ido
@@ -85,21 +106,8 @@
   (setq ido-everywhere t)
   (ido-mode 1))
 
-(use-package company)
-
-(use-package eglot)
-
-;; (use-package magit
-;;   :defer t
-;;   :bind (("C-x g" . magit-status)))
-
-(use-package elpy
-  :defer t
-  :if (memq window-system '(mac ns x))
-  :config
-  (setq python-shell-completion-native-enable nil)
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
+(use-package magit
+  :bind (("C-x g" . magit-status)))
 
 (use-package markdown-mode
   :defer t
@@ -127,11 +135,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(poly-R poly-markdown ess magit company eglot fill-column-indicator exec-path-from-shell auto-package-update use-package)))
+ '(custom-enabled-themes '(wombat))
+ '(fill-column 80)
+ '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; init_eglot.el ends here
