@@ -87,7 +87,6 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode))
 
 (use-package elpy
@@ -111,7 +110,6 @@
   (ido-mode 1))
 
 (use-package magit
-  :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package markdown-mode
