@@ -39,12 +39,10 @@
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-(setq visible-bell t)
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
-
+(electric-pair-mode t)
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -60,7 +58,7 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
-;; (setq require-final-newline t)
+(setq require-final-newline t)
 
 ;; Setup org-mode
 (use-package org
@@ -70,29 +68,30 @@
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
   :config
-  ;; (electric-indent-mode -1)
-  (setq org-clock-persist 'history)
+  (electric-indent-mode -1)
+  ;; (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
   (setq org-log-done t)
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree "~/org/journal.org")
-         "* %?\nEntered on %U\n  %i\n  %a"))))
+  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$")))
 
 (use-package exec-path-from-shell
   :defer t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
 
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
+;; (use-package flycheck
+;;   :init (global-flycheck-mode))
+
+;; (use-package eglot)
+
+(use-package company
+   :config
+   (global-company-mode t))
 
 (use-package ssh
   :defer t)
+
+(use-package fill-column-indicator)
 
 (use-package ido
   :defer t
@@ -101,12 +100,7 @@
   (setq ido-everywhere t)
   (ido-mode 1))
 
-(use-package company
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
-
 (use-package magit
-  :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package markdown-mode
@@ -119,45 +113,6 @@
   :init
   (setq markdown-command "multimarkdown"))
 
-;; --- start of lsp configuration ---
-
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (python-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-;; ;; if you are helm user
-;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-;; ;; if you are ivy user
-;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; optionally if you want to use debugger
-(use-package dap-mode
-  :ensure t
-  :after lsp-mode
-  :config 
-  (require 'dap-python)
-  (require 'dap-ui)
-  (dap-mode t)
-  (dap-ui-mode t))
-
-;; pip install "ptvsd>=4.2"
-
-;; optional if you want which-key integration
-(use-package which-key
-    :config
-    (which-key-mode))
-
-;; --- end of lsp configuration ---
-
 (use-package ess
   :defer t
   :config
@@ -168,10 +123,6 @@
 
 (use-package poly-R
   :defer t)
-
-(use-package quarto-mode
-  :defer t
-  :mode (("\\.Rmd" . poly-quarto-mode)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -186,3 +137,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; init_eglot.el ends here
