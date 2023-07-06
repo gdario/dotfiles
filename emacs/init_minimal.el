@@ -4,30 +4,37 @@
 
 (package-initialize)
 
-;; Remove the tool-bar (don't confuse it with 
-(tool-bar-mode -1)
-
-;;; store all backup and autosave files in the .saves dir
-
+;; store all backup and autosave files in the .saves dir
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;;; Set the default font
+;; Set the default font
+(set-frame-font "Monaco-13" nil t)
 
-(if (eq system-type 'darwin)
-    (set-frame-font "Monaco-13" nil t)
-  (set-frame-font "Monospace-11" nil t))
-
-(global-visual-line-mode t)
+(tool-bar-mode -1)
 (show-paren-mode t)
 (electric-pair-mode t)
 
-;;; Make TRAMP faster
+;; Enable visual-line mode in all text modes
+(add-hook 'text-mode-hook #'visual-line-mode)
 
-(setq remote-file-name-inhibit-cache nil)
-(setq vc-ignore-dir-regexp
-      (format "%s\\|%s"
-                    vc-ignore-dir-regexp
-                    tramp-file-name-regexp))
-(setq tramp-verbose 1)
+;; Enable hs-minor mode on all programming modes
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
-;; (setq projectile-mode-line "Projectile")
+;; Configure org-mode
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+(setq org-log-done t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fill-column 80))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
