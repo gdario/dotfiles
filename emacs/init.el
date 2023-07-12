@@ -39,8 +39,8 @@
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-(setq visible-bell t)
-(set-default 'truncate-lines t)
+;; (setq visible-bell t)
+;; (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
 (electric-pair-mode t)
@@ -53,13 +53,13 @@
   (set-frame-font "Monospace-11" nil t))
 
 ;; Enable visual-line mode in all text modes
-;; (add-hook 'text-mode-hook #'visual-line-mode)
+(add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-;; (add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
-;; (setq require-final-newline t)
+(setq require-final-newline t)
 
 ;; Setup org-mode
 (use-package org
@@ -96,6 +96,13 @@
   (setq python-shell-completion-native-enable nil)
   :init
   (advice-add 'python-mode :before 'elpy-enable))
+
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode t))
+
+(use-package eglot)
 
 (use-package ssh
   :defer t)
