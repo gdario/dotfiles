@@ -40,10 +40,10 @@
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 ;; (setq visible-bell t)
-;; (set-default 'truncate-lines t)
+(set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-(electric-pair-mode t)
+;; (electric-pair-mode t)
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -56,7 +56,7 @@
 (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+;; (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
 (setq require-final-newline t)
@@ -149,9 +149,5 @@
  '(elpy-shell-starting-directory 'current-directory)
  '(fill-column 80)
  '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;;; init.el ends here
