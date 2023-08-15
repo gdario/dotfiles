@@ -43,7 +43,7 @@
 (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
+(electric-pair-mode t)
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -56,7 +56,7 @@
 (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-;; (add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
 (setq require-final-newline t)
@@ -69,25 +69,20 @@
   ("C-c c" . org-capture)
   ("C-c b" . org-switchb))
   :config
-  ;; (electric-indent-mode -1)
-  ;; (setq org-clock-persist 'history)
-  ;; (org-clock-persistence-insinuate)
-  (setq org-log-done t)
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree "~/org/journal.org")
-         "* %?\nEntered on %U\n  %i\n  %a"))))
+  (electric-indent-mode -1)
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+  (setq org-log-done t))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (R . t)))
 
 (use-package exec-path-from-shell
   :defer t
   :if (memq window-system '(mac ns x))
   :config (exec-path-from-shell-initialize))
-
-(use-package flycheck
-  :init (global-flycheck-mode))
 
 (use-package elpy
   :defer t
@@ -107,7 +102,8 @@
 (use-package ssh
   :defer t)
 
-(use-package fill-column-indicator)
+(use-package fill-column-indicator
+  :defer t)
 
 (use-package ido
   :defer t
@@ -117,6 +113,7 @@
   (ido-mode 1))
 
 (use-package magit
+  :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package markdown-mode
@@ -151,3 +148,9 @@
  '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
