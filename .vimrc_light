@@ -66,6 +66,9 @@ let g:netrw_banner = 0
 " Activate markdown folding
 let g:markdown_folding = 1
 
+" Enable Python syntax highlight in markdown code blocks
+let g:markdown_fenced_languages = ['python']
+
 " Use autopep8 as the default formatter for python
 au FileType python setlocal formatprg=autopep8\ -
 
