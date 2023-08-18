@@ -13,6 +13,7 @@
      (setq ispell-program-name "/usr/local/bin/ispell"))
   (set-frame-font "Monospace-11" nil t))
 
+(set-default 'truncate-lines t)
 (tool-bar-mode -1)
 (show-paren-mode t)
 (electric-pair-mode t)
@@ -39,11 +40,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(display-line-numbers-type nil)
  '(fill-column 80)
- '(python-shell-completion-native-enable nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(python-shell-completion-native-enable nil)
+ '(tool-bar-mode nil))
