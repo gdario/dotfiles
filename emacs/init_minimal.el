@@ -7,8 +7,11 @@
 ;; store all backup and autosave files in the .saves dir
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;; Set the default font
-(set-frame-font "Monaco-13" nil t)
+;; Set the default font, based on the OS
+(if (eq system-type 'darwin)
+    (progn (set-frame-font "Monaco-13" nil t)
+     (setq ispell-program-name "/usr/local/bin/ispell"))
+  (set-frame-font "Monospace-11" nil t))
 
 (tool-bar-mode -1)
 (show-paren-mode t)
