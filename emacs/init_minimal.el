@@ -26,6 +26,11 @@
 (global-set-key (kbd "C-c c") #'org-capture)
 (setq org-log-done t)
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (R . t)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
