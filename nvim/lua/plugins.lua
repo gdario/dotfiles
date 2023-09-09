@@ -5,4 +5,8 @@ return require('packer').startup(function(use)
         run = ':TSUpdate'
     }
     use 'neovim/nvim-lspconfig'
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-dvicons', opt = true }
+    }
 end)
