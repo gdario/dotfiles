@@ -89,20 +89,7 @@
 ;;   :if (memq window-system '(mac ns x))
 ;;   :config (exec-path-from-shell-initialize))
 
-;; (use-package elpy
-;;   :defer t
-  ;; :if (memq window-system '(mac ns x))
-  ;; :config
-  ;; (setq python-shell-completion-native-enable nil)
-  ;; :init
-  ;; (advice-add 'python-mode :before 'elpy-enable))
-
-;; (use-package company
-;;   :ensure t
-;;   :config
-;;   (global-company-mode t))
-
-;; (use-package eglot)
+(use-package eglot)
 
 ;; (use-package ssh
 ;;   :defer t)
@@ -117,30 +104,30 @@
 ;;   (setq ido-everywhere t)
 ;;   (ido-mode 1))
 
-;; (use-package magit
-;;   :defer t
-;;   :bind (("C-x g" . magit-status)))
+(use-package magit
+  :defer t
+  :bind (("C-x g" . magit-status)))
 
-;; (use-package markdown-mode
-;;   :defer t
-;;   :commands (markdown-mode gfm-mode)
-;;   :mode
-;;   (("README\\.md\\'" . gfm-mode)
-;;    ("\\.md\\'" . markdown-mode)
-;;    ("\\.markdown\\'" . markdown-mode))
-;;   :init
-;;   (setq markdown-command "multimarkdown"))
+(use-package markdown-mode
+  :defer t
+  :commands (markdown-mode gfm-mode)
+  :mode
+  (("README\\.md\\'" . gfm-mode)
+   ("\\.md\\'" . markdown-mode)
+   ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown"))
 
-;; (use-package ess
-;;   :defer t
-;;   :config
-;;   (setq ess-style 'RStudio))
+(use-package ess
+  :defer t
+  :config
+  (setq ess-style 'RStudio))
 
-;; (use-package poly-markdown
-;;   :defer t)
+(use-package poly-markdown
+  :defer t)
 
-;; (use-package poly-R
-;;   :defer t)
+(use-package poly-R
+  :defer t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
