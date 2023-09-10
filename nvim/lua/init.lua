@@ -13,4 +13,3 @@ parser_config.zimbu = {
 
 -- LSP setup
 require'lspconfig'.pyright.setup{}
-require('lualine').setup()
