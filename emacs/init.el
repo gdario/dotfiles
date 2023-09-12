@@ -76,6 +76,8 @@
   ;; (electric-indent-mode -1)
   ;; (setq org-clock-persist 'history)
   ;; (org-clock-persistence-insinuate)
+  (setq org-agenda-files
+        (directory-files-recursively "~/org/" "\\.org$"))
   (setq org-log-done t))
 
 (use-package elpy
