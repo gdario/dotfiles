@@ -5,3 +5,4 @@ source ~/.vimrc
 lua require('plugins')
 lua require('init')
 lua require('lsp_config')
+lua require('nvim_cmp_cfg')
