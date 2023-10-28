@@ -56,7 +56,7 @@
 (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+;; (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
 (setq require-final-newline t)
@@ -83,7 +83,8 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((python . t)))
+ '((python . t)
+   (R . t)))
 
 ;; (use-package flycheck
 ;;   :init (global-flycheck-mode))
@@ -101,7 +102,7 @@
   :config
   (global-company-mode t))
 
-(use-package eglot)
+;; (use-package eglot)
 
 (use-package ssh
   :defer t)
@@ -128,16 +129,24 @@
   :init
   (setq markdown-command "multimarkdown"))
 
-;; (use-package ess
-;;   :defer t
-;;   :config
-;;   (setq ess-style 'RStudio))
+(use-package ess
+  :defer t
+  :config
+  (setq ess-style 'RStudio))
 
-;; (use-package poly-markdown
-;;   :defer t)
+(use-package poly-markdown
+  :defer t)
 
-;; (use-package poly-R
-;;   :defer t)
+(use-package poly-R
+  :defer t)
+
+(setq treesit-language-source-alist
+      '((stan "https://github.com/WardBrian/tree-sitter-stan")))
+
+;; For this step to work go to ~/.emacs.d and enter
+;; git clone git@github.com:WardBrian/stan-ts-mode.git
+(add-to-list 'load-path (concat user-emacs-directory "stan-ts-mode"))
+(load "stan-ts-mode")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -146,7 +155,26 @@
  ;; If there is more than one, they won't work right.
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
+ '(ess-R-font-lock-keywords
+   '((ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:constants . t)
+     (ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:assign-ops . t)
+     (ess-R-fl-keyword:%op% . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers)
+     (ess-fl-keyword:operators . t)
+     (ess-fl-keyword:delimiters)
+     (ess-fl-keyword:=)
+     (ess-R-fl-keyword:F&T)))
  '(fill-column 80)
  '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
 
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
