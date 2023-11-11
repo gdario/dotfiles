@@ -6,7 +6,7 @@
 
 ;;; Commentary:
 
-;; A mostly stolen init file.
+;; This is my personal Emacs configuration.  Nothing more, nothing less.
 
 ;;; Code:
 (require 'package)
@@ -39,10 +39,14 @@
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-;; (set-default 'truncate-lines t)
+;; (setq visible-bell t)
+(set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
+(electric-pair-mode t)
+
+;; Load theme
+(load-theme 'wombat)
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -55,59 +59,83 @@
 (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;; Enable hs-minor mode on all programming modes
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+;; (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Require a newline at end of the file
-;; (setq require-final-newline t)
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)
-   (R . t)))
+(setq require-final-newline t)
 
 ;; Setup org-mode
 (use-package org
   :bind
   (("C-c a" . org-agenda)
-  ("C-c l" . org-store-link)
-  ("C-c c" . org-capture))
-  ;; ("C-c b" . org-switchb))
+   ("C-c l" . org-store-link)
+   ("C-c c" . org-capture)
+   ("C-c b" . org-switchb))
   :config
-  ;; (electric-indent-mode -1)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (R . t)))
+  (electric-indent-mode -1)
   ;; (setq org-clock-persist 'history)
   ;; (org-clock-persistence-insinuate)
+  (setq org-babel-python-command "python3")
+  (setq org-log-done t)
   (setq org-agenda-files
-        (directory-files-recursively "~/org/" "\\.org$"))
-  (setq org-log-done t))
+	'("~/gtd/inbox.org"
+	  "~/gtd/gtd.org"
+	  "~/gtd/ticker.org"))
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-capture-templates
+	'(("t" "Todo [inbox]" entry
+	   (file+headline "~/gtd/inbox.org" "Tasks")
+	   "* TODO %i%?")
+          ("d" "Daily Notes" entry (file+datetree "~/gtd/daily_notes.org")
+           "* %?\nEntered on %U\n  %i\n  %a")
+	  ("T" "Tickler" entry
+	   (file+headline "~/gtd/tickler.org" "Tickler")
+	   "* %i%? \n %U")))
+  (setq org-refile-targets
+	'(("~/gtd/gtd.org" :maxlevel . 3)
+          ("~/gtd/someday.org" :level . 1)
+          ("~/gtd/tickler.org" :maxlevel . 2)))
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)"))))
+
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((python . t)
+;;    (R . t)))
+
+;; (use-package flycheck
+;;   :init (global-flycheck-mode))
 
 (use-package elpy
-  :ensure t
   :defer t
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq python-shell-completion-native-enable nil)
   :init
-  (elpy-enable))
+  (advice-add 'python-mode :before 'elpy-enable))
 
-;; (use-package exec-path-from-shell
-;;   :defer t
-;;   :if (memq window-system '(mac ns x))
-;;   :config (exec-path-from-shell-initialize))
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode t))
 
-(use-package eglot)
+(use-package ssh
+  :defer t)
 
-;; (use-package ssh
-;;   :defer t)
+(use-package fill-column-indicator)
 
-;; (use-package fill-column-indicator
-;;   :defer t)
-
-;; (use-package ido
-;;   :defer t
-;;   :config
-;;   (setq ido-enable-flex-matching t)
-;;   (setq ido-everywhere t)
-;;   (ido-mode 1))
+(use-package ido
+  :defer t
+  :config
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (ido-mode 1))
 
 (use-package magit
-  :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package markdown-mode
@@ -131,16 +159,48 @@
 (use-package poly-R
   :defer t)
 
+(use-package nov
+  :defer t
+  :mode
+  ("\\.epub\\'" . nov-mode))
+
+(use-package sicp
+  :ensure t
+  :defer t)
+
+;; (setq treesit-language-source-alist
+;;       '((stan "https://github.com/WardBrian/tree-sitter-stan")))
+
+;; For this step to work go to ~/.emacs.d and enter
+;; git clone git@github.com:WardBrian/stan-ts-mode.git
+;; (add-to-list 'load-path (concat user-emacs-directory "stan-ts-mode"))
+;; (load "stan-ts-mode")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(display-line-numbers-type nil)
+ '(elpy-rpc-python-command "python3")
+ '(elpy-shell-starting-directory 'current-directory)
+ '(ess-R-font-lock-keywords
+   '((ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:constants . t)
+     (ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:assign-ops . t)
+     (ess-R-fl-keyword:%op% . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers)
+     (ess-fl-keyword:operators . t)
+     (ess-fl-keyword:delimiters)
+     (ess-fl-keyword:=)
+     (ess-R-fl-keyword:F&T)))
  '(fill-column 80)
- '(package-selected-packages '(auto-package-update hs-minor-mode use-package))
- '(python-shell-completion-native-enable nil))
+ '(org-export-backends '(ascii html icalendar latex md odt))
+ '(package-selected-packages '(sicp auto-package-update hs-minor-mode use-package)))
+
+;;; init.el ends here
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
