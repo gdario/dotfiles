@@ -22,24 +22,14 @@
 ;; (require 'use-package)
 (setq use-package-always-ensure t)
 
-;;;; Automatically update installed packages
-;;(use-package auto-package-update
-;;  :config
-;;  (setq auto-package-update-delete-old-versions t)
-;;  (setq auto-package-update-hide-results t)
-;;  (auto-package-update-maybe))
-
 ;; Store all backup and autosave files in the .saves dir
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 ;; Startup settings
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-;; (setq visible-bell t)
-;; (set-default 'truncate-lines t)
 (show-paren-mode t)
 (column-number-mode t)
-;; (electric-pair-mode t)
 
 ;; Set the font and the location of the spell-checker based on the operating
 ;; system
@@ -50,12 +40,10 @@
 
 ;; Enable visual-line mode in all text modes
 (add-hook 'text-mode-hook #'visual-line-mode)
+(add-hook 'python-mode-hook 'eglot-ensure)
 
 ;; Enable hs-minor mode on all programming modes
 (add-hook 'prog-mode-hook #'hs-minor-mode)
-
-;; Require a newline at end of the file
-;; (setq require-final-newline t)
 
 ;; Setup org-mode
 (use-package org
@@ -75,25 +63,10 @@
   (setq org-babel-python-command "python3")
   (setq org-log-done t))
 
-;; (use-package flycheck
-;;   :init (global-flycheck-mode))
-
 (use-package company
   :ensure t
   :config
   (global-company-mode t))
-
-;; (use-package ssh
-;;   :defer t)
-
-;; (use-package fill-column-indicator)
-
-;; (use-package ido
-;;   :defer t
-;;   :config
-;;   (setq ido-enable-flex-matching t)
-;;   (setq ido-everywhere t)
-;;   (ido-mode 1))
 
 (use-package magit
   :bind (("C-x g" . magit-status)))
@@ -107,17 +80,6 @@
 ;;    ("\\.markdown\\'" . markdown-mode))
 ;;   :init
 ;;   (setq markdown-command "multimarkdown"))
-
-;; (use-package ess
-;;   :defer t
-;;   :config
-;;   (setq ess-style 'RStudio))
-
-;; (use-package poly-markdown
-;;   :defer t)
-
-;; (use-package poly-R
-;;   :defer t)
 
 ;;;; nov allows reading epubs from within Emacs
 ;; (use-package nov
