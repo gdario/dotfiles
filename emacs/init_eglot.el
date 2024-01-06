@@ -45,6 +45,9 @@
 ;; Enable hs-minor mode on all programming modes
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
+;; C-z is zap-to-char, C-M-z is zap-up-to-char
+(keymap-global-set "C-M-z" 'zap-up-to-char)
+
 ;; Setup org-mode
 (use-package org
   :bind
