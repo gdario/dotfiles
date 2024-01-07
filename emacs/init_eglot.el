@@ -22,59 +22,7 @@
 ;; (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; Store all backup and autosave files in the .saves dir
-(setq backup-directory-alist `(("." . "~/.saves")))
-
-;; Startup settings
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(show-paren-mode t)
-(column-number-mode t)
-
-;; Set the font and the location of the spell-checker based on the operating
-;; system
-(if (eq system-type 'darwin)
-    (progn (set-frame-font "Monaco-13" nil t)
-     (setq ispell-program-name "/usr/local/bin/ispell"))
-  (set-frame-font "Monospace-11" nil t))
-
-;; Enable visual-line mode in all text modes
-(add-hook 'text-mode-hook #'visual-line-mode)
-(add-hook 'python-mode-hook 'eglot-ensure)
-
-;; Enable hs-minor mode on all programming modes
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-
-;; C-z is zap-to-char, C-M-z is zap-up-to-char
-(keymap-global-set "C-M-z" 'zap-up-to-char)
-
-;; Setup org-mode
-(use-package org
-  :bind
-  (("C-c a" . org-agenda)
-   ("C-c l" . org-store-link)
-   ("C-c c" . org-capture)
-   ("C-c b" . org-switchb))
-  :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (R . t)))
-  (electric-indent-mode -1)
-  ;; (setq org-clock-persist 'history)
-  ;; (org-clock-persistence-insinuate)
-  (setq org-babel-python-command "python3")
-  (setq org-log-done t))
-
-(use-package company
-  :ensure t
-  :config
-  (global-company-mode t))
-
-(use-package magit
-  :bind (("C-x g" . magit-status)))
-
-ackages
+;;;; Automatically update installed packages
 ;;(use-package auto-package-update
 ;;  :config
 ;;  (setq auto-package-update-delete-old-versions t)
@@ -130,8 +78,20 @@ ackages
   (setq org-babel-python-command "python3")
   (setq org-log-done t))
 
+;; Needed on OSX to make Eglot find the python-lsp-server
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
 ;; (use-package flycheck
 ;;   :init (global-flycheck-mode))
+
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
 
 (use-package company
   :ensure t
@@ -141,16 +101,17 @@ ackages
 (use-package ssh
   :defer t)
 
-;; Needed on OSX to make Eglot find the python-lsp-server
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+;; (use-package fill-column-indicator)
 
-(use-package ssh
-  :ensure t
-  :defer t)
+;; (use-package ido
+;;   :defer t
+;;   :config
+;;   (setq ido-enable-flex-matching t)
+;;   (setq ido-everywhere t)
+;;   (ido-mode 1))
+
+(use-package magit
+  :bind (("C-x g" . magit-status)))
 
 ;; (use-package markdown-mode
 ;;   :defer t
@@ -162,16 +123,26 @@ ackages
 ;;   :init
 ;;   (setq markdown-command "multimarkdown"))
 
+;; (use-package ess
+;;   :defer t
+;;   :config
+;;   (setq ess-style 'RStudio))
+
+;; (use-package poly-markdown
+;;   :defer t)
+
+;; (use-package poly-R
+;;   :defer t)
+
 ;;;; nov allows reading epubs from within Emacs
 ;; (use-package nov
 ;;   :defer t
 ;;   :mode
 ;;   ("\\.epub\\'" . nov-mode))
 
-;; (use-package sicp
-;;   :ensure t
-;;   :defer t)
-;; 
+(use-package sicp
+  :ensure t
+  :defer t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
