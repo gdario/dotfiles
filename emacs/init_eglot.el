@@ -9,7 +9,12 @@
      (setq ispell-program-name "/usr/local/bin/ispell"))
   (set-frame-font "Monospace-11" nil t))
 
+;; Store all backup and autosave files in the .saves dir
+(setq backup-directory-alist `(("." . "~/.saves")))
+
 ;; Startup defaults
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
 (show-paren-mode t)
 (column-number-mode t)
 (electric-pair-mode t)
@@ -62,22 +67,22 @@
 ;;   :init
 ;;   (setq markdown-command "multimarkdown"))
 
-(use-package ess
-  :defer t
-  :ensure t
-  :hook
-  ((ess-r-mode . eglot-ensure))
-  ((ess-r-mode . company-mode))
-  :config
-  (setq ess-style 'RStudio))
+;; (use-package ess
+;;   :defer t
+;;   :ensure t
+;;   :hook
+;;   ((ess-r-mode . eglot-ensure))
+;;   ((ess-r-mode . company-mode))
+;;   :config
+;;   (setq ess-style 'RStudio))
 
-(use-package poly-markdown
-  :defer t
-  :ensure t)
+;; (use-package poly-markdown
+;;   :defer t
+;;   :ensure t)
 
-(use-package poly-R
-  :defer t
-  :ensure t)
+;; (use-package poly-R
+;;   :defer t
+;;   :ensure t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
