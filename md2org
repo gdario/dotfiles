@@ -1,0 +1,7 @@
+#!/bin/bash
+pandoc -s \
+       --wrap=preserve \
+       --lua-filter=${HOME}/dotfiles/remove-header-attr.lua \
+       -t org \
+       -f markdown \
+       $1 -o ${1/\.md/.org}

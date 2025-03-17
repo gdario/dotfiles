@@ -1,0 +1,7 @@
+#!/bin/bash
+# Recursive version of org2md
+
+for md_file in $(ls **/*.md)
+do
+    md2org ${md_file}
+done
