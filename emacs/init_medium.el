@@ -11,6 +11,16 @@
 ;; (global-set-key (kbd "C-x x v") 'visual-line-mode)
 (tool-bar-mode -1)
 
+(use-package completion-preview
+  :defer t
+  :hook
+  (prog-mode . completion-preview-mode))
+
+(use-package eglot
+  :defer t
+  :hook
+  (python-mode . eglot-ensure))
+
 (use-package org
   :bind
   (("C-c a" . org-agenda)
@@ -21,6 +31,7 @@
   :hook
   (org-mode . visual-line-mode)
   :config
+  (electric-indent-mode -1)
   (setq org-directory "~/Documents/org")
   (setq org-default-notes-file (concat org-directory "/notes.org")))
 
@@ -29,6 +40,10 @@
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
+
+(use-package pyvenv
+  :defer t
+  :ensure t)
 
 (use-package python-mode
   :defer t
@@ -77,23 +92,31 @@
   :hook
   (markdown-mode . visual-line-mode))
 
-(use-package rust-mode
-  :ensure t
-  :defer t)
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t)
 
-(use-package racket-mode
-  :ensure t
-  :defer t)
+;; (use-package rust-mode
+;;   :ensure t
+;;   :defer t)
 
-(use-package nov
-  :ensure t
-  :defer t
-  :mode
-  ("\\.epub\\'" . nov-mode))
+;; (use-package racket-mode
+;;   :ensure t
+;;   :defer t)
+
+;; (use-package nov
+;;   :ensure t
+;;   :defer t
+;;   :mode
+;;   ("\\.epub\\'" . nov-mode))
 
 (use-package lua-mode
   :ensure t
   :defer t)
+
+;; (use-package sicp
+;;   :ensure t
+;;   :defer t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -104,9 +127,7 @@
    '("~/Documents/org/todos.org"
      "/Users/dariog/Documents/org/goals2025.org"))
  '(org-export-backends '(ascii html icalendar latex md odt))
- '(package-selected-packages
-   '(csv-mode ess exec-path-from-shell lua-mode magit nov poly-R
-	      racket-mode rust-mode))
+ '(package-selected-packages nil)
  '(sql-connection-alist
    '(("pincai" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
