@@ -1,25 +1,11 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
 (setq backup-directory-alist '(("." . "~/.saves")))
 (if window-system (set-frame-font "Menlo 13" nil t))
 (setq inhibit-startup-message t)
 (column-number-mode t)
 (windmove-default-keybindings 'super)
-;; Make eglot help buffers more readable
-;; (add-hook 'special-mode-hook (lambda () (visual-line-mode 1)))
-;; (global-set-key (kbd "C-x x v") 'visual-line-mode)
 (tool-bar-mode -1)
-
-(use-package completion-preview
-  :defer t
-  :hook
-  (prog-mode . completion-preview-mode))
-
-(use-package eglot
-  :defer t
-  :hook
-  (python-mode . eglot-ensure))
 
 (use-package org
   :bind
@@ -48,7 +34,10 @@
 (use-package python-mode
   :defer t
   :init
-  (setq python-shell-completion-native-enable nil))
+  (setq python-shell-completion-native-enable nil)
+  :hook
+  (python-mode . completion-preview-mode)
+  (python-mode . eglot-ensure))
 
 (use-package ess
   :ensure t
@@ -92,44 +81,26 @@
   :hook
   (markdown-mode . visual-line-mode))
 
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package rust-mode
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package racket-mode
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package nov
-;;   :ensure t
-;;   :defer t
-;;   :mode
-;;   ("\\.epub\\'" . nov-mode))
-
-(use-package lua-mode
+(use-package rust-mode
   :ensure t
-  :defer t)
-
-;; (use-package sicp
-;;   :ensure t
-;;   :defer t)
+  :defer t
+  :init
+  :hook
+  (rust-mode . completion-preview-mode)
+  (rust-mode . eglot-ensure))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("~/Documents/org/todos.org"
-     "/Users/dariog/Documents/org/goals2025.org"))
- '(org-export-backends '(ascii html icalendar latex md odt))
+ '(org-export-backends '(ascii html icalendar md odt))
  '(package-selected-packages nil)
  '(sql-connection-alist
-   '(("pincai" (sql-product 'postgres) (sql-user "dariog")
+   '(("trinetx-pca" (sql-product 'postgres) (sql-user "dariog")
+      (sql-server "redshift-01-us.dap.apollo.roche.com")
+      (sql-database "trinetx_pca") (sql-port 5439))
+     ("pincai" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
       (sql-database "premier_phd_ac") (sql-port 5439)))))
 (custom-set-faces
