@@ -17,7 +17,6 @@
   :hook
   (org-mode . visual-line-mode)
   :config
-  (electric-indent-mode -1)
   (setq org-directory "~/Documents/org")
   (setq org-default-notes-file (concat org-directory "/notes.org")))
 
