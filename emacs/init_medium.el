@@ -88,6 +88,21 @@
   (rust-mode . completion-preview-mode)
   (rust-mode . eglot-ensure))
 
+(use-package projectile
+  :ensure t
+  :defer t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)))
+
+(use-package vertico
+  :ensure t
+  :defer t
+  :init
+  (vertico-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
