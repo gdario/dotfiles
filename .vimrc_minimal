@@ -3,9 +3,6 @@ set encoding=utf-8
 syntax on
 set shiftwidth=4
 set softtabstop=0
-set incsearch
-set ignorecase
-set smartcase
 set nowrap
 
 " Make search case sensitive only when needed
@@ -19,13 +16,8 @@ set wildmenu
 " It automatically activates filetype plugin
 filetype indent on
 
-augroup textdocs
-    autocmd!
-    autocmd BufReadPost *.md,*.rmd,*.txt setlocal wrap
-augroup END
-
-let r_indent_align_args = 0 
-augroup proglangs
-    autocmd!
-    autocmd BufReadPost *.r,*.lua setlocal sw=2
-augroup END
+autocmd FileType markdown setlocal wrap
+autocmd FileType rmd setlocal wrap
+autocmd FileType lua setlocal shiftwidth=2
+autocmd FileType r setlocal shiftwidth=2
+let r_indent_align_args = 0
