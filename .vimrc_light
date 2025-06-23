@@ -7,6 +7,11 @@ set incsearch
 set ignorecase
 set smartcase
 set nowrap
+set ruler
+set wildmenu
+set autoread
+set foldmethod=indent
+set foldlevel=99
 
 " Make search case sensitive only when needed
 set ignorecase
