@@ -1,8 +1,6 @@
 set nocompatible
 set encoding=utf-8
 syntax on
-set shiftwidth=4
-set softtabstop=0
 set incsearch
 set ignorecase
 set smartcase
@@ -12,6 +10,8 @@ set wildmenu
 set autoread
 set foldmethod=indent
 set foldlevel=99
+"set list
+"set listchars=tab:>-
 
 " Make search case sensitive only when needed
 set ignorecase
@@ -24,6 +24,11 @@ set wildmenu
 " It automatically activates filetype plugin
 filetype indent on
 
+augroup python
+    autocmd!
+    autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
+augroup END
+
 augroup textdocs
     autocmd!
     autocmd BufReadPost *.md,*.rmd,*.txt setlocal wrap
@@ -32,5 +37,5 @@ augroup END
 let r_indent_align_args = 0 
 augroup proglangs
     autocmd!
-    autocmd BufReadPost *.r,*.lua setlocal sw=2
+    autocmd BufReadPost *.r,*.lua,*.sql setlocal sw=2 sts=2
 augroup END
