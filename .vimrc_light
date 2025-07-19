@@ -37,5 +37,5 @@ augroup END
 let r_indent_align_args = 0 
 augroup proglangs
     autocmd!
-    autocmd BufReadPost *.r,*.lua,*.sql setlocal sw=2 sts=2
+    autocmd FileType r,yaml,lua,sql,json setlocal expandtab sw=2 sts=2 ts=8
 augroup END
