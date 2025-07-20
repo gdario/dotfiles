@@ -27,6 +27,12 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
+(use-package corfu
+  :ensure t
+  :defer t
+  :init
+  (global-corfu-mode))
+
 (use-package pyvenv
   :defer t
   :ensure t)
@@ -98,6 +104,9 @@
   :init
   (vertico-mode))
 
+(use-package sicp
+  :ensure t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -105,8 +114,8 @@
  ;; If there is more than one, they won't work right.
  '(org-export-backends '(ascii html icalendar md odt))
  '(package-selected-packages
-   '(auctex ess exec-path-from-shell magit markdown-mode nov poly-R
-	    poly-markdown poly-noweb pyvenv toml-mode vertico
+   '(auctex corfu ess exec-path-from-shell magit markdown-mode nov poly-R
+	    poly-markdown poly-noweb pyvenv sicp toml-mode vertico
 	    yaml-mode))
  '(sql-connection-alist
    '(("trinetx-pca" (sql-product 'postgres) (sql-user "dariog")
