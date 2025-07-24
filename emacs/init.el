@@ -8,6 +8,14 @@
 (tool-bar-mode -1)
 (keymap-global-set "C-M-z" 'zap-up-to-char)
 
+(add-hook 'text-mode-hook '(lambda ()
+    (setq truncate-lines nil
+          word-wrap t)))
+
+(add-hook 'prog-mode-hook '(lambda ()
+    (setq truncate-lines t
+          word-wrap nil)))
+
 (use-package org
   :bind
   (("C-c a" . org-agenda)

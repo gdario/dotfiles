@@ -1,34 +1,34 @@
 -- Basic settings
 vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = "a"
-vim.opt.showmode = false
+-- vim.opt.relativenumber = true
+-- vim.opt.mouse = "a"
+-- vim.opt.showmode = false
 -- vim.opt.spelllang = "en_gb"
 
 -- Leader key
-vim.g.mapleader = ","
+-- vim.g.mapleader = ","
 
 -- Use nvim-tree
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
 -- Use system clipboard
-vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
+-- vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
 
 -- Display settings
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 -- vim.o.background = "dark" -- or "light"
 
 -- Scrolling and UI settings
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
-vim.opt.signcolumn = 'yes'
+-- vim.opt.cursorcolumn = true
+-- vim.opt.signcolumn = 'yes'
 vim.opt.wrap = false
 -- vim.opt.sidescrolloff = 8
 
 -- Title
-vim.opt.title = true
-vim.opt.titlestring = "nvim"
+-- vim.opt.title = true
+-- vim.opt.titlestring = "nvim"
 
 -- Indentation
 vim.opt.tabstop = 8
@@ -48,7 +48,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- LSP
--- vim.lsp.inlay_hint.enable(true)
+vim.lsp.inlay_hint.enable(true)
 
 -- Plugins
 local plugins = {
@@ -149,7 +149,7 @@ vim.opt.foldlevel = 99
 
 -- Mason & LSP
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "pylsp" } })
+require("mason-lspconfig").setup()
 
 require("conform").setup({
   default_format_opts = { lsp_format = "fallback" },

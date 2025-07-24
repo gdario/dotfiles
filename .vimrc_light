@@ -10,6 +10,9 @@ set wildmenu
 set autoread
 set foldmethod=indent
 set foldlevel=99
+"set textwidth=0
+"set wrapmargin=0
+"set linebreak
 "set list
 "set listchars=tab:>-
 
@@ -31,7 +34,7 @@ augroup END
 
 augroup textdocs
     autocmd!
-    autocmd BufReadPost *.md,*.rmd,*.txt setlocal wrap
+    autocmd BufReadPost *.md,*.rmd,*.txt,*.qmd setlocal wrap textwidth=0 wrapmargin=0 wrap linebreak
 augroup END
 
 let r_indent_align_args = 0 
