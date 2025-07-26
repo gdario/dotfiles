@@ -25,7 +25,11 @@ set wildmenu
 
 " Enable loading the indent file for specific file types.
 " It automatically activates filetype plugin
-filetype indent on
+filetype plugin indent on
+
+" Python by default indents after an open parenthesis by
+" shiftwidth() * 2
+let g:pyindent_open_paren = 'shiftwidth()'
 
 augroup python
     autocmd!

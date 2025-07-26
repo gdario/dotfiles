@@ -1,7 +1,11 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq backup-directory-alist '(("." . "~/.saves")))
-(if window-system (set-frame-font "Menlo 13" nil t))
+(if window-system
+    (progn
+      (set-frame-font "Menlo 13" nil t)
+      (load-theme 'spacemacs-light t)))
+
 (setq inhibit-startup-message t)
 (column-number-mode t)
 (windmove-default-keybindings 'super)
@@ -13,8 +17,11 @@
           word-wrap t)))
 
 (add-hook 'prog-mode-hook '(lambda ()
-    (setq truncate-lines t
+    (setq visual-line-mode t
           word-wrap nil)))
+
+(use-package spacemacs-theme
+  :ensure t)
 
 (use-package org
   :bind
@@ -23,8 +30,10 @@
    ("C-c c" . org-capture))
   :init
   (require 'org-tempo)
+  (if window-system (setq org-hide-emphasis-markers t))
   :hook
   (org-mode . visual-line-mode)
+  (org-mode . (lambda () (setq electric-indent-local-mode -1)))
   :config
   (setq org-directory "~/Documents/org")
   (setq org-default-notes-file (concat org-directory "/notes.org")))
@@ -35,11 +44,11 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-(use-package corfu
-  :ensure t
-  :defer t
-  :init
-  (global-corfu-mode))
+;; (use-package corfu
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (global-corfu-mode))
 
 (use-package pyvenv
   :defer t
@@ -50,7 +59,8 @@
   :init
   (setq python-shell-completion-native-enable nil)
   :hook
-  (python-mode . eglot-ensure))
+  (python-mode . eglot-ensure)
+  (python-mode . completion-preview-mode))
 
 (use-package magit
   :ensure t
@@ -84,9 +94,9 @@
   :ensure t
   :defer t)
 
-(use-package auctex
-  :ensure t
-  :defer t)
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t)
 
 (use-package ess
   :ensure t
@@ -120,11 +130,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("9af2b1c0728d278281d87dc91ead7f5d9f2287b1ed66ec8941e97ab7a6ab73c0"
+     default))
  '(org-export-backends '(ascii html icalendar md odt))
- '(package-selected-packages
-   '(auctex corfu ess exec-path-from-shell magit markdown-mode nov poly-R
-	    poly-markdown poly-noweb pyvenv sicp toml-mode vertico
-	    yaml-mode))
+ '(package-selected-packages nil)
  '(sql-connection-alist
    '(("trinetx-pca" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-01-us.dap.apollo.roche.com")
