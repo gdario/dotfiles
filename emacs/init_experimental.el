@@ -2,32 +2,20 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq backup-directory-alist '(("." . "~/.saves")))
 
-(setq inhibit-startup-message t)
-(column-number-mode t)
-(windmove-default-keybindings 'super)
-(tool-bar-mode -1)
-(keymap-global-set "C-M-z" 'zap-up-to-char)
-
-(add-hook 'text-mode-hook '(lambda ()
-    (setq truncate-lines nil
-          word-wrap t)))
-
-(add-hook 'prog-mode-hook '(lambda ()
-    (setq visual-line-mode t
-          word-wrap nil)))
-
-(use-package spacemacs-theme
-  :ensure t
+(use-package emacs
+  :custom
+  (column-number-mode t)
+  (windmove-default-keybindings 'super)
+  (inhibit-startup-message t)
+  (ispell-dictionary "en_US")
+  (truncate-lines t)
+  ;; (keymap-global-set "C-M-z" 'zap-up-to-char)
+  :hook
+  (prog-mode . display-line-numbers-mode)
+  :config
+  (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 130)
   :init
-  (if window-system
-    (progn
-      (set-frame-font "Menlo 13" nil t)
-      (load-theme 'spacemacs-light t))))
-
-(if window-system
-    (progn
-      (set-frame-font "Menlo 13" nil t)
-      (load-theme 'spacemacs-light t)))
+  (tool-bar-mode -1))
 
 (use-package org
   :bind
@@ -122,6 +110,10 @@
   :init
   (vertico-mode))
 
+(use-package racket-mode
+  :ensure t
+  :defer t)
+
 (use-package sicp
   :ensure t)
 
@@ -130,11 +122,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("9af2b1c0728d278281d87dc91ead7f5d9f2287b1ed66ec8941e97ab7a6ab73c0"
-     default))
  '(org-export-backends '(ascii html icalendar md odt))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(exec-path-from-shell magit nov poly-R pyvenv sicp 
+			  toml-mode treesit-auto vertico yaml-mode))
  '(sql-connection-alist
    '(("trinetx-pca" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-01-us.dap.apollo.roche.com")
