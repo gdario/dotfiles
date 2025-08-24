@@ -28,6 +28,10 @@
   (org-mode . visual-line-mode))
   ;; (org-mode . (lambda () (setq electric-indent-local-mode -1))))
 
+(use-package magit
+  :ensure t
+  :defer t)
+
 (use-package pyvenv
   :ensure t
   :defer t)
@@ -41,7 +45,6 @@
   :hook
   (python-mode . display-fill-column-indicator-mode)
   (python-mode . display-line-numbers-mode))
-
 
 (use-package markdown-mode
   :ensure t
@@ -92,19 +95,13 @@
 (use-package sicp
   :ensure t)
 
-;; (use-package vertico
-;;   :ensure t
-;;   :defer t
-;;   :init
-;;   (vertico-mode))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(poly-R pyvenv racket-mode scheme-mode sicp toml-mode yaml-mode)))
+   '(magit poly-R pyvenv racket-mode scheme-mode sicp toml-mode yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
