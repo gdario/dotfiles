@@ -95,6 +95,12 @@
 (use-package sicp
   :ensure t)
 
+(use-package nov
+  :ensure t
+  :defer t
+  :mode
+  ("\\.epub\\'" . nov-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
