@@ -14,6 +14,7 @@
   (column-number-mode t)
   (tool-bar-mode -1)
   :hook
+  (prog-mode . display-line-numbers-mode)
   (text-mode . visual-line-mode))
 
 (use-package org-mode
@@ -41,7 +42,7 @@
   :custom
   (display-fill-column-indicator-column 80)
   (display-line-numbers-mode)
-  (display-line-numbers-type 'relative)
+  ;; (display-line-numbers-type 'relative)
   :hook
   (python-mode . display-fill-column-indicator-mode)
   (python-mode . display-line-numbers-mode))
@@ -101,16 +102,42 @@
   :mode
   ("\\.epub\\'" . nov-mode))
 
-(use-package auctex
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t)
+
+(use-package typst-ts-mode
   :ensure t
   :defer t)
+
+(use-package rust-mode
+  :ensure t
+  :defer t
+  :config
+  (setq rust-format-on-save t))
+
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode))
+
+(use-package orderless
+  :ensure t
+  :defer t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-category-defuaults nil)
+  (completion-pcm-leading-wildcard t))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(magit nov orderless poly-R pyvenv racket-mode rust-mode sicp
+	   toml-mode typst-ts-mode vertico yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
