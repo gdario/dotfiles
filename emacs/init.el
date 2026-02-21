@@ -1,37 +1,46 @@
 (require 'package)
+(package-initialize)
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq backup-directory-alist '(("." . "~/.saves")))
 
-(use-package emacs
-  :custom
-  (truncate-lines t)
-  (inhibit-startup-message t)
-  :config
-  ;; (if window-system (set-frame-font "Menlo 13" nil t))
-  (if window-system
-      (set-frame-font "JetBrainsMono Nerd Font 14" nil t))
-  (windmove-default-keybindings 'super)
-  (column-number-mode t)
-  (tool-bar-mode -1)
-  :hook
-  (prog-mode . display-line-numbers-mode)
-  (text-mode . visual-line-mode))
+(tool-bar-mode -1)
+(set-frame-font "Monaco 13" nil t)
+(set-register ?m (cons 'file "~/Documents/org/main.org"))
+(keymap-global-set "C-x C-b" 'ibuffer)
+
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '((python-mode python-ts-mode) . ("ty" "server"))))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 (use-package org-mode
-  :defer t
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda)
   ("C-c c" . org-capture)
-  :init
-  (require 'org-tempo)
+  :custom
+  (org-directory "~/Documents/org")
+  (org-capture-templates
+   '(("t" "Todo" entry
+      (file+headline "~/Documents/org/todos.org" "TODOs")
+      "* TODO %?\n  %i\n")
+     ("d" "Daily Note" entry
+      (file+datetree "~/Documents/org/daily_notes.org")
+      "* TITLE %U\n  %i")   
+      ;; "* %? %U\n  %i")   
+     ("c" "To Check" entry
+      (file+headline "~/Documents/org/to_check.org" "To Check")
+      "* %?\n %i")))
   :hook
-  (org-mode . visual-line-mode))
-  ;; (org-mode . (lambda () (setq electric-indent-local-mode -1))))
-
-(use-package magit
-  :ensure t
-  :defer t)
+  (org-mode . visual-line-mode)
+  :init
+  (require 'org-tempo))
 
 (use-package pyvenv
   :ensure t
@@ -39,13 +48,17 @@
 
 (use-package python-mode
   :defer t
-  :custom
-  (display-fill-column-indicator-column 80)
-  (display-line-numbers-mode)
-  ;; (display-line-numbers-type 'relative)
   :hook
-  (python-mode . display-fill-column-indicator-mode)
-  (python-mode . display-line-numbers-mode))
+  (python-mode . eglot-ensure)
+  (python-mode . completion-preview-mode))
+
+(use-package toml
+  :ensure t
+  :defer t)
+
+(use-package yaml
+  :ensure t
+  :defer t)
 
 (use-package markdown-mode
   :ensure t
@@ -59,14 +72,9 @@
   (setq markdown-command "multimarkdown")
   :hook
   (markdown-mode . visual-line-mode))
-  
-(use-package yaml-mode
-  :ensure t
-  :defer t)
 
-(use-package toml-mode
-  :ensure t
-  :defer t)
+(use-package sicp
+  :ensure)
 
 (use-package ess
   :ensure t
@@ -89,55 +97,31 @@
   :ensure t
   :defer t)
 
-(use-package racket-mode
-  :ensure t
-  :defer t)
-
-(use-package sicp
-  :ensure t)
-
-(use-package nov
+(use-package go-mode
   :ensure t
   :defer t
   :mode
-  ("\\.epub\\'" . nov-mode))
-
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t)
-
-(use-package typst-ts-mode
-  :ensure t
-  :defer t)
-
-(use-package rust-mode
-  :ensure t
-  :defer t
-  :config
-  (setq rust-format-on-save t))
-
-(use-package vertico
-  :ensure t
-  :init
-  (vertico-mode))
-
-(use-package orderless
-  :ensure t
-  :defer t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles partial-completion))))
-  (completion-category-defuaults nil)
-  (completion-pcm-leading-wildcard t))
+  ("\\.go\\'" . go-mode)  
+)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(magit nov orderless poly-R pyvenv racket-mode rust-mode sicp
-	   toml-mode typst-ts-mode vertico yaml-mode)))
+ '(elpy-rpc-python-command "python3")
+ '(go-ts-mode-indent-offset 4)
+ '(org-agenda-files
+   '("~/Documents/org/raan.org" "/Users/dariog/Documents/org/cads.org"
+     "/Users/dariog/Documents/org/projects/processor.org"
+     "/Users/dariog/Documents/org/german.org"
+     "/Users/dariog/Documents/org/misc.org"
+     "/Users/dariog/Documents/org/todos.org"
+     "/Users/dariog/Documents/org/to_check.org"
+     "/Users/dariog/Documents/org/main.org"))
+ '(org-export-backends '(ascii html icalendar latex md odt))
+ '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

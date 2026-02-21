@@ -10,11 +10,14 @@ set wildmenu
 set autoread
 set foldmethod=indent
 set foldlevel=99
-"set textwidth=0
-"set wrapmargin=0
-"set linebreak
-"set list
-"set listchars=tab:>-
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set textwidth=0
+set wrapmargin=0
+set linebreak
+set number
+set relativenumber
 
 " Make search case sensitive only when needed
 set ignorecase
@@ -22,6 +25,9 @@ set smartcase
 
 " Enhance completion in the mode line
 set wildmenu
+
+"set colorcolumn=80
+"hi ColorColumn ctermbg=lightgrey
 
 " Enable loading the indent file for specific file types.
 " It automatically activates filetype plugin
@@ -33,16 +39,16 @@ let g:pyindent_open_paren = 'shiftwidth()'
 
 augroup python
     autocmd!
-    autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
+    autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8 colorcolumn=80
 augroup END
 
-augroup textdocs
-    autocmd!
-    autocmd BufReadPost *.md,*.rmd,*.txt,*.qmd setlocal wrap textwidth=0 wrapmargin=0 wrap linebreak
-augroup END
-
-let r_indent_align_args = 0 
-augroup proglangs
-    autocmd!
-    autocmd FileType r,yaml,lua,sql,json setlocal expandtab sw=2 sts=2 ts=8
-augroup END
+"augroup textdocs
+"    autocmd!
+"    autocmd BufReadPost *.md,*.rmd,*.txt,*.qmd setlocal wrap textwidth=0 wrapmargin=0 wrap linebreak
+"augroup END
+"
+"let r_indent_align_args = 0 
+"augroup proglangs
+"    autocmd!
+"    autocmd FileType r,yaml,lua,sql,json setlocal expandtab sw=2 sts=2 ts=8
+"augroup END
