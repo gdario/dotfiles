@@ -1,6 +1,10 @@
 (require 'package)
 (package-initialize)
 
+;; To avoid issues with the certificates
+(require 'gnutls)
+(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq backup-directory-alist '(("." . "~/.saves")))
 
@@ -40,6 +44,11 @@
   (org-mode . visual-line-mode)
   :init
   (require 'org-tempo))
+
+(use-package magit
+  :ensure t
+  :defer t
+  :bind (("C-x g" . magit-status)))
 
 (use-package pyvenv
   :ensure t
@@ -123,10 +132,13 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode toml
+			  yaml)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)
