@@ -15,7 +15,8 @@
 
 (use-package emacs
   :hook
-  (prog-mode . display-line-numbers-mode))
+  ((prog-mode . display-line-numbers-mode)
+   (prog-mode . electric-pair-mode)))
 
 (use-package windmove
   :bind
@@ -126,6 +127,15 @@
   ("\\.go\\'" . go-mode)  
 )
 
+(use-package sqlformat
+  :ensure t
+  :defer t
+  :init
+  (setq sqlformat-command 'pgformatter)
+  (setq sqlformat-args '("-s2" "-g"))
+  :hook
+  (sql-mode . sqlformat-on-save-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -143,11 +153,13 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
+ '(package-selected-packages
+   '(exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode
+			  sqlformat toml yaml))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
-      (sql-database "truveta_ehr_claims") (sql-port 5439))))
- '(package-selected-packages nil))
+      (sql-database "truveta_ehr_claims") (sql-port 5439)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
