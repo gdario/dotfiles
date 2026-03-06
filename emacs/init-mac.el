@@ -13,6 +13,17 @@
 (set-register ?m (cons 'file "~/Documents/org/main.org"))
 (keymap-global-set "C-x C-b" 'ibuffer)
 
+(use-package emacs
+  :hook
+  (prog-mode . display-line-numbers-mode))
+
+(use-package windmove
+  :bind
+  (("M-<left>" . windmove-left)
+   ("M-<right>" . windmove-right)
+   ("M-<up>" . windmove-up)
+   ("M-<down>" . windmove-down)))
+
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '((python-mode python-ts-mode) . ("ty" "server"))))
@@ -132,9 +143,11 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages
-   '(exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode toml
-			  yaml)))
+ '(sql-connection-alist
+   '(("truveta" (sql-product 'postgres) (sql-user "dariog")
+      (sql-server "redshift-02-us.dap.apollo.roche.com")
+      (sql-database "truveta_ehr_claims") (sql-port 5439))))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
