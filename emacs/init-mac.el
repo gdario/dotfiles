@@ -16,7 +16,10 @@
 (use-package emacs
   :hook
   ((prog-mode . display-line-numbers-mode)
-   (prog-mode . electric-pair-mode)))
+   (prog-mode . electric-pair-mode)
+   (prog-mode . (lambda ()
+		  (visual-line-mode -1)
+		  (toggle-truncate-lines 1)))))
 
 (use-package windmove
   :bind
@@ -69,7 +72,7 @@
 (use-package python-mode
   :defer t
   :hook
-  (python-mode . eglot-ensure)
+  ;; (python-mode . eglot-ensure)
   (python-mode . completion-preview-mode))
 
 (use-package toml
