@@ -8,15 +8,19 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq backup-directory-alist '(("." . "~/.saves")))
 
+;; Place to save third-party info files
+(add-to-list 'Info-directory-list "~/.emacs.d/infofiles")
+
 (tool-bar-mode -1)
 (set-frame-font "Monaco 13" nil t)
 (set-register ?m (cons 'file "~/Documents/org/main.org"))
 (keymap-global-set "C-x C-b" 'ibuffer)
+(column-number-mode t)
 
 (use-package emacs
   :hook
   ((prog-mode . display-line-numbers-mode)
-   (prog-mode . electric-pair-mode)
+   ;; (prog-mode . electric-pair-mode)
    (prog-mode . (lambda ()
 		  (visual-line-mode -1)
 		  (toggle-truncate-lines 1)))))
@@ -37,7 +41,7 @@
   :init
   (exec-path-from-shell-initialize))
 
-(use-package org-mode
+(use-package org
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda)
@@ -59,6 +63,10 @@
   (org-mode . visual-line-mode)
   :init
   (require 'org-tempo))
+
+(use-package auctex
+  :ensure t
+  :defer t)
 
 (use-package magit
   :ensure t
@@ -157,8 +165,8 @@
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
  '(package-selected-packages
-   '(exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode
-			  sqlformat toml yaml))
+   '(auctex exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode
+	    sqlformat toml yaml))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
