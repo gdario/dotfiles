@@ -62,7 +62,14 @@
   :hook
   (org-mode . visual-line-mode)
   :init
-  (require 'org-tempo))
+  (require 'org-tempo)
+  (require 'ob-sql)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (shell . t)
+     (sql . t))))
 
 (use-package auctex
   :ensure t
@@ -87,7 +94,7 @@
   :ensure t
   :defer t)
 
-(use-package yaml
+(use-package yaml-mode
   :ensure t
   :defer t)
 
@@ -162,11 +169,11 @@
      "/Users/dariog/Documents/org/todos.org"
      "/Users/dariog/Documents/org/to_check.org"
      "/Users/dariog/Documents/org/main.org"))
- '(org-export-backends '(ascii html icalendar latex md odt))
+ '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
  '(package-selected-packages
    '(auctex exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode
-	    sqlformat toml yaml))
+	    sqlformat toml yaml-mode))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
