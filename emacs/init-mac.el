@@ -71,6 +71,10 @@
      (shell . t)
      (sql . t))))
 
+(use-package csv-mode
+  :ensure t
+  :defer t)
+
 (use-package auctex
   :ensure t
   :defer t)
@@ -172,10 +176,11 @@
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
  '(package-selected-packages
-   '(auctex exec-path-from-shell go-mode magit poly-R pyvenv quarto-mode
-	    sqlformat toml yaml-mode))
+   '(auctex csv csv-mode exec-path-from-shell go-mode magit poly-R pyvenv
+	    quarto-mode sqlformat toml yaml-mode))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
+      (sql-password "P4r_Z54BhLtkwMIYRe")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
       (sql-database "truveta_ehr_claims") (sql-port 5439)))))
 (custom-set-faces
