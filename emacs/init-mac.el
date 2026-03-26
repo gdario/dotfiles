@@ -119,10 +119,7 @@
   :ensure t
   :defer t
   :config
-  (setq ess-style 'RStudio)
-  :hook
-  (ess-r-mode . display-fill-column-indicator-mode)
-  (ess-r-mode . display-line-numbers-mode))
+  (setq ess-style 'RStudio))
 
 (use-package poly-noweb
   :ensure t
@@ -175,9 +172,7 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages
-   '(auctex csv csv-mode exec-path-from-shell go-mode magit poly-R pyvenv
-	    quarto-mode sqlformat toml yaml-mode))
+ '(package-selected-packages nil)
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-password "P4r_Z54BhLtkwMIYRe")
