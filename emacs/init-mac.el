@@ -9,7 +9,7 @@
 (setq backup-directory-alist '(("." . "~/.saves")))
 
 ;; Place to save third-party info files
-(add-to-list 'Info-directory-list "~/.emacs.d/infofiles")
+;; (add-to-list 'Info-directory-list "~/.emacs.d/infofiles")
 
 (tool-bar-mode -1)
 (set-frame-font "Monaco 13" nil t)
@@ -154,6 +154,12 @@
   (setq sqlformat-args '("-s2" "-g"))
   :hook
   (sql-mode . sqlformat-on-save-mode))
+
+(use-package nov
+  :ensure t
+  :defer t
+  :mode
+  ("\\.epub\\'" . nov-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
