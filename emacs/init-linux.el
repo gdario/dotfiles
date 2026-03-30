@@ -56,10 +56,8 @@
          "* %?\nEntered on %U\n  %i\n  %a"))))
 
 (use-package elpy
+  :ensure t
   :defer t
-  :if (memq window-system '(mac ns x))
-  :config
-  (setq python-shell-completion-native-enable nil)
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
@@ -114,7 +112,7 @@
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
  '(fill-column 80)
- '(package-selected-packages '(auto-package-update hs-minor-mode use-package)))
+ '(package-selected-packages nil))
 
 ;;; init.el ends here
 (custom-set-faces
