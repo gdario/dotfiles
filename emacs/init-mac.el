@@ -9,7 +9,7 @@
 (setq backup-directory-alist '(("." . "~/.saves")))
 
 ;; Place to save third-party info files
-;; (add-to-list 'Info-directory-list "~/.emacs.d/infofiles")
+(add-to-list 'Info-directory-list "~/.emacs.d/infofiles")
 
 (tool-bar-mode -1)
 (set-frame-font "Monaco 13" nil t)
@@ -47,13 +47,14 @@
   ("C-c a" . org-agenda)
   ("C-c c" . org-capture)
   :custom
+  (org-clock-persist 'history)
   (org-directory "~/Documents/org")
   (org-capture-templates
    '(("t" "Todo" entry
       (file+headline "~/Documents/org/todos.org" "TODOs")
       "* TODO %?\n  %i\n")
      ("d" "Daily Note" entry
-      (file+datetree "~/Documents/org/daily_notes.org")
+      (file+olp+datetree "~/Documents/org/daily_notes.org")
       "* TITLE %U\n  %i")   
       ;; "* %? %U\n  %i")   
      ("c" "To Check" entry
@@ -62,6 +63,7 @@
   :hook
   (org-mode . visual-line-mode)
   :init
+  (org-clock-persistence-insinuate)
   (require 'org-tempo)
   (require 'ob-sql)
   (org-babel-do-load-languages
@@ -75,14 +77,22 @@
   :ensure t
   :defer t)
 
-(use-package auctex
-  :ensure t
-  :defer t)
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t)
 
 (use-package magit
   :ensure t
   :defer t
   :bind (("C-x g" . magit-status)))
+
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)))
 
 (use-package pyvenv
   :ensure t
@@ -139,13 +149,6 @@
   :mode
   ("\\.qmd\\'" . quarto-mode))
 
-(use-package go-mode
-  :ensure t
-  :defer t
-  :mode
-  ("\\.go\\'" . go-mode)  
-)
-
 (use-package sqlformat
   :ensure t
   :defer t
@@ -178,7 +181,9 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(csv-mode exec-path-from-shell magit nov poly-R projectile pyvenv
+	      quarto-mode sqlformat toml yaml-mode))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-password "P4r_Z54BhLtkwMIYRe")
