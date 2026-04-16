@@ -109,3 +109,4 @@ require('quicker').setup {}
 require('gitsigns').setup {}
 
 vim.lsp.enable('ty')
+vim.lsp.enable('r_language_server')

@@ -8,9 +8,6 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq backup-directory-alist '(("." . "~/.saves")))
 
-;; Place to save third-party info files
-(add-to-list 'Info-directory-list "~/.emacs.d/infofiles")
-
 (tool-bar-mode -1)
 (set-frame-font "Monaco 13" nil t)
 (set-register ?m (cons 'file "~/Documents/org/main.org"))
@@ -181,12 +178,11 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages
-   '(csv-mode exec-path-from-shell magit nov poly-R projectile pyvenv
-	      quarto-mode sqlformat toml yaml-mode))
+ '(package-selected-packages nil)
+ ;; Important: for this connection to work in GUI Emacs you must have a
+ ;; .pgpass file with the correct settings.
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
-      (sql-password "P4r_Z54BhLtkwMIYRe")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
       (sql-database "truveta_ehr_claims") (sql-port 5439)))))
 (custom-set-faces
