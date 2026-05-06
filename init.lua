@@ -101,12 +101,39 @@ vim.pack.add({
   'https://github.com/stevearc/quicker.nvim',
   -- Git integration
   'https://github.com/lewis6991/gitsigns.nvim',
+  -- Otter
+  'https://github.com/jmbuhr/otter.nvim',
+  -- Quarto
+  'https://github.com/quarto-dev/quarto-nvim',
 })
 
 require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
+require('quarto').setup{
+  debug = false,
+  closePreviewOnExit = true,
+  lspFeatures = {
+    enabled = true,
+    chunks = "curly",
+    languages = { "r", "python", "julia", "bash", "html" },
+    diagnostics = {
+      enabled = true,
+      triggers = { "BufWritePost" },
+    },
+    completion = {
+      enabled = true,
+    },
+  },
+  codeRunner = {
+    enabled = true,
+    default_method = "slime", -- "molten", "slime", "iron" or <function>
+    ft_runners = {}, -- filetype to runner, ie. `{ python = "molten" }`.
+    -- Takes precedence over `default_method`
+    never_run = { 'yaml' }, -- filetypes which are never sent to a code runner
+  },
+}
 
 vim.lsp.enable('ty')
 vim.lsp.enable('r_language_server')

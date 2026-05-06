@@ -13,6 +13,7 @@
 (set-register ?m (cons 'file "~/Documents/org/main.org"))
 (keymap-global-set "C-x C-b" 'ibuffer)
 (column-number-mode t)
+(load-theme 'solarized-light-high-contrast t)
 
 (use-package emacs
   :hook
@@ -70,13 +71,16 @@
      (shell . t)
      (sql . t))))
 
+(use-package solarized-theme
+  :ensure t)
+
 (use-package csv-mode
   :ensure t
   :defer t)
 
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t)
+(use-package auctex
+  :ensure t
+  :defer t)
 
 (use-package magit
   :ensure t
@@ -84,12 +88,12 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package projectile
-  :ensure t
-  :init
-  (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
+ :ensure t
+ :init
+ (projectile-mode +1)
+ :bind (:map projectile-mode-map
+             ("s-p" . projectile-command-map)
+             ("C-c p" . projectile-command-map)))
 
 (use-package pyvenv
   :ensure t
@@ -129,22 +133,22 @@
   (setq ess-style 'RStudio))
 
 (use-package poly-noweb
-  :ensure t
-  :defer t)
+ :ensure t
+ :defer t)
 
 (use-package poly-markdown
-  :ensure t
-  :defer t)
+ :ensure t
+ :defer t)
 
 (use-package poly-R
-  :ensure t
-  :defer t)
+ :ensure t
+ :defer t)
 
 (use-package quarto-mode
   :ensure t
-  :defer t
-  :mode
-  ("\\.qmd\\'" . quarto-mode))
+  :defer t)
+;;   :mode
+;;   (("\\.qmd\\'" . quarto-mode)))
 
 (use-package sqlformat
   :ensure t
@@ -166,6 +170,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c"
+     default))
  '(elpy-rpc-python-command "python3")
  '(go-ts-mode-indent-offset 4)
  '(org-agenda-files
@@ -178,9 +185,10 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages nil)
- ;; Important: for this connection to work in GUI Emacs you must have a
- ;; .pgpass file with the correct settings.
+ '(package-selected-packages
+   '(auctex csv-mode exec-path-from-shell magit nov poly-R pyvenv
+	    quarto-mode solarized-emacs solarized-theme sqlformat toml
+	    yaml-mode))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
