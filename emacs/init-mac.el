@@ -13,7 +13,6 @@
 (set-register ?m (cons 'file "~/Documents/org/main.org"))
 (keymap-global-set "C-x C-b" 'ibuffer)
 (column-number-mode t)
-(load-theme 'solarized-light-high-contrast t)
 
 (use-package emacs
   :hook
@@ -47,6 +46,7 @@
   :custom
   (org-clock-persist 'history)
   (org-directory "~/Documents/org")
+  (org-image-max-width 'window)
   (org-capture-templates
    '(("t" "Todo" entry
       (file+headline "~/Documents/org/todos.org" "TODOs")
@@ -70,9 +70,6 @@
      (python . t)
      (shell . t)
      (sql . t))))
-
-(use-package solarized-theme
-  :ensure t)
 
 (use-package csv-mode
   :ensure t
@@ -147,8 +144,6 @@
 (use-package quarto-mode
   :ensure t
   :defer t)
-;;   :mode
-;;   (("\\.qmd\\'" . quarto-mode)))
 
 (use-package sqlformat
   :ensure t
@@ -185,10 +180,7 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages
-   '(auctex csv-mode exec-path-from-shell magit nov poly-R pyvenv
-	    quarto-mode solarized-emacs solarized-theme sqlformat toml
-	    yaml-mode))
+ '(package-selected-packages nil)
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
