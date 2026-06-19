@@ -108,8 +108,6 @@ vim.pack.add({
   'https://github.com/jmbuhr/otter.nvim',
   -- Quarto
   'https://github.com/quarto-dev/quarto-nvim',
-  -- Nvim Org Mode
-  'https://github.com/nvim-orgmode/orgmode',
 })
 
 require('fzf-lua').setup { fzf_colors = true }
@@ -139,12 +137,6 @@ require('quarto').setup{
     never_run = { 'yaml' }, -- filetypes which are never sent to a code runner
   },
 }
-require('orgmode').setup {
-  ft = { 'org' },
-  org_agenda_files = '~/orgfiles/**/*',
-  org_default_notes_file = '~/orgfiles/refile.org',
-}
 
 vim.lsp.enable('ty')
 vim.lsp.enable('r_language_server')
-vim.lsp.enable('org')

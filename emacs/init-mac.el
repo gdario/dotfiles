@@ -145,6 +145,26 @@
   :ensure t
   :defer t)
 
+(use-package treesit
+  :if (treesit-available-p)
+  :ensure nil
+  :config
+  (setq treesit-language-source-alist
+      '((stan . ("https://github.com/WardBrian/tree-sitter-stan" "v0.3.0" "grammars/stan/src"))
+        (stanfunctions . ("https://github.com/WardBrian/tree-sitter-stan" "v0.3.0" "grammars/stanfunctions/src"))))
+  (unless (treesit-language-available-p 'stan)
+    (treesit-install-language-grammar 'stan))
+  (unless (treesit-language-available-p 'stanfunctions)
+    (treesit-install-language-grammar 'stanfunctions)))
+
+(use-package stan-ts-mode
+  :ensure t
+  :defer t
+  :requires treesit
+  :mode (("\\.stan\\'" . stan-ts-mode) ("\\.stanfunctions\\'" . stan-functions-ts-mode))
+  :defer t
+  :ensure t)
+
 (use-package sqlformat
   :ensure t
   :defer t
