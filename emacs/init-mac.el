@@ -15,6 +15,19 @@
 (column-number-mode t)
 
 (use-package emacs
+  :custom
+  ;; Enable context menu. `vertico-multiform-mode' adds a menu in the minibuffer
+  ;; to switch display modes.
+  (context-menu-mode t)
+  ;; Support opening new minibuffers from inside existing minibuffers.
+  (enable-recursive-minibuffers t)
+  ;; Hide commands in M-x which do not work in the current mode.  Vertico
+  ;; commands are hidden in normal buffers. This setting is useful beyond
+  ;; Vertico.
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt))
   :hook
   ((prog-mode . display-line-numbers-mode)
    ;; (prog-mode . electric-pair-mode)
@@ -180,6 +193,30 @@
   :mode
   ("\\.epub\\'" . nov-mode))
 
+(use-package vertico
+  :ensure
+  ;;:custom
+  ;; (vertico-scroll-margin 0) ;; Different scroll margin
+  ;; (vertico-count 20) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (vertico-mode))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
+;; ;; Slime
+;; (use-package slime
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (setq inferior-lisp-program "sbcl")
+;;   :config
+;;   (slime-setup '(slime-fancy slime-quicklisp slime-asdf slime-mrepl)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -200,7 +237,10 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(auctex csv-mode exec-path-from-shell magit nov poly-R projectile
+	    pyvenv quarto-mode slime sqlformat stan-ts-mode toml
+	    vertico yaml-mode))
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
