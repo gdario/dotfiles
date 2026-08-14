@@ -66,8 +66,10 @@
       "* TODO %?\n  %i\n")
      ("d" "Daily Note" entry
       (file+olp+datetree "~/Documents/org/daily_notes.org")
-      "* TITLE %U\n  %i")   
-      ;; "* %? %U\n  %i")   
+      "* TITLE %U\n  %i")
+     ("m" "Meeting Minutes" entry
+      (file+olp+datetree "~/Documents/org/meetings.org")
+      "* %U\n\n** Attending\n\n** Purpose\n\n** Information\n\n** Decisions\n\n** Action Items  %i")
      ("c" "To Check" entry
       (file+headline "~/Documents/org/to_check.org" "To Check")
       "* %?\n %i")))
@@ -97,13 +99,13 @@
   :defer t
   :bind (("C-x g" . magit-status)))
 
-(use-package projectile
- :ensure t
- :init
- (projectile-mode +1)
- :bind (:map projectile-mode-map
-             ("s-p" . projectile-command-map)
-             ("C-c p" . projectile-command-map)))
+;; (use-package projectile
+;;  :ensure t
+;;  :init
+;;  (projectile-mode +1)
+;;  :bind (:map projectile-mode-map
+;;              ("s-p" . projectile-command-map)
+;;              ("C-c p" . projectile-command-map)))
 
 (use-package pyvenv
   :ensure t
@@ -237,10 +239,7 @@
      "/Users/dariog/Documents/org/main.org"))
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-refile-targets '((org-agenda-files :maxlevel . 6)))
- '(package-selected-packages
-   '(auctex csv-mode exec-path-from-shell magit nov poly-R projectile
-	    pyvenv quarto-mode slime sqlformat stan-ts-mode toml
-	    vertico yaml-mode))
+ '(package-selected-packages nil)
  '(sql-connection-alist
    '(("truveta" (sql-product 'postgres) (sql-user "dariog")
       (sql-server "redshift-02-us.dap.apollo.roche.com")
