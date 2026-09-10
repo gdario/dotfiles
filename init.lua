@@ -108,6 +108,13 @@ vim.pack.add({
   'https://github.com/jmbuhr/otter.nvim',
   -- Quarto
   'https://github.com/quarto-dev/quarto-nvim',
+  -- Oil.nvim
+  -- "https://github.com/stevearc/oil.nvim",
+  -- Obsidian
+  {
+    src = "https://github.com/obsidian-nvim/obsidian.nvim",
+    version = vim.version.range "*", -- use latest release, remove to use latest commit
+  }
 })
 
 require('fzf-lua').setup { fzf_colors = true }
@@ -135,6 +142,20 @@ require('quarto').setup{
     ft_runners = {}, -- filetype to runner, ie. `{ python = "molten" }`.
     -- Takes precedence over `default_method`
     never_run = { 'yaml' }, -- filetypes which are never sent to a code runner
+  },
+}
+-- require('oil').setup{}
+require("obsidian").setup {
+  legacy_commands = false, -- this will be removed in 4.0.0
+  workspaces = {
+    {
+      name = "personal",
+      path = "~/Documents/MyVault",
+    },
+    {
+      name = "work",
+      path = "~/Documents/2026_vault",
+    },
   },
 }
 

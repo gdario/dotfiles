@@ -118,13 +118,13 @@
   ;; (python-mode . eglot-ensure)
   (python-mode . completion-preview-mode))
 
-(use-package toml
-  :ensure t
-  :defer t)
+;; (use-package toml
+;;   :ensure t
+;;   :defer t)
 
-(use-package yaml-mode
-  :ensure t
-  :defer t)
+;; (use-package yaml-mode
+;;   :ensure t
+;;   :defer t)
 
 (use-package markdown-mode
   :ensure t
