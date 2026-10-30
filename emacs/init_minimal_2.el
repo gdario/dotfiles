@@ -1,8 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+(setenv "MACOSX_DEPLOYMENT_TARGET" "27.0")
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; (setq backup-directory-alist '(("." . "~/.saves")))
+(setq backup-directory-alist '(("." . "~/.saves")))
 (if window-system (set-frame-font "Monaco 13" nil t))
 (tool-bar-mode -1)
 ;; Note: (truncate-lines) is a toggle.

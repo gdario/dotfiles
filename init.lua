@@ -43,6 +43,11 @@ vim.o.foldlevel = 99
 -- instead raise a dialog asking if you wish to save the current file(s). See `:h 'confirm'`
 vim.o.confirm = true
 
+-- Allow markdown header folding
+vim.g.markdown_folding = 1
+
+vim.g.loaded_python3_provider = 1
+
 -- KEYMAPS
 --
 -- See `:h vim.keymap.set()`, `:h mapping`, `:h keycodes`
@@ -102,6 +107,12 @@ vim.pack.add({
   'https://github.com/nvim-mini/mini.completion',
   -- Enhanced quickfix/loclist
   'https://github.com/stevearc/quicker.nvim',
+  -- Treesitter
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    lazy = false,
+    build = ':TSUpdate'
+  },
   -- Git integration
   'https://github.com/lewis6991/gitsigns.nvim',
   -- Otter
@@ -110,11 +121,6 @@ vim.pack.add({
   'https://github.com/quarto-dev/quarto-nvim',
   -- Oil.nvim
   -- "https://github.com/stevearc/oil.nvim",
-  -- Obsidian
-  {
-    src = "https://github.com/obsidian-nvim/obsidian.nvim",
-    version = vim.version.range "*", -- use latest release, remove to use latest commit
-  }
 })
 
 require('fzf-lua').setup { fzf_colors = true }
@@ -145,19 +151,6 @@ require('quarto').setup{
   },
 }
 -- require('oil').setup{}
-require("obsidian").setup {
-  legacy_commands = false, -- this will be removed in 4.0.0
-  workspaces = {
-    {
-      name = "personal",
-      path = "~/Documents/MyVault",
-    },
-    {
-      name = "work",
-      path = "~/Documents/2026_vault",
-    },
-  },
-}
 
 vim.lsp.enable('ty')
 vim.lsp.enable('r_language_server')
