@@ -1,6 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
-(setenv "MACOSX_DEPLOYMENT_TARGET" "27.0")
+; To prevent the flood of warnings on the mac
+(require 'comp)
+(setq native-comp-driver-options
+      (cons "-mmacosx-version-min=11" native-comp-driver-options))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -9,6 +12,16 @@
 (tool-bar-mode -1)
 ;; Note: (truncate-lines) is a toggle.
 (add-hook 'prog-mode-hook #'(lambda() (setq truncate-lines t)))
+
+(with-eval-after-load 'python
+  ;; 1. Point Emacs to the correct macOS executable
+  (setq python-shell-interpreter "python3")
+  ;; 2. Prevent libedit from injecting incompatible terminal characters
+  (setq python-shell-interpreter-args "-i")
+  ;; 3. Disable native completion which causes hangs on macOS Python 3.9
+  (setq python-shell-completion-native-enable nil)
+  ;; 4. Silence the warning (the shell usually works perfectly fine anyway)
+  (setq python-shell-prompt-detect-failure-warning nil))
 
 (use-package org-mode
   :defer t

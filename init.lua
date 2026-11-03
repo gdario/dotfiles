@@ -35,9 +35,13 @@ vim.o.smartcase = true
 vim.o.cursorline = true -- Highlight the line where the cursor is on.
 vim.o.scrolloff = 0 -- Keep this many screen lines above/below the cursor.
 vim.o.list = true -- Show <tab> and trailing spaces.
+vim.o.linebreak = true -- Wrap lines in a nice way.
 
 vim.o.foldmethod = 'indent'
 vim.o.foldlevel = 99
+
+-- Required by obsidian.nvim
+vim.opt_local.conceallevel = 2
 
 -- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s). See `:h 'confirm'`
@@ -121,10 +125,18 @@ vim.pack.add({
   'https://github.com/quarto-dev/quarto-nvim',
   -- Oil.nvim
   -- "https://github.com/stevearc/oil.nvim",
+  {
+    src = "https://github.com/obsidian-nvim/obsidian.nvim",
+    version = vim.version.range "*", -- use latest release, remove to use latest commit
+  },
 })
 
 require('fzf-lua').setup { fzf_colors = true }
-require('mini.completion').setup {}
+require('mini.completion').setup {
+  delay = {
+    signature = 10000000, -- Effectively disables automatic signature help
+  }
+}
 require('quicker').setup {}
 require('gitsigns').setup {}
 require('quarto').setup{
@@ -151,6 +163,19 @@ require('quarto').setup{
   },
 }
 -- require('oil').setup{}
+require("obsidian").setup {
+  legacy_commands = false, -- this will be removed in 4.0.0
+  workspaces = {
+    {
+      name = "work",
+      path = "~/Documents/2026_vault",
+    },
+    {
+      name = "sailing",
+      path = "~/Documents/Sailing",
+    },
+  },
+}
 
 vim.lsp.enable('ty')
 vim.lsp.enable('r_language_server')

@@ -2,6 +2,11 @@
 (require 'package)
 (package-initialize)
 
+; To prevent the flood of warnings on the mac
+(require 'comp)
+(setq native-comp-driver-options
+      (cons "-mmacosx-version-min=11" native-comp-driver-options))
+
 ;; To avoid issues with the certificates
 (require 'gnutls)
 (add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
@@ -114,6 +119,8 @@
 
 (use-package python-mode
   :defer t
+  :config
+  (setq python-shell-interpreter "python3")
   :hook
   ;; (python-mode . eglot-ensure)
   (python-mode . completion-preview-mode))
