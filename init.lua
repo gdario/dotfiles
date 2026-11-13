@@ -28,6 +28,15 @@ vim.api.nvim_create_autocmd('UIEnter', {
   end,
 })
 
+vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
+	pattern = {'*.lua', '*.r'},
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.softtabstop = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.expandtab = true
+	end,
+})
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -41,7 +50,7 @@ vim.o.foldmethod = 'indent'
 vim.o.foldlevel = 99
 
 -- Required by obsidian.nvim
-vim.opt_local.conceallevel = 2
+-- vim.opt_local.conceallevel = 2
 
 -- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s). See `:h 'confirm'`
@@ -125,10 +134,10 @@ vim.pack.add({
   'https://github.com/quarto-dev/quarto-nvim',
   -- Oil.nvim
   -- "https://github.com/stevearc/oil.nvim",
-  {
-    src = "https://github.com/obsidian-nvim/obsidian.nvim",
-    version = vim.version.range "*", -- use latest release, remove to use latest commit
-  },
+  -- {
+  --   src = "https://github.com/obsidian-nvim/obsidian.nvim",
+  --   version = vim.version.range "*", -- use latest release, remove to use latest commit
+  -- },
 })
 
 require('fzf-lua').setup { fzf_colors = true }
@@ -163,19 +172,19 @@ require('quarto').setup{
   },
 }
 -- require('oil').setup{}
-require("obsidian").setup {
-  legacy_commands = false, -- this will be removed in 4.0.0
-  workspaces = {
-    {
-      name = "work",
-      path = "~/Documents/2026_vault",
-    },
-    {
-      name = "sailing",
-      path = "~/Documents/Sailing",
-    },
-  },
-}
-
-vim.lsp.enable('ty')
+-- require("obsidian").setup {
+--   legacy_commands = false, -- this will be removed in 4.0.0
+--   workspaces = {
+--     {
+--       name = "work",
+--       path = "~/Documents/2026_vault",
+--     },
+--     {
+--       name = "sailing",
+--       path = "~/Documents/Sailing",
+--     },
+--   },
+-- }
+-- 
+-- vim.lsp.enable('ty')
 vim.lsp.enable('r_language_server')
